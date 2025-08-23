@@ -1,35 +1,161 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shri Krishna Udhav Memorial Trust</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Shri Krishna Udhav Memorial Trust | श्री कृष्ण उद्धव मेमोरियल ट्रस्ट</title>
+    <link rel='stylesheet' href='styles.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
+    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap' rel='stylesheet'>
 </head>
 <body>
-    <header>
-        <img src="banner.jpg" alt="NGO Banner" class="banner">
-        <h1>Shri Krishna Udhav Memorial Trust</h1>
-        <p>Empowering communities through service and compassion.</p>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
+    <nav class='navbar'>
+        <div class='nav-container'>
+            <div class='nav-logo'>
+                <img src='images/logo.jpg' alt='Trust Logo' class='logo-img'>
+                <div class='nav-title'><h1>श्री कृष्ण उद्धव मेमोरियल ट्रस्ट<br><span>Shri Krishna Udhav Memorial Trust</span></h1></div>
+            </div>
+            <ul class='nav-menu'>
+                <li><a href='#home'>होम / Home</a></li>
+                <li><a href='#about'>हमारे बारे में / About</a></li>
+                <li><a href='#programs'>कार्यक्रम / Programs</a></li>
+                <li><a href='#getinvolved'>सहयोग करें / Get Involved</a></li>
+                <li><a href='#contact'>संपर्क करें / Contact</a></li>
+            </ul>
+        </div>
     </nav>
-    <section class="hero">
-        <h2>Making a Difference</h2>
-        <p>Join us in our mission to uplift and empower communities in need.</p>
+
+    <section id='home' class='hero'>
+        <div class='hero-content'>
+            <div class='hero-text'>
+                <h2>समाज कल्याण और विकास हेतु प्रतिबद्ध</h2>
+                <h3>Committed to Social Welfare & Development</h3>
+                <p class='mission'>हमारा मिशन: शिक्षा, स्वास्थ्य, और सामाजिक जागरूकता द्वारा समाज को सशक्त बनाना <br> Our mission: Empowering communities via education, healthcare, social awareness</p>
+                <div class='hero-cta'><a href='#getinvolved' class='btn btn-donate'>दान करें / Donate</a></div>
+            </div>
+            <div class='hero-image'>
+                <img src='images/tricolor-banner.jpg' alt='Banner'>
+            </div>
+        </div>
     </section>
-    <section class="content">
-        <h2>About Us</h2>
-        <p>Shri Krishna Udhav Memorial Trust is dedicated to various social causes, including education, health, and skill development.</p>
+
+    <section id='about' class='about'>
+      <div class='container'>
+        <h2>हमारे बारे में / About Us</h2>
+        <div class='about-grid'>
+          <div class='about-block'>
+            <img src='images/founder.jpg' alt='Founder Shri Udho Yadav'>
+            <h3>संस्थापक श्रद्धांजलि</h3>
+            <p>स्व० श्री उधो यादव (13.01.2017) <br>In memory of Late Shri Udho Yadav, whose life dedicated to public service inspires our trust’s vision for inclusive growth.</p>
+          </div>
+          <div class='about-block'>
+            <img src='images/logo.jpg' alt='Logo'>
+            <h3>पंजीकरण जानकारी | Registration Details</h3>
+            <ul>
+              <li>पंजीकरण संख्या / Reg. No.: 114/2020</li>
+              <li>दिनांक / Date: 07-01-2020</li>
+              <li>Indian Trust Act, 1882 | मान्य : 15-01-2030</li>
+            </ul>
+            <h4>कार्यालय पदाधिकारी / Office Bearers</h4>
+            <ul>
+              <li>अध्यक्ष/Chairman: •••</li>
+              <li>कोषाध्यक्ष/Treasurer: •••</li>
+              <li>सचिव/Secretary: •••</li>
+            </ul>
+          </div>
+        </div>
+        <div class='mission-vision'>
+          <div>
+            <h4>लक्ष्य / Mission</h4>
+            <p>वंचित समुदायों का उत्थान शिक्षा, स्वास्थ्य सेवाएं और सशक्तिकरण के माध्यम से।<br>Uplifting underprivileged communities via education, health, empowerment.</p>
+          </div>
+          <div>
+            <h4>दृष्टि / Vision</h4>
+            <p>एक ऐसा समाज बनाना जहाँ प्रत्येक व्यक्ति सम्मान के साथ जीवन जिए।<br>To build a society where every person lives with dignity.</p>
+          </div>
+        </div>
+      </div>
     </section>
-    <footer>
-        <p>&copy; 2025 Shri Krishna Udhav Memorial Trust. All rights reserved.</p>
+
+    <section id='programs' class='programs'>
+      <div class='container'>
+        <h2>हमारे कार्यक्रम / Our Activities</h2>
+        <div class='program-cards'>
+          <div class='card'>
+            <img src='images/signboard.jpg' alt='Location Signboard'>
+            <h3>स्थानीय सेवा केंद्र / Local Centre</h3>
+            <p>हमारा केंद्र चंद्रकोष बाजार, देवरिया (उत्तर प्रदेश) में स्थित है।<br>Main centre at Chandrakosh Bazar, Deoria (U.P.)</p>
+          </div>
+          <div class='card'>
+            <img src='images/event-banner.jpg' alt='Event'>
+            <h3>सामुदायिक कार्यक्रम / Community Events</h3>
+            <p>नियमित शिक्षा व स्वास्थ्य शिविर, महिला सशक्तिकरण, जागरूकता अभियान।<br>Regular education/health camps, women empowerment drives, legal awareness.</p>
+          </div>
+          <div class='card'>
+            <img src='images/team-photo.jpg' alt='Volunteers'>
+            <h3>समर्पित स्वयंसेवक / Dedicated Volunteers</h3>
+            <p>हमारे स्वयंसेवक विभिन्न सामाजिक कार्यक्रमों में सक्रिय भागीदारी करते हैं।<br>Our volunteers actively participate in all programs.</p>
+          </div>
+        </div>
+        <div class='impact-stats'>
+          <span><b>5+</b> सेवा के वर्ष / Years of Service</span> |
+          <span><b>100+</b> लाभार्थी / Beneficiaries</span> |
+          <span><b>10+</b> महत्वपूर्ण कार्यक्रम / Key Programs</span>
+        </div>
+      </div>
+    </section>
+
+    <section id='getinvolved' class='get-involved'>
+      <div class='container'>
+        <h2>सहयोग करें / Get Involved</h2>
+        <p>हर दान, प्रत्येक स्वयंसेवक, एक नई सोच को जन्म देता है।<br>Every donation and volunteer brings new hope.</p>
+        <div class='donation-box'>
+          <h3>डोनेशन विवरण / Donation Details</h3>
+          <p>UPI/BANK TRANSFER/Paytm: <b>[Add Acct/UPI Here]</b></p>
+          <p>हम दान का उपयोग केवल कल्याण हेतु करते हैं।<br>Donations are used only for welfare purposes.</p>
+          <span class='tax-note'>[80G/12A information, eligibility for deduction if available; else write 'Application in process']</span>
+        </div>
+        <form class='volunteer-form'>
+          <input type='text' placeholder='Name/नाम' required />
+          <input type='email' placeholder='Email/ईमेल' required />
+          <textarea placeholder='Why do you want to join?/आप क्यों जुड़ना चाहते हैं?'></textarea>
+          <button type='submit' class='btn'>स्वयंसेवक बनें / Become Volunteer</button>
+        </form>
+      </div>
+    </section>
+
+    <section id='contact' class='contact'>
+      <div class='container'>
+        <h2>संपर्क करें / Contact Us</h2>
+        <div class='contact-info'>
+          <span><i class='fas fa-map-marker-alt'></i> Address: Chandrakosh Bazar, Deoria, Uttar Pradesh - 274506, India</span><br>
+          <span><i class='fas fa-envelope'></i> Email: trust@email.com</span><br>
+          <span><i class='fas fa-phone'></i> Phone: +91-XXXXXXXXXX</span><br>
+          <span><i class='fas fa-file-contract'></i> Reg. No.: 114/2020</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class='footer'>
+      <div class='container'>
+        <div class='footer-cols'>
+          <div>
+            <img src='images/logo.jpg' alt='Footer Logo' style='width:50px;border-radius:50%;'><br>
+            श्री कृष्ण उद्धव मेमोरियल ट्रस्ट<br>© 2025 All Rights Reserved.
+          </div>
+          <div>
+            <h4>पारदर्शिता एवं नीतियाँ / Transparency & Policies</h4>
+            <ul>
+              <li>Annual Report PDF</li>
+              <li>Trust Deed</li>
+              <li>Privacy Policy</li>
+              <li>80G/12A Status</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </footer>
+    <script src='script.js'></script>
 </body>
 </html>
