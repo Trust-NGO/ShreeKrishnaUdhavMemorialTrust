@@ -1,259 +1,242 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Shri Krishna Udhav Memorial Trust | श्री कृष्ण उद्धव मेमोरियल ट्रस्ट</title>
-    <meta name="description" content="श्री कृष्ण उद्धव मेमोरियल ट्रस्ट - समाज कल्याण, शिक्षा, स्वास्थ्य और जागरूकता के लिए समर्पित।">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="Shri Krishna Udhav Memorial Trust - Committed to social welfare, education, health, and inclusive development in Deoria, Uttar Pradesh.">
+    <meta name="keywords" content="NGO, Trust, Deoria, Uttar Pradesh, Social Welfare, Education, Health, Donation">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;}
+        .section-icon { margin-right: 0.5em; color: #005baa;}
+        .card-glass { background: rgba(255,255,255,0.9); border-radius: 1em; box-shadow: 0 4px 24px #28359333; margin-bottom: 2em; padding: 2em;}
+        .navbar { margin-bottom: 2em;}
+        .footer { background: #222; color: #fff; padding: 2em 0;}
+        .footer a { color: #ffeb3b;}
+        .gallery-img { width: 100%; height: 180px; object-fit: cover; border-radius: 0.5em;}
+        .nav-link { font-weight: 600;}
+        .compliance { color: #d32f2f; font-weight: bold;}
+        .impact-stats span { font-size: 1.1em; margin-right: 1em;}
+        .btn-donate { background: #005baa; color: #fff; font-weight: 600;}
+    </style>
 </head>
 <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
-    <!-- Logo bar for branding -->
-    <div class="top-logo-bar">
-        <img src="Images/banner.jpg" alt="Trust Logo" class="bar-logo">
-        <span class="bar-title">श्री कृष्ण उद्धव मेमोरियल ट्रस्ट | Shri Krishna Udhav Memorial Trust</span>
-    </div>
-    <nav class="navbar" aria-label="Main Navigation">
-        <div class="nav-container">
-            <div class="nav-logo" tabindex="0">
-                <img src="Images/image1.jpg" alt="Trust Logo" class="logo-img">
-                <div class="nav-title">
-                    <h1>श्री कृष्ण उद्धव मेमोरियल ट्रस्ट<br>
-                    <span lang="en">Shri Krishna Udhav Memorial Trust</span></h1>
-                </div>
-            </div>
-            <button class="nav-toggle" aria-controls="nav-menu" aria-expanded="false"><span class="fa fa-bars"></span> <span class="sr-only">Toggle navigation</span></button>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home">होम / Home</a></li>
-                <li><a href="#about">हमारे बारे में / About</a></li>
-                <li><a href="#programs">कार्यक्रम / Programs</a></li>
-                <li><a href="#getinvolved">सहयोग करें / Get Involved</a></li>
-                <li><a href="#contact">संपर्क करें / Contact</a></li>
-            </ul>
-        </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="Images/image1.jpg" alt="Trust Logo" style="width:40px; border-radius:50%; margin-right:0.5em;">
+        श्री कृष्ण उद्धव मेमोरियल ट्रस्ट / Shri Krishna Udhav Memorial Trust
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">होम / Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">हमारे बारे में / About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#team">टीम / Team</a></li>
+          <li class="nav-item"><a class="nav-link" href="#events">इवेंट्स / Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">गैलरी / Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="#donate">दान करें / Donate</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">संपर्क / Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="#privacy">Privacy Policy</a></li>
+          <li class="nav-item"><a class="nav-link" href="#disclaimer">Disclaimer</a></li>
+        </ul>
+      </div>
     </nav>
 
-    <main id="main-content" tabindex="-1">
-        <!-- HERO SECTION -->
-        <section id="home" class="hero" aria-label="Home - Mission">
-            <div class="hero-bg-img">
-                <img src="Images/banner.jpg" alt="Trust Banner" />
-                <div class="hero-gradient-overlay"></div>
-            </div>
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h2>समाज कल्याण और विकास हेतु प्रतिबद्ध</h2>
-                    <h3 lang="en">Committed to Social Welfare & Development</h3>
-                    <p class="mission">
-                        हमारा मिशन: शिक्षा, स्वास्थ्य, और सामाजिक जागरूकता द्वारा समाज का सतत विकास और वंचित वर्गों का सशक्तिकरण।
-                    </p>
-                    <div class="hero-cta">
-                        <a href="#getinvolved" class="btn btn-donate" role="button" aria-label="Donate or Get Involved">
-                            <i class="fa fa-heart"></i> दान करें / Donate
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-image floating-img">
-                    <img src="Images/image1.jpg" alt="Trust Logo" style="max-width: 220px; border-radius: 50%; border:8px solid #fff; box-shadow: 0 4px 24px #28359333;">
-                </div>
-            </div>
-        </section>
+    <!-- Hero Section -->
+    <section id="home" class="container text-center my-4">
+      <img src="Images/banner.jpg" alt="Trust Banner" style="width:100%; max-width:900px; border-radius:1em;">
+      <h2 class="mt-3">समाज कल्याण और विकास हेतु प्रतिबद्ध</h2>
+      <h3 lang="en">Committed to Social Welfare & Development</h3>
+      <p class="lead">
+        हमारा मिशन: शिक्षा, स्वास्थ्य, एवं सामाजिक जागरूकता द्वारा समाज का समग्र विकास।<br>
+        Our mission: Holistic development of society through education, health, and social awareness.
+      </p>
+      <a href="#donate" class="btn btn-donate btn-lg mt-2">दान करें / Donate</a>
+    </section>
 
-        <!-- ABOUT SECTION -->
-        <section id="about" class="about gradient-bg" aria-label="About Us">
-            <div class="container">
-                <h2><span class="section-icon"><i class="fa fa-users"></i></span> हमारे बारे में / About Us</h2>
-                <div class="tabs" role="tablist">
-                    <button class="tab-button active" role="tab" aria-selected="true" aria-controls="about-tab" id="tab-about">परिचय / Introduction</button>
-                    <button class="tab-button" role="tab" aria-selected="false" aria-controls="team-tab" id="tab-team">टीम / Team</button>
-                    <button class="tab-button" role="tab" aria-selected="false" aria-controls="policies-tab" id="tab-policies">नीतियाँ / Policies</button>
-                    <button class="tab-button" role="tab" aria-selected="false" aria-controls="reports-tab" id="tab-reports">रिपोर्ट / Reports</button>
-                </div>
-                <div class="tab-content" id="about-tab" role="tabpanel" aria-labelledby="tab-about">
-                    <div class="about-grid">
-                        <div class="about-block card-glass">
-                            <img src="Image/image2.jpg" alt="Founder Tribute" class="founder-img">
-                            <h3>संस्थापक श्रद्धांजलि</h3>
-                            <p>स्व० श्री उधो यादव (13.01.2017)<br>
-                                In memory of Late Shri Udho Yadav, whose life dedicated to public service inspires our trust’s vision for inclusive growth and compassion.
-                            </p>
-                        </div>
-                        <div class="about-block card-glass">
-                            <img src="Images/image1.jpg" alt="Trust Logo">
-                            <h3>पंजीकरण जानकारी | Registration Details</h3>
-                            <ul>
-                                <li>पंजीकरण संख्या / Reg. No.: <b>114/2020</b></li>
-                                <li>दिनांक / Date: 07-01-2020</li>
-                                <li>Indian Trust Act, 1882 | मान्य : 15-01-2030</li>
-                                <li>80G/12A: <span class="compliance">Application in Process</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="mission-vision">
-                        <div class="card-glass">
-                            <h4><i class="fa fa-bullseye"></i> लक्ष्य / Mission</h4>
-                            <p>वंचित समुदायों का उत्थान शिक्षा, स्वास्थ्य सेवाएं और सशक्तिकरण के माध्यम से।</p>
-                        </div>
-                        <div class="card-glass">
-                            <h4><i class="fa fa-eye"></i> दृष्टि / Vision</h4>
-                            <p>
-                                एक ऐसा समाज बनाना जहाँ प्रत्येक व्यक्ति सम्मान के साथ जीवन जिए।<br>
-                                To build a society where every individual lives with dignity, opportunity, and hope.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-content" id="team-tab" role="tabpanel" aria-labelledby="tab-team" hidden>
-                    <div class="card-glass pad-2">
-                        <h3>कार्यालय पदाधिकारी / Office Bearers</h3>
-                        <ul>
-                            <li>अध्यक्ष/Chairman: <b>Shri [Name]</b></li>
-                            <li>कोषाध्यक्ष/Treasurer: <b>Smt. [Name]</b></li>
-                            <li>सचिव/Secretary: <b>Shri [Name]</b></li>
-                        </ul>
-                        <h4>Advisory Committee</h4>
-                        <ul>
-                            <li>Shri [Advisor 1]</li>
-                            <li>Smt. [Advisor 2]</li>
-                            <li>Shri [Advisor 3]</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="tab-content" id="policies-tab" role="tabpanel" aria-labelledby="tab-policies" hidden>
-                    <div class="card-glass pad-2">
-                        <h3>नीतियाँ / Policies</h3>
-                        <ul>
-                            <li><a href="docs/AnnualReport.pdf" target="_blank"><i class="fa fa-file-pdf"></i> Annual Report (PDF)</a></li>
-                            <li><a href="docs/TrustDeed.pdf" target="_blank"><i class="fa fa-file-contract"></i> Trust Deed</a></li>
-                            <li><a href="docs/PrivacyPolicy.pdf" target="_blank"><i class="fa fa-user-secret"></i> Privacy Policy</a></li>
-                            <li>80G/12A Status: <span class="compliance">Application in Process</span></li>
-                        </ul>
-                        <p class="policy-note">
-                            We are committed to transparency, regular reporting, and best NGO practices.<br>
-                            <b>Contact info@trust.org for any policy queries.</b>
-                        </p>
-                    </div>
-                </div>
-                <div class="tab-content" id="reports-tab" role="tabpanel" aria-labelledby="tab-reports" hidden>
-                    <div class="card-glass pad-2">
-                        <h3>Annual Reports & Financials</h3>
-                        <ul>
-                            <li><a href="docs/AnnualReport_2024.pdf" target="_blank"><i class="fa fa-file-pdf"></i> 2024 Annual Report</a></li>
-                            <li><a href="docs/Audit_2024.pdf" target="_blank"><i class="fa fa-file-invoice"></i> 2024 Audit Report</a></li>
-                            <li><a href="docs/AnnualReport_2023.pdf" target="_blank"><i class="fa fa-file-pdf"></i> 2023 Annual Report</a></li>
-                        </ul>
-                        <p>
-                            All reports are available for public scrutiny in the interest of transparency and NGO compliance.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- About Us -->
+    <section id="about" class="container">
+      <div class="card-glass">
+        <h2><span class="section-icon">&#128100;</span> हमारे बारे में / About Us</h2>
+        <p>
+          Shri Krishna Udhav Memorial Trust is a registered NGO in Deoria, Uttar Pradesh, working towards the upliftment and empowerment of marginalized communities.<br>
+          <b>Objectives:</b> To promote education, health & family welfare, skill development and legal awareness, and to address issues faced by children, differently abled, and prisoners.<br/>
+          <b>Sectors:</b> Children, Differently Abled, Disaster Management, Drinking Water, Education & Literacy, Food Processing, Health & Family Welfare, Legal Awareness & Aid, Prisoner's Issues, Water Resources, Skill Development.
+        </p>
+        <ul>
+          <li><b>Unique Id of VO/NGO:</b> UP/2024/0406617</li>
+          <li><b>DARPAN Reg. Date:</b> 11-12-2024</li>
+          <li><b>Registered With:</b> Sub-Registrar</li>
+          <li><b>Type of NGO:</b> Trust (Non-Government)</li>
+          <li><b>Registration No:</b> IV14/2020</li>
+          <li><b>Act Name:</b> Section 8 of Companies Act, 2013</li>
+          <li><b>City of Registration:</b> DEORIA</li>
+          <li><b>State:</b> UTTAR PRADESH</li>
+          <li><b>Date of Registration:</b> 15-05-2020</li>
+        </ul>
+      </div>
+      <div class="card-glass mt-3">
+        <h3>Vision / दृष्टि</h3>
+        <p>
+          एक ऐसा समाज बनाना जहाँ प्रत्येक व्यक्ति सम्मान के साथ, अवसर और आशा के साथ जीवन व्यतीत कर सके।<br>
+          To build a society where every individual lives with dignity, opportunity, and hope.
+        </p>
+      </div>
+      <div class="card-glass mt-3">
+        <h3>Achievements / उपलब्धियां</h3>
+        <ul>
+          <li>Successfully organized health camps and educational workshops in Deoria district.</li>
+          <li>Provided skill training to over 100 youth and women.</li>
+          <li>Ongoing legal awareness and aid programs for vulnerable groups.</li>
+          <li><i>More achievements coming soon...</i></li>
+        </ul>
+      </div>
+    </section>
 
-        <!-- PROGRAMS SECTION -->
-        <section id="programs" class="programs" aria-label="Programs and Activities">
-            <div class="container">
-                <h2><span class="section-icon"><i class="fa fa-hands-helping"></i></span> हमारे कार्यक्रम / Our Activities</h2>
-                <div class="program-cards">
-                    <div class="card card-glass">
-                        <img src="images/image1.jpg" alt="Location Signboard" style="object-fit:contain; background:#fff;">
-                        <h3>स्थानीय सेवा केंद्र / Local Centre</h3>
-                        <p>हमारा केंद्र चंद्रकोष बाजार, देवरिया (उत्तर प्रदेश) में स्थित है।<br>Main centre for community outreach and all trust activities.</p>
-                    </div>
-                    <div class="card card-glass">
-                        <img src="images/image3.jpg" alt="Event" style="object-fit:contain; background:#fff;">
-                        <h3>सामुदायिक कार्यक्रम / Community Events</h3>
-                        <p>नियमित शिक्षा व स्वास्थ्य शिविर, महिला सशक्तिकरण, जागरूकता अभियान।<br>Regular education & health camps, women empowerment drives.</p>
-                    </div>
-                    <div class="card card-glass">
-                        <img src="images/image4.jpg" alt="Volunteers at Trust Event" style="object-fit:cover;">
-                        <h3>समर्पित स्वयंसेवक / Dedicated Volunteers</h3>
-                        <p>हमारे स्वयंसेवक विभिन्न सामाजिक कार्यक्रमों में सक्रिय भागीदारी करते हैं।<br>Our volunteers play an active role in all initiatives.</p>
-                    </div>
-                </div>
-                <div class="impact-stats glowing-stats" aria-label="Impact Statistics">
-                    <span><b>5+</b> सेवा के वर्ष / Years of Service</span> |
-                    <span><b>100+</b> लाभार्थी / Beneficiaries</span> |
-                    <span><b>10+</b> महत्वपूर्ण कार्यक्रम / Key Programs</span>
-                </div>
-            </div>
-        </section>
+    <!-- Team Section -->
+    <section id="team" class="container mt-5">
+      <div class="card-glass">
+        <h2><span class="section-icon">&#128101;</span> Our Team / टीम</h2>
+        <ul>
+          <li><b>Chairman / अध्यक्ष:</b> SUBASH CHANDR YADAV</li>
+          <li><b>Secretary / सचिव:</b> ANKIT KUMAR YADAV</li>
+          <li><b>Treasurer / कोषाध्यक्ष:</b> [Name Placeholder]</li>
+        </ul>
+        <h4>Advisory Committee:</h4>
+        <ul>
+          <li>Shri [Advisor 1]</li>
+          <li>Smt. [Advisor 2]</li>
+          <li>Shri [Advisor 3]</li>
+        </ul>
+      </div>
+    </section>
 
-        <!-- GET INVOLVED SECTION -->
-        <section id="getinvolved" class="get-involved gradient-bg" aria-label="Get Involved">
-            <div class="container">
-                <h2><span class="section-icon"><i class="fa fa-hands"></i></span> सहयोग करें / Get Involved</h2>
-                <div class="flex-get-involved">
-                    <div class="donation-box card-glass">
-                        <h3>डोनेशन विवरण / Donation Details</h3>
-                        <p><b>UPI/BANK TRANSFER/Paytm:</b> <span class="upi-id">trust@upi</span></p>
-                        <p>हम दान का उपयोग केवल कल्याण हेतु करते हैं।<br>Donations are used only for welfare purposes.</p>
-                        <span class="tax-note">80G/12A <span class="compliance">Application in Process</span> (Eligible for deduction once approved)</span>
-                        <div class="donation-icons">
-                            <i class="fa fa-rupee-sign"></i>
-                            <i class="fa fa-university"></i>
-                            <i class="fa fa-mobile-alt"></i>
-                        </div>
-                    </div>
-                    <form class="volunteer-form card-glass" id="volunteer-form" aria-label="Volunteer Registration" autocomplete="on" novalidate>
-                        <fieldset>
-                            <legend>स्वयंसेवक बनें / Become a Volunteer</legend>
-                            <label for="name">Name/नाम<span aria-hidden="true">*</span></label>
-                            <input type="text" id="name" name="name" required aria-required="true" maxlength="60"/>
-                            <label for="email">Email/ईमेल<span aria-hidden="true">*</span></label>
-                            <input type="email" id="email" name="email" required aria-required="true" maxlength="60"/>
-                            <label for="reason">Why do you want to join?/आप क्यों जुड़ना चाहते हैं?</label>
-                            <textarea id="reason" name="reason" rows="3" maxlength="300"></textarea>
-                            <button type="submit" class="btn"><i class="fa fa-user-plus"></i> स्वयंसेवक बनें / Become Volunteer</button>
-                            <div class="form-msg" id="form-msg" aria-live="polite"></div>
-                        </fieldset>
-                    </form>
-                </div>
+    <!-- Events Section -->
+    <section id="events" class="container mt-5">
+      <div class="card-glass">
+        <h2><span class="section-icon">&#128197;</span> Events / इवेंट्स</h2>
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <img src="Images/event1.jpg" alt="Event 1" class="gallery-img">
+              <div class="card-body">
+                <h5 class="card-title">Health Camp - 2025</h5>
+                <p class="card-text">Free health checkups for villagers at Khukhundoo.</p>
+              </div>
             </div>
-        </section>
-
-        <!-- CONTACT SECTION -->
-        <section id="contact" class="contact" aria-label="Contact Us">
-            <div class="container">
-                <h2><span class="section-icon"><i class="fa fa-envelope"></i></span> संपर्क करें / Contact Us</h2>
-                <div class="contact-info card-glass">
-                    <span><i class="fas fa-map-marker-alt"></i> Address: Chandrakosh Bazar, Deoria, Uttar Pradesh - 274506, India</span><br>
-                    <span><i class="fas fa-envelope"></i> Email: <a href="mailto:trust@email.com">trust@email.com</a></span><br>
-                    <span><i class="fas fa-phone"></i> Phone: <a href="tel:+919999999999">+91-9999999999</a></span><br>
-                    <span><i class="fas fa-file-contract"></i> Reg. No.: 114/2020</span>
-                </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <img src="Images/event2.jpg" alt="Event 2" class="gallery-img">
+              <div class="card-body">
+                <h5 class="card-title">Legal Awareness Drive</h5>
+                <p class="card-text">Legal counseling for rural women and youth.</p>
+              </div>
             </div>
-        </section>
-    </main>
-
-    <footer class="footer" aria-label="Footer">
-        <div class="container">
-            <div class="footer-cols">
-                <div>
-                    <img src="images/image1.jpg" alt="Footer Logo" style="width:50px;border-radius:50%; margin-bottom:0.5em;"><br>
-                    श्री कृष्ण उद्धव मेमोरियल ट्रस्ट<br>© 2025 All Rights Reserved.
-                </div>
-                <div>
-                    <h4>पारदर्शिता एवं नीतियाँ<br><span lang="en">Transparency & Policies</span></h4>
-                    <ul>
-                        <li><a href="#policies-tab" class="footer-tab-link" data-tab="policies-tab">Annual Report PDF</a></li>
-                        <li><a href="#policies-tab" class="footer-tab-link" data-tab="policies-tab">Trust Deed</a></li>
-                        <li><a href="#policies-tab" class="footer-tab-link" data-tab="policies-tab">Privacy Policy</a></li>
-                        <li><a href="#policies-tab" class="footer-tab-link" data-tab="policies-tab">80G/12A Status</a></li>
-                    </ul>
-                </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <img src="Images/event3.jpg" alt="Event 3" class="gallery-img">
+              <div class="card-body">
+                <h5 class="card-title">Skill Development Workshop</h5>
+                <p class="card-text">Hands-on vocational training for local youth.</p>
+              </div>
             </div>
-            <div class="footer-note">
-                <small>
-                    Registered under Indian Trust Act, 1882 | PAN: [Your PAN Here] | FCRA: [If applicable]<br>
-                    <a href="#about">About</a> | <a href="#getinvolved">Get Involved</a> | <a href="#contact">Contact</a>
-                </small>
-            </div>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="container mt-5">
+      <div class="card-glass">
+        <h2><span class="section-icon">&#128247;</span> Gallery / गैलरी</h2>
+        <div class="row">
+          <div class="col-md-3 mb-3"><img src="Images/image1.jpg" alt="Gallery 1" class="gallery-img"></div>
+          <div class="col-md-3 mb-3"><img src="Images/image2.jpg" alt="Gallery 2" class="gallery-img"></div>
+          <div class="col-md-3 mb-3"><img src="Images/banner.jpg" alt="Gallery 3" class="gallery-img"></div>
+          <div class="col-md-3 mb-3"><img src="Images/event1.jpg" alt="Gallery 4" class="gallery-img"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Donate Section -->
+    <section id="donate" class="container mt-5">
+      <div class="card-glass">
+        <h2><span class="section-icon">&#128176;</span> Donate / दान करें</h2>
+        <p>
+          <b>UPI/BANK TRANSFER/Paytm:</b> <span class="upi-id">trust@upi</span><br>
+          Donations are used only for welfare purposes. <br>
+          <span class="tax-note">80G/12A <span class="compliance">Application in Process</span> (Eligible for deduction once approved)</span>
+        </p>
+        <a href="#contact" class="btn btn-primary">Contact for Donation Queries</a>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container mt-5">
+      <div class="card-glass">
+        <h2><span class="section-icon">&#128222;</span> संपर्क / Contact Us</h2>
+        <p>
+          <b>Address:</b> VIL AND POST KHUKHUNDOO DEORA UP 274501, Deoria, UTTAR PRADESH<br>
+          <b>Email:</b> <a href="mailto:trust@email.com">trust@email.com</a><br>
+          <b>Phone:</b> <a href="tel:+919999999999">+91-9999999999</a><br>
+          <b>Reg. No.:</b> IV14/2020
+        </p>
+      </div>
+    </section>
+
+    <!-- Privacy Policy -->
+    <section id="privacy" class="container mt-5">
+      <div class="card-glass">
+        <h2>Privacy Policy</h2>
+        <p>
+          We value your privacy. All personal information collected via this site or forms is kept confidential and used solely for trust activities. For privacy queries, contact <a href="mailto:trust@email.com">trust@email.com</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section id="disclaimer" class="container mt-5 mb-5">
+      <div class="card-glass">
+        <h2>Disclaimer</h2>
+        <p>
+          Shri Krishna Udhav Memorial Trust is registered as per Indian law. All content herein is for informational purposes only. For official documents and compliance, contact the trust directly.
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="Images/image1.jpg" alt="Footer Logo" style="width:50px;border-radius:50%; margin-bottom:0.5em;"><br>
+            श्री कृष्ण उद्धव मेमोरियल ट्रस्ट<br>© 2025 All Rights Reserved.
+          </div>
+          <div class="col-md-6">
+            <h4>Compliance, Policies</h4>
+            <ul>
+              <li><a href="#privacy">Privacy Policy</a></li>
+              <li><a href="#disclaimer">Disclaimer</a></li>
+              <li><a href="#about">NGO Registration</a></li>
+              <li><a href="#events">Annual Reports</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="text-center mt-3">
+          <small>Registered under Section 8 of Companies Act, 2013 | PAN: [Your PAN Here] | FCRA: [If applicable]</small>
+        </div>
+      </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
