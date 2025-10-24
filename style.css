@@ -1,287 +1,263 @@
-/* ---------------------------------------------------
-   Shri Krishna Udhav Memorial Trust - Stylesheet
-   Clean | NGO-Compliant | Bilingual Support
---------------------------------------------------- */
-:root {
-  --primary: #2e7d32;
-  --accent: #f9a825;
-  --gradient: linear-gradient(135deg, #1b5e20, #4caf50);
-  --text-dark: #222;
-  --text-light: #fff;
-  --bg-light: #f4f9f4;
-  --shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  --radius: 16px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 body {
-  margin: 0;
-  font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
-  background: var(--bg-light);
-  color: var(--text-dark);
-  scroll-behavior: smooth;
+    font-family: 'Poppins', Arial, sans-serif;
+    background: linear-gradient(135deg,#f7fafe 55%, #e3f0ff 100%);
+    color: #222;
+    margin: 0;
+    padding: 0;
 }
 
-a {
-  color: var(--primary);
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-
-/* ------------------ TOP LOGO BAR ------------------ */
-.top-logo-bar {
-  background: var(--gradient);
-  color: var(--text-light);
-  display: flex;
-  align-items: center;
-  padding: 0.3em 1em;
-  font-weight: 600;
-}
-.top-logo-bar img {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-/* ------------------ NAVBAR ------------------ */
 .navbar {
-  background: #fff;
-  box-shadow: var(--shadow);
-  position: sticky;
-  top: 0;
-  z-index: 10;
+    background: linear-gradient(90deg,#005baa 80%, #59aaf9 100%);
+    box-shadow: 0 2px 8px #005baa22;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
 }
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5em 1em;
+.navbar-brand,
+.navbar-nav .nav-link {
+    color: #fff !important;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
 }
-.nav-logo {
-  display: flex;
-  align-items: center;
+.navbar-nav .nav-link:hover,
+.navbar-brand:hover {
+    color: #ffeb3b !important;
+    text-shadow: 0 2px 8px #005baa77;
 }
-.logo-img {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  margin-right: 0.8em;
+.header-social a {
+    color: #fff;
+    margin: 0 0.5em;
+    font-size: 1.2em;
+    transition: color 0.3s;
 }
-.nav-title h1 {
-  font-size: 1.1em;
-  line-height: 1.3em;
-}
-.nav-toggle {
-  background: none;
-  border: none;
-  font-size: 1.4em;
-  display: none;
-}
-.nav-menu {
-  display: flex;
-  list-style: none;
-  gap: 1.5em;
-}
-.nav-menu a {
-  font-weight: 600;
-  transition: color 0.3s;
-}
-.nav-menu a:hover {
-  color: var(--accent);
+.header-social a:hover {
+    color: #ffeb3b;
 }
 
-/* ------------------ HERO SECTION ------------------ */
-.hero {
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-  color: var(--text-light);
+.hero-section {
+    background: linear-gradient(120deg,#005baa 60%, #59aaf9 100%);
+    color: #fff;
+    padding: 5em 0 3em 0;
+    border-bottom-left-radius: 2em;
+    border-bottom-right-radius: 2em;
+    box-shadow: 0 8px 32px #005baa33;
+    position: relative;
+    overflow: hidden;
 }
-.hero-bg-img img {
-  width: 100%;
-  height: 450px;
-  object-fit: cover;
-  filter: brightness(70%);
-}
-.hero-gradient-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--gradient);
-  opacity: 0.4;
+.hero-section img {
+    max-width: 180px;
+    border-radius: 50%;
+    box-shadow: 0 8px 32px #2229;
+    margin-bottom: 2em;
+    border: 8px solid #fff;
 }
 .hero-content {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1em;
+    max-width: 650px;
+    margin: auto;
+    background: rgba(255,255,255,0.15);
+    border-radius: 2em;
+    padding: 2em 1em;
+    box-shadow: 0 4px 24px #005baa33;
 }
-.hero-content h2 {
-  font-size: 1.8em;
-  margin: 0.2em 0;
+.hero-content h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 12px #005baa88;
 }
-.hero-content h3 {
-  font-weight: 400;
-  margin: 0.2em 0 1em;
+.hero-content .lead {
+    font-size: 1.3em;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 2em;
 }
-.btn {
-  background: var(--accent);
-  color: #000;
-  padding: 0.6em 1.2em;
-  border-radius: var(--radius);
-  font-weight: 600;
-  display: inline-block;
+.btn-warning {
+    background: linear-gradient(90deg,#ffeb3b 60%, #ffd600 100%);
+    border: none;
+    color: #222 !important;
+    font-weight: 600;
+    box-shadow: 0 2px 8px #ffd60055;
+    border-radius: 2em;
+    padding: 0.75em 2em;
+    transition: background 0.3s, transform 0.2s;
 }
-.btn:hover {
-  background: #ffd54f;
-}
-.floating-img {
-  animation: float 4s ease-in-out infinite;
-}
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+.btn-warning:hover {
+    background: linear-gradient(90deg,#ffd600 60%, #ffeb3b 100%);
+    transform: scale(1.05);
+    color: #005baa !important;
 }
 
-/* ------------------ SECTIONS ------------------ */
-section {
-  padding: 3em 1em;
+.section-title {
+    font-weight: 700;
+    font-size: 2em;
+    color: #005baa;
+    margin-bottom: 0.5em;
+    text-shadow: 0 2px 12px #59aaf944;
 }
-.container {
-  max-width: 1100px;
-  margin: auto;
-}
-h2 {
-  text-align: center;
-  font-size: 1.6em;
-  margin-bottom: 1.5em;
-  color: var(--primary);
-}
-.gradient-bg {
-  background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+.section-subtitle {
+    color: #333;
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-bottom: 2em;
 }
 
-/* ------------------ CARDS ------------------ */
-.card-glass {
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 1.2em;
-  margin: 1em;
-  flex: 1;
+.about-card, .mission-card, .objectives-card, .team-card, .gallery-card, .donate-card, .contact-card, .events-card {
+    background: rgba(255,255,255,0.98);
+    border-radius: 1.5em;
+    box-shadow: 0 4px 24px #28359333;
+    padding: 2em;
+    margin-bottom: 2em;
+    transition: box-shadow 0.3s, transform 0.2s;
 }
-.about-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.about-block img {
-  width: 100%;
-  border-radius: var(--radius);
-  max-height: 180px;
-  object-fit: cover;
-  margin-bottom: 0.8em;
+.about-card:hover, .mission-card:hover, .objectives-card:hover, .team-card:hover, .gallery-card:hover, .donate-card:hover, .contact-card:hover, .events-card:hover {
+    box-shadow: 0 8px 32px #005baa33;
+    transform: translateY(-5px) scale(1.02);
 }
 
-/* ------------------ PROGRAMS ------------------ */
-.program-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+ul {
+    padding-left: 1.5em;
 }
-.program-cards .card img {
-  width: 100%;
-  height: 180px;
-  border-radius: var(--radius);
-  margin-bottom: 0.8em;
-}
-.impact-stats {
-  text-align: center;
-  margin-top: 2em;
-  font-weight: 600;
+li {
+    margin-bottom: 0.5em;
 }
 
-/* ------------------ GET INVOLVED ------------------ */
-.flex-get-involved {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1em;
-  justify-content: center;
+.team-photo {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #005baa;
+    box-shadow: 0 2px 16px #005baa22;
+    transition: box-shadow 0.3s, transform 0.2s;
 }
-.volunteer-form input,
-.volunteer-form textarea {
-  width: 100%;
-  padding: 0.6em;
-  margin-bottom: 0.8em;
-  border-radius: var(--radius);
-  border: 1px solid #ccc;
+.team-photo:hover {
+    box-shadow: 0 4px 24px #005baa44;
+    transform: scale(1.1);
 }
-.volunteer-form button {
-  background: var(--primary);
-  color: var(--text-light);
-  border: none;
-  padding: 0.7em 1.3em;
-  border-radius: var(--radius);
+.gallery-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 1em;
+    box-shadow: 0 2px 12px #005baa22;
+    transition: box-shadow 0.3s, transform 0.2s;
 }
-.volunteer-form button:hover {
-  background: #43a047;
-}
-
-/* ------------------ CONTACT ------------------ */
-.contact-info {
-  text-align: center;
-  font-size: 1em;
-}
-.contact-info a {
-  color: var(--primary);
-  font-weight: 600;
+.gallery-img:hover {
+    box-shadow: 0 8px 28px #005baa44;
+    transform: scale(1.04);
 }
 
-/* ------------------ FOOTER ------------------ */
+.card {
+    border-radius: 1em;
+    box-shadow: 0 2px 12px #28359322;
+    transition: box-shadow 0.3s, transform 0.2s;
+}
+.card:hover {
+    box-shadow: 0 6px 24px #005baa22;
+    transform: scale(1.03);
+}
+
+.donate-card input,
+.donate-card textarea {
+    margin-bottom: 1em;
+    border-radius: 1em;
+    border: 1px solid #59aaf9;
+    padding-left: 1em;
+    background: #f7fafe;
+    transition: border-color 0.3s;
+}
+.donate-card input:focus,
+.donate-card textarea:focus {
+    border-color: #005baa;
+    outline: none;
+}
+
+.contact-card a {
+    color: #005baa;
+    text-decoration: underline;
+    font-weight: 600;
+}
+.contact-card a:hover {
+    color: #ffd600;
+    text-decoration: none;
+}
+
 .footer {
-  background: var(--gradient);
-  color: var(--text-light);
-  text-align: center;
-  padding: 2em 1em;
-}
-.footer-cols {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin-bottom: 1em;
+    background: linear-gradient(90deg,#005baa 80%, #222 100%);
+    color: #fff;
+    padding: 2em 0;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    box-shadow: 0 -2px 16px #005baa22;
 }
 .footer a {
-  color: #fff;
+    color: #ffeb3b;
+    text-decoration: underline;
+    transition: color 0.3s;
 }
-.footer-note {
-  font-size: 0.9em;
-  opacity: 0.8;
+.footer a:hover {
+    color: #ffd600;
+    text-decoration: none;
+}
+.footer ul {
+    padding-left: 0;
+    list-style: none;
+}
+.footer img {
+    border: 3px solid #fff;
+}
+.footer h5 {
+    color: #ffeb3b;
+    font-weight: 600;
+    margin-bottom: 1em;
+}
+.footer .fab {
+    margin-right: 1em;
+    color: #ffeb3b;
+    transition: color 0.3s;
+}
+.footer .fab:hover {
+    color: #ffd600;
 }
 
-/* ------------------ RESPONSIVE ------------------ */
+/* Responsive styles */
+@media (max-width: 990px) {
+    .navbar, .footer {
+        border-radius: 0;
+    }
+    .hero-content h1 {
+        font-size: 2em;
+    }
+}
 @media (max-width: 768px) {
-  .nav-toggle { display: block; }
-  .nav-menu {
-    flex-direction: column;
-    display: none;
-    background: #fff;
-    padding: 1em;
-    border-top: 1px solid #ddd;
-  }
-  .nav-menu.active { display: flex; }
-  .program-cards,
-  .about-grid,
-  .flex-get-involved {
-    flex-direction: column;
-    align-items: center;
-  }
+    .hero-content {
+        padding: 0 1em;
+    }
+    .about-card, .mission-card, .objectives-card, .team-card, .gallery-card, .donate-card, .contact-card, .events-card {
+        padding: 1em;
+    }
+    .section-title {
+        font-size: 1.3em;
+    }
+    .gallery-img {
+        height: 120px;
+    }
+    .team-photo {
+        width: 60px;
+        height: 60px;
+    }
+}
+@media (max-width: 500px) {
+    .hero-section {
+        padding: 2em 0 1em 0;
+    }
+    .hero-content h1 {
+        font-size: 1.3em;
+    }
+    .footer {
+        padding: 1em 0;
+        font-size: 0.9em;
+    }
 }
