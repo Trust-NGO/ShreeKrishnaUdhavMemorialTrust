@@ -58,9 +58,35 @@
 
     @media (max-width:768px){ .hero-section h1{font-size:2em;} .gallery-img{height:120px;} .team-photo{width:60px;height:60px;} }
   </style>
-</head>
-<body>
 
+  <!-- Structured Data for NGO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NGO",
+    "name": "Shri Krishna Udhav Memorial Trust",
+    "url": "https://trust-ngo.github.io/ShreeKrishnaUdhavTrust/",
+    "logo": "https://trust-ngo.github.io/ShreeKrishnaUdhavTrust/Images/logo.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "VIL AND POST KHUKHUNDOO DEORA UP 274501",
+      "addressLocality": "Deoria",
+      "addressRegion": "Uttar Pradesh",
+      "postalCode": "274501",
+      "addressCountry": "IN"
+    },
+    "email": "krishnaudhavtrust@gmail.com",
+    "telephone": "+91-9918640455",
+    "sameAs": [
+      "https://facebook.com/",
+      "https://instagram.com/",
+      "https://twitter.com/"
+    ]
+  }
+  </script>
+</head>
+
+<body>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light">
   <a class="navbar-brand" href="#">
@@ -92,7 +118,7 @@
   <a href="#donate" class="btn btn-cta btn-lg">Donate Now</a>
 </section>
 
-<!-- About Us -->
+<!-- About -->
 <section id="about" class="container card-section">
   <h2 class="section-title">About Us</h2>
   <p class="section-subtitle">
@@ -100,7 +126,7 @@
   </p>
 </section>
 
-<!-- Mission & Vision -->
+<!-- Mission -->
 <section id="mission" class="container card-section">
   <h2 class="section-title">Mission & Vision</h2>
   <div class="row">
@@ -115,7 +141,7 @@
   </div>
 </section>
 
-<!-- Key Objectives -->
+<!-- Objectives -->
 <section id="objectives" class="container card-section">
   <h2 class="section-title">Key Objectives & Focus Areas</h2>
   <ul>
@@ -131,7 +157,7 @@
   </ul>
 </section>
 
-<!-- Recent Events -->
+<!-- Events -->
 <section id="events" class="container card-section">
   <h2 class="section-title">Recent Events & Activities</h2>
   <div class="row">
@@ -165,7 +191,7 @@
   </div>
 </section>
 
-<!-- Team / Trustees -->
+<!-- Team -->
 <section id="team" class="container card-section">
   <h2 class="section-title">Our Team / Trustees</h2>
   <div class="row text-center">
@@ -181,7 +207,7 @@
     </div>
     <div class="col-md-4 mb-3">
       <img src="https://via.placeholder.com/90?text=Treasurer" class="team-photo" alt="Treasurer">
-      <h5 class="mt-2">Raju Patel</h5>
+      <h5 class="mt-2">RAJU PATEL</h5>
       <p>Treasurer</p>
     </div>
   </div>
@@ -191,10 +217,10 @@
 <section id="gallery" class="container card-section">
   <h2 class="section-title">Gallery Highlights</h2>
   <div class="row">
-    <div class="col-md-3 mb-3"><img src="https://via.placeholder.com/200x180?text=Gallery+1" class="gallery-img"></div>
-    <div class="col-md-3 mb-3"><img src="https://via.placeholder.com/200x180?text=Gallery+2" class="gallery-img"></div>
-    <div class="col-md-3 mb-3"><img src="https://via.placeholder.com/200x180?text=Gallery+3" class="gallery-img"></div>
-    <div class="col-md-3 mb-3"><img src="https://via.placeholder.com/200x180?text=Gallery+4" class="gallery-img"></div>
+    <div class="col-md-3 mb-3"><img src="https://via.placeholder.com/200x180?text=Gallery+1" class="gallery-img" alt="Gallery Image 1"></div>
+    <div class="col-md-3 mb-3"><img src="https://via.placeholder.com/200x180?text=Gallery+2" class="gallery-img" alt="Gallery Image 2"></div>
+    <div class="col-md-3 mb-3"><img src="https://via.placeholder.com/200x180?text=Gallery+3" class="gallery-img" alt="Gallery Image 3"></div>
+    <div class="col-md-3 mb-3"><img src="https://via.placeholder.com/200x180?text=Gallery+4" class="gallery-img" alt="Gallery Image 4"></div>
   </div>
 </section>
 
@@ -235,10 +261,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 mb-3">
-        <img src="Images/footerlogo" alt="Footer Logo" style="width:40px;border-radius:50%; margin-bottom:0.5em;"><br>
+        <img src="Images/footerlogo.jpg" alt="Footer Logo" style="width:40px;border-radius:50%; margin-bottom:0.5em;"><br>
         <strong>Shri Krishna Udhav Memorial Trust</strong><br>
         Registered under Section 8 of Companies Act, 2013<br>
-        DARPAN ID: UP/2024/0406617 |DARPAN ID: UP/2024/0406617 | Reg No: IV14/2020
+        DARPAN ID: UP/2024/0406617 | Reg No: IV14/2020
       </div>
       <div class="col-md-6 mb-3">
         <h5>Important Links</h5>
@@ -246,14 +272,9 @@
           <li><a href="#about">About</a></li>
           <li><a href="#mission">Mission & Vision</a></li>
           <li><a href="#donate">Donate</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Disclaimer</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
         </ul>
-        <div>
-          <a href="#"><i class="fab fa-facebook fa-lg"></i></a>
-          <a href="#"><i class="fab fa-twitter fa-lg"></i></a>
-          <a href="#"><i class="fab fa-instagram fa-lg"></i></a>
-        </div>
       </div>
     </div>
     <div class="text-center mt-2">
@@ -262,26 +283,4 @@
   </div>
 </footer>
 
-<!-- Back to Top Button -->
-<button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
-  <i class="fas fa-arrow-up"></i>
-</button>
-
-<!-- Bootstrap JS, Popper.js, jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<script>
-  // Back to top button
-  var btn = document.getElementById('backToTop');
-  window.onscroll = function() {
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-      btn.style.display = "block";
-    } else {
-      btn.style.display = "none";
-    }
-  };
-</script>
-</body>
-</html>
+<!-- Back to Top
