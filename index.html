@@ -1,614 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Shri Krishna Udhav Memorial Trust | Empowering Communities</title>
-<meta name="description" content="Shri Krishna Udhav Memorial Trust - Empowering communities in Deoria, Uttar Pradesh through education, health, skill development and legal awareness."/>
-<meta name="keywords" content="NGO, Trust, Deoria, Uttar Pradesh, Social Welfare, Education, Health, Donate" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Udho Yadav Foundation | Empowering Rural Lives</title>
+  <meta name="description" content="Udho Yadav Foundation — NGO empowering rural communities through education, health, and women's empowerment in Deoria, Uttar Pradesh." />
+  <meta name="keywords" content="Udho Yadav Foundation, NGO, Deoria, Rural Development, Education, Health, Women Empowerment" />
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<!-- FontAwesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
 
-<style>
-/* ===== Enhanced CSS (merged & improved) ===== */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
-:root{
-  --brand:#005baa;
-  --brand-2:#59aaf9;
-  --accent:#ffd600;
-  --muted:#f7fafe;
-  --card-shadow: 0 4px 24px rgba(40,53,147,0.2);
-}
-
-*{box-sizing:border-box}
-body {
-    font-family: 'Poppins', Arial, sans-serif;
-    background: linear-gradient(135deg,var(--muted) 55%, #e3f0ff 100%);
-    color: #222;
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth;
-    -webkit-font-smoothing:antialiased;
-}
-
-/* Navbar */
-.navbar {
-    background: linear-gradient(90deg,var(--brand) 80%, var(--brand-2) 100%);
-    box-shadow: 0 2px 8px rgba(0,91,170,0.15);
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
-    position: sticky;
-    top:0;
-    z-index: 9999;
-    padding: .6rem 1rem;
-}
-.navbar-brand, .navbar-nav .nav-link { color: #fff !important; font-weight: 600; }
-.navbar-nav .nav-link:hover { color: var(--accent) !important; text-shadow:0 2px 8px rgba(0,91,170,0.45);}
-.logo-img { width:40px; height:40px; border-radius:50%; margin-right:.5rem; object-fit:cover; box-shadow:0 2px 8px rgba(0,91,170,0.12); }
-
-/* Hero */
-.hero-section {
-    position:relative;
-    text-align:center;
-    padding:5.5rem 1rem 3.5rem;
-    background: linear-gradient(120deg,var(--brand) 60%, var(--brand-2) 100%);
-    color:#fff;
-    border-bottom-left-radius:2em;
-    border-bottom-right-radius:2em;
-    overflow:hidden;
-}
-.hero-inner { max-width:1100px; margin:0 auto; position:relative; z-index:2; }
-.hero-img { max-width:220px; border-radius:12px; box-shadow:0 12px 40px rgba(0,0,0,0.18); border:8px solid rgba(255,255,255,0.12); }
-.hero-title { font-size:2.6rem; font-weight:700; margin-top:1rem; text-shadow:0 4px 18px rgba(0,0,0,0.18); }
-.hero-sub { font-size:1.15rem; margin:1rem 0 1.6rem; opacity:.95; }
-.btn-cta {
-    background: linear-gradient(90deg,#ffeb3b 60%, var(--accent) 100%);
-    color:#111; font-weight:700; border-radius:999px; padding:.8rem 2rem; border:none;
-    box-shadow:0 6px 20px rgba(255,214,0,0.12); transition: transform .18s ease, box-shadow .18s ease;
-}
-.btn-cta:hover{ transform: translateY(-3px) scale(1.02); box-shadow:0 12px 36px rgba(255,214,0,0.18); }
-
-/* Floating decorative shapes */
-.hero-shape {
-  position:absolute;
-  border-radius:50%;
-  filter: blur(18px);
-  opacity: .18;
-  transform: translate3d(0,0,0);
-  animation: float 8s ease-in-out infinite;
-}
-.hero-shape.s1{ width:140px; height:140px; background:#ffffff; left:6%; top:14%; }
-.hero-shape.s2{ width:220px; height:220px; background:#000; right:6%; top:8%; opacity:.06; }
-.hero-shape.s3{ width:90px; height:90px; background:#fff; left:28%; bottom:6%; opacity:.08; }
-@keyframes float { 0% { transform: translateY(0) } 50% { transform: translateY(-18px) } 100% { transform: translateY(0) } }
-
-/* Section common */
-.section { padding:2.5rem 1rem; max-width:1100px; margin:0 auto; }
-.card-section { background: rgba(255,255,255,0.98); border-radius:1.2rem; box-shadow: var(--card-shadow); padding:1.6rem; margin-bottom:1.6rem; transition: transform .22s ease, box-shadow .22s ease;}
-.card-section:hover{ transform: translateY(-6px); box-shadow: 0 12px 40px rgba(40,53,147,0.18); }
-
-/* Section titles */
-.section-title { font-weight:700; font-size:1.6rem; color:var(--brand); margin-bottom:.4rem; }
-.section-subtitle { color:#333; margin-bottom:1rem; }
-
-/* Stats counters */
-.stats-grid { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1rem; }
-.stat { background:#fff; padding:1.05rem 1.2rem; border-radius:12px; width:180px; text-align:center; box-shadow: 0 6px 20px rgba(0,0,0,0.06);}
-.stat h3{ margin:0; font-size:1.6rem; color:var(--brand); font-weight:800; }
-.stat p{ margin:0; color:#555; }
-
-/* About content */
-.about-hero { display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap; }
-.about-text { flex:1; min-width:260px; }
-.about-cta { min-width:220px; }
-
-/* Tabs */
-.nav-tabs .nav-link.active { background:#fff; border-radius:10px; color:var(--brand); font-weight:700; }
-.nav-tabs .nav-link { border:none; color:#333; }
-
-/* Events carousel (Bootstrap) */
-.carousel .carousel-caption { background: rgba(0,0,0,0.45); padding:.8rem 1rem; border-radius:8px; }
-
-/* Team cards */
-.team-grid{ display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;}
-.team-card{ width:260px; background:#fff; border-radius:12px; padding:1rem; text-align:center; box-shadow:0 6px 20px rgba(0,0,0,0.06); perspective:1000px; }
-.team-inner{ position:relative; transform-style:preserve-3d; transition: transform .6s cubic-bezier(.2,.9,.2,1); min-height:220px; }
-.team-card:hover .team-inner{ transform: rotateY(180deg); }
-.team-front, .team-back { backface-visibility:hidden; position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:1rem; border-radius:10px; }
-.team-back { transform:rotateY(180deg); background: linear-gradient(180deg,#f7fbff,#fff); }
-.team-photo{ width:96px; height:96px; object-fit:cover; border-radius:50%; border:3px solid var(--brand); box-shadow:0 8px 24px rgba(0,0,0,0.08); margin-bottom:.6rem; }
-
-/* Gallery */
-.gallery-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; }
-.gallery-img{ width:100%; height:140px; object-fit:cover; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,0.06); cursor:pointer; transition: transform .18s ease, box-shadow .18s ease; }
-.gallery-img:hover{ transform:scale(1.04); box-shadow:0 12px 36px rgba(0,0,0,0.12); }
-
-/* Donate form */
-.form-control{ border-radius:12px; padding: .9rem 1rem; border:1px solid #d8eefc; background:#fbfeff; }
-.btn-cta-block{ display:block; width:100%; }
-
-/* Contact */
-.contact-grid{ display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; text-align:center; }
-
-/* Footer */
-.footer{ background: linear-gradient(90deg,var(--brand) 80%, #222 100%); color:#fff; padding:2rem 1rem; margin-top:2rem; border-top-left-radius:1rem; border-top-right-radius:1rem; }
-
-/* Small screens */
-@media (max-width:800px){
-  .hero-title{ font-size:1.8rem; }
-  .hero-img{ max-width:140px; }
-  .about-hero{ flex-direction:column-reverse; align-items:flex-start; }
-  .stat{ width:140px; }
-  .team-card{ width:100%; max-width:320px; }
-  .gallery-img{ height:120px; }
-}
-
-/* Back to top */
-#backToTop{ position:fixed; right:18px; bottom:18px; background:var(--accent); border:none; padding:12px 14px; border-radius:999px; box-shadow:0 8px 30px rgba(255,198,0,0.12); display:none; z-index:9999; cursor:pointer; }
-#backToTop i{ color:#111; font-size:1rem; }
-</style>
-
-<!-- Structured Data (NGO) -->
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"NGO",
-  "name":"Shri Krishna Udhav Memorial Trust",
-  "url":"https://trust-ngo.github.io/ShreeKrishnaUdhavTrust/",
-  "logo":"https://trust-ngo.github.io/ShreeKrishnaUdhavTrust/Images/logo.jpg",
-  "address":{"@type":"PostalAddress","streetAddress":"VIL AND POST KHUKHUNDOO DEORA UP 274501","addressLocality":"Deoria","addressRegion":"Uttar Pradesh","postalCode":"274501","addressCountry":"IN"},
-  "email":"krishnaudhavtrust@gmail.com",
-  "telephone":"+91-9918640455",
-  "sameAs":["https://facebook.com/","https://instagram.com/","https://twitter.com/"]
-}
-</script>
+  <!-- Bootstrap & Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
+  <!-- HEADER -->
+  <header class="py-3 bg-primary text-white text-center shadow-sm">
+    <h1>Udho Yadav Foundation</h1>
+    <p id="typed" class="fw-bold"></p>
+  </header>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="#top">
-    <img src="Images/logo.jpg" alt="Trust Logo" class="logo-img"> Shri Krishna Udhav Memorial Trust
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navMenu">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-      <li class="nav-item"><a class="nav-link" href="#stats">Impact</a></li>
-      <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
-      <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-      <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
-      <li class="nav-item"><a class="nav-link" href="#donate">Donate</a></li>
-      <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-    </ul>
-  </div>
-</nav>
-
-<!-- HERO -->
-<header id="top" class="hero-section">
-  <div class="hero-shape s1"></div>
-  <div class="hero-shape s2"></div>
-  <div class="hero-shape s3"></div>
-
-  <div class="hero-inner">
-    <img src="Images/banner.jpg" alt="Trust Banner" class="hero-img mb-3">
-    <h1 class="hero-title"><span id="typed"></span></h1>
-    <p class="hero-sub">In memory of <strong>Udho Yadav</strong>, we work across Deoria and surrounding areas to provide education, health camps, livelihood & legal aid to marginalized communities.</p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <a class="btn btn-cta" href="#donate">Donate</a>
-      <a class="btn btn-outline-light" href="#about" style="border-radius:999px;padding:.7rem 1.3rem;color:#fff;border:1px solid rgba(255,255,255,0.18)">Learn More</a>
-    </div>
-  </div>
-</header>
-
-<!-- ABOUT -->
-<section id="about" class="section">
-  <div class="card-section about-hero">
-    <div class="about-text">
-      <h2 class="section-title">About Shri Krishna Udhav Memorial Trust</h2>
-      <p class="section-subtitle">Founded in the memory of <strong>Udho Yadav</strong>, Shri Krishna Udhav Memorial Trust is registered and focused on inclusive community development — education, healthcare, skill training, water & sanitation, and legal awareness in Deoria, Uttar Pradesh.</p>
-
-      <p><strong>Founding story:</strong> Started by local community leaders, the trust was established to channel grassroots efforts into sustainable programs — school scholarships, mobile health camps, women's self-help groups, and vocational training for youth.</p>
-
-      <p><strong>Achievements:</strong> Over the past years the trust has run multiple health camps, trained local youth in tailoring and agriculture-processing skills, and supported access to government welfare schemes for hundreds of families.</p>
-    </div>
-
-    <div class="about-cta">
-      <div class="card p-3" style="border-radius:12px;">
-        <h5 style="color:var(--brand);margin-bottom:.5rem">Quick Facts</h5>
-        <ul style="padding-left:1rem;margin:0">
-          <li>Registered under Section 8 / DARPAN ID: UP/2024/0406617</li>
-          <li>Reg No: IV14/2020</li>
-          <li>80G/12A application in process</li>
-          <li>Based: VIL & POST KHUKHUNDOO, Deoria (274501)</li>
+  <!-- NAVBAR -->
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">UYF</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="#donate">Donate</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
-        <a href="#contact" class="btn btn-cta mt-3 btn-cta-block">Contact Us</a>
+        <button id="darkModeToggle" class="btn btn-outline-light ms-3">
+          <i class="fa-solid fa-moon"></i>
+        </button>
       </div>
     </div>
-  </div>
-</section>
+  </nav>
 
-<!-- IMPACT / STATS -->
-<section id="stats" class="section">
-  <div class="card-section text-center">
-    <h2 class="section-title">Our Impact</h2>
-    <p class="section-subtitle">Numbers below show reach and scope — growing year on year.</p>
-    <div class="stats-grid" aria-hidden="false">
-      <div class="stat"><h3 class="counter" data-target="1500">0</h3><p>People Educated</p></div>
-      <div class="stat"><h3 class="counter" data-target="1200">0</h3><p>Health Beneficiaries</p></div>
-      <div class="stat"><h3 class="counter" data-target="650">0</h3><p>Skilled Youth</p></div>
-      <div class="stat"><h3 class="counter" data-target="250">0</h3><p>Women Empowered</p></div>
+  <!-- ABOUT -->
+  <section id="about" class="py-5">
+    <div class="container text-center">
+      <h2>About Us</h2>
+      <p class="lead">Udho Yadav Foundation is a non-profit organization dedicated to uplifting rural communities through education, healthcare, and empowerment programs in Deoria and surrounding areas.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- MISSION / VISION / OBJECTIVES (tabs) -->
-<section id="mission" class="section">
-  <div class="card-section">
-    <ul class="nav nav-tabs justify-content-center" id="ngoTabs" role="tablist">
-      <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab-mission">Mission</a></li>
-      <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-vision">Vision</a></li>
-      <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-objectives">Objectives</a></li>
-    </ul>
-    <div class="tab-content mt-3">
-      <div class="tab-pane fade show active" id="tab-mission">
-        <p>To promote holistic development by providing education, healthcare, and skill-building opportunities to marginalized communities — focusing on long-term dignity and self-reliance.</p>
-      </div>
-      <div class="tab-pane fade" id="tab-vision">
-        <p>To create a society where every individual has access to basic rights, opportunities, and the ability to live a life of dignity, irrespective of background.</p>
-      </div>
-      <div class="tab-pane fade" id="tab-objectives">
-        <ul>
-          <li><strong>Education & Literacy:</strong> Scholarships, after-school programs, adult-literacy drives.</li>
-          <li><strong>Health & Family Welfare:</strong> Free camps, maternal & child health, screenings.</li>
-          <li><strong>Skill Development:</strong> Vocational courses — tailoring, food processing, basic IT.</li>
-          <li><strong>Legal Awareness & Aid:</strong> Camps to help access entitlements and understand rights.</li>
-          <li><strong>Children & Special Needs:</strong> Support & small-scale rehabilitation programs.</li>
-          <li><strong>Disaster & Water Management:</strong> Local preparedness and water resource projects.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EVENTS carousel -->
-<section id="events" class="section">
-  <div class="card-section">
-    <h2 class="section-title">Recent Events & Activities</h2>
-    <p class="section-subtitle">Highlights from our recent community initiatives.</p>
-
-    <div id="eventsCarousel" class="carousel slide" data-ride="carousel" data-interval="4000">
-      <ol class="carousel-indicators">
-        <li data-target="#eventsCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#eventsCarousel" data-slide-to="1"></li>
-        <li data-target="#eventsCarousel" data-slide-to="2"></li>
-      </ol>
-
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="https://via.placeholder.com/1200x480?text=Health+Camp+2025" class="d-block w-100" alt="Health Camp 2025">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Health Camp - Khukhundoo (Apr 2025)</h5>
-            <p>Free medical checkups, medicines, and referrals for rural families (approx. 320 beneficiaries).</p>
+  <!-- PROJECTS -->
+  <section id="projects" class="py-5 bg-light">
+    <div class="container text-center">
+      <h2>Our Projects</h2>
+      <div class="row mt-4">
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <i class="fa-solid fa-book fa-3x mb-3 text-primary"></i>
+              <h5>Education for All</h5>
+              <p>We provide free books, stationery, and scholarships for underprivileged children.</p>
+            </div>
           </div>
         </div>
-
-        <div class="carousel-item">
-          <img src="https://via.placeholder.com/1200x480?text=Legal+Awareness+Drive" class="d-block w-100" alt="Legal Awareness">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Legal Awareness Drive (Jan 2025)</h5>
-            <p>Helped women and youth understand government schemes and entitlements; provided counsellings.</p>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <i class="fa-solid fa-stethoscope fa-3x mb-3 text-primary"></i>
+              <h5>Health Camps</h5>
+              <p>Regular medical camps and health awareness programs for rural families.</p>
+            </div>
           </div>
         </div>
-
-        <div class="carousel-item">
-          <img src="https://via.placeholder.com/1200x480?text=Skill+Development+Workshop" class="d-block w-100" alt="Skill Workshop">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Skill Development Workshop (Mar 2025)</h5>
-            <p>Vocational training in tailoring and food processing for 45 local youth with certificate support.</p>
-          </div>
-        </div>
-      </div>
-
-      <a class="carousel-control-prev" href="#eventsCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      </a>
-      <a class="carousel-control-next" href="#eventsCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- TEAM -->
-<section id="team" class="section">
-  <div class="card-section">
-    <h2 class="section-title">Our Team / Trustees</h2>
-    <p class="section-subtitle">Committed volunteers and trustees leading programs with local knowledge.</p>
-
-    <div class="team-grid">
-      <!-- Member 1 -->
-      <div class="team-card">
-        <div class="team-inner">
-          <div class="team-front">
-            <img src="https://via.placeholder.com/180?text=Subash" alt="Subash" class="team-photo">
-            <h5 style="margin-top:.6rem">SUBASH CHANDR YADAV</h5>
-            <p style="margin:0;color:#666">Chairman</p>
-          </div>
-          <div class="team-back">
-            <h6 style="margin:0.3rem 0 0.6rem;color:var(--brand)">Subash Ch. Yadav</h6>
-            <p style="font-size:.95rem;color:#444;margin:0 0 0.6rem">Community leader, 20+ years of social work, coordinates health programs.</p>
-            <div style="display:flex;gap:8px">
-              <a href="#" aria-label="call"><i class="fas fa-phone" style="color:var(--brand)"></i></a>
-              <a href="#" aria-label="email"><i class="fas fa-envelope" style="color:var(--brand)"></i></a>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <i class="fa-solid fa-hand-holding-heart fa-3x mb-3 text-primary"></i>
+              <h5>Women Empowerment</h5>
+              <p>Vocational training and livelihood programs for women to achieve independence.</p>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Member 2 -->
-      <div class="team-card">
-        <div class="team-inner">
-          <div class="team-front">
-            <img src="https://via.placeholder.com/180?text=Ankit" alt="Ankit" class="team-photo">
-            <h5 style="margin-top:.6rem">ANKIT KUMAR YADAV</h5>
-            <p style="margin:0;color:#666">Secretary</p>
-          </div>
-          <div class="team-back">
-            <h6 style="margin:0.3rem 0 0.6rem;color:var(--brand)">Ankit K. Yadav</h6>
-            <p style="font-size:.95rem;color:#444;margin:0 0 0.6rem">Program coordinator — education & training initiatives.</p>
-            <div style="display:flex;gap:8px">
-              <a href="#" aria-label="linkedin"><i class="fab fa-linkedin" style="color:var(--brand)"></i></a>
-              <a href="#" aria-label="email"><i class="fas fa-envelope" style="color:var(--brand)"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Member 3 -->
-      <div class="team-card">
-        <div class="team-inner">
-          <div class="team-front">
-            <img src="https://via.placeholder.com/180?text=Raju" alt="Raju" class="team-photo">
-            <h5 style="margin-top:.6rem">RAJU PATEL</h5>
-            <p style="margin:0;color:#666">Treasurer</p>
-          </div>
-          <div class="team-back">
-            <h6 style="margin:0.3rem 0 0.6rem;color:var(--brand)">Raju Patel</h6>
-            <p style="font-size:.95rem;color:#444;margin:0 0 0.6rem">Handles finance and compliance; ensures transparency in fund usage.</p>
-            <div style="display:flex;gap:8px">
-              <a href="#" aria-label="call"><i class="fas fa-phone" style="color:var(--brand)"></i></a>
-              <a href="#" aria-label="email"><i class="fas fa-envelope" style="color:var(--brand)"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- GALLERY -->
-<section id="gallery" class="section">
-  <div class="card-section">
-    <h2 class="section-title">Gallery</h2>
-    <p class="section-subtitle">Photos from events and community works. Click to enlarge.</p>
-
-    <div class="gallery-grid">
-      <img src="https://via.placeholder.com/600x400?text=Gallery+1" alt="Gallery 1" class="gallery-img" data-large="https://via.placeholder.com/1200x800?text=Gallery+1">
-      <img src="https://via.placeholder.com/600x400?text=Gallery+2" alt="Gallery 2" class="gallery-img" data-large="https://via.placeholder.com/1200x800?text=Gallery+2">
-      <img src="https://via.placeholder.com/600x400?text=Gallery+3" alt="Gallery 3" class="gallery-img" data-large="https://via.placeholder.com/1200x800?text=Gallery+3">
-      <img src="https://via.placeholder.com/600x400?text=Gallery+4" alt="Gallery 4" class="gallery-img" data-large="https://via.placeholder.com/1200x800?text=Gallery+4">
+  <!-- STATS -->
+  <section id="stats" class="py-5 text-white text-center bg-primary">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 mb-3"><h3 class="counter" data-target="1500">0</h3><p>Children Educated</p></div>
+        <div class="col-md-3 mb-3"><h3 class="counter" data-target="300">0</h3><p>Health Camps</p></div>
+        <div class="col-md-3 mb-3"><h3 class="counter" data-target="500">0</h3><p>Women Trained</p></div>
+        <div class="col-md-3 mb-3"><h3 class="counter" data-target="100">0</h3><p>Villages Covered</p></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- DONATE -->
-<section id="donate" class="section">
-  <div class="card-section donate-card">
-    <h2 class="section-title">Support Our Work — Donate</h2>
-    <p class="section-subtitle">Your contribution helps run health camps, education programs, and livelihood initiatives. All donations are used transparently.</p>
+  <!-- GALLERY -->
+  <section id="gallery" class="py-5">
+    <div class="container text-center">
+      <h2>Gallery</h2>
+      <div class="row mt-4">
+        <div class="col-md-4 mb-4"><img src="images/gallery1.jpg" class="img-fluid rounded shadow-sm gallery-img" data-large="images/gallery1.jpg" alt="Gallery 1" /></div>
+        <div class="col-md-4 mb-4"><img src="images/gallery2.jpg" class="img-fluid rounded shadow-sm gallery-img" data-large="images/gallery2.jpg" alt="Gallery 2" /></div>
+        <div class="col-md-4 mb-4"><img src="images/gallery3.jpg" class="img-fluid rounded shadow-sm gallery-img" data-large="images/gallery3.jpg" alt="Gallery 3" /></div>
+      </div>
+    </div>
+  </section>
 
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <form id="donationForm" onsubmit="return false;">
-          <input id="donor_name" class="form-control mb-3" placeholder="Your Full Name" required>
-          <input id="donor_email" type="email" class="form-control mb-3" placeholder="Your Email" required>
-          <input id="donor_amount" type="number" min="1" class="form-control mb-3" placeholder="Amount (INR)" required>
-          <textarea id="donor_message" class="form-control mb-3" rows="2" placeholder="Message (optional)"></textarea>
-          <button id="payBtn" class="btn btn-cta btn-cta-block">Donate via Razorpay</button>
-        </form>
-        <div style="margin-top:.8rem;color:#555;font-size:.95rem">
-          <strong>Other options:</strong> UPI/Paytm/Bank: <code>trust@upi</code> — 80G/12A application in process.
-        </div>
+  <!-- DONATE -->
+  <section id="donate" class="py-5 bg-light text-center">
+    <div class="container">
+      <h2>Support Our Mission</h2>
+      <p>Your contribution helps us reach more families and create lasting change.</p>
+      <button id="payBtn" class="btn btn-primary btn-lg">Donate Now</button>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-5 text-center">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <p><i class="fa-solid fa-envelope"></i> info@udhofoundation.org</p>
+      <p><i class="fa-solid fa-phone"></i> +91 98765 43210</p>
+      <p>Deoria, Uttar Pradesh, India</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-dark text-white text-center py-3">
+    <p>&copy; 2025 Udho Yadav Foundation. All rights reserved.</p>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="backToTop" class="btn btn-primary"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <!-- Gallery Modal -->
+  <div class="modal fade" id="lightboxModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <img id="lightboxImage" src="" class="img-fluid rounded" />
       </div>
     </div>
   </div>
-</section>
 
-<!-- CONTACT -->
-<section id="contact" class="section">
-  <div class="card-section contact-card">
-    <h2 class="section-title">Get in Touch</h2>
-    <p class="section-subtitle">Questions, volunteering or partnership — reach out.</p>
-
-    <div class="contact-grid">
-      <div style="min-width:220px;">
-        <i class="fas fa-map-marker-alt fa-2x" style="color:var(--brand)"></i>
-        <p style="margin:.4rem 0 0">VIL & POST KHUKHUNDOO, DEORIA, UP - 274501</p>
-      </div>
-      <div style="min-width:220px;">
-        <i class="fas fa-envelope fa-2x" style="color:var(--brand)"></i>
-        <p style="margin:.4rem 0 0"><a href="mailto:krishnaudhavtrust@gmail.com">krishnaudhavtrust@gmail.com</a></p>
-      </div>
-      <div style="min-width:220px;">
-        <i class="fas fa-phone fa-2x" style="color:var(--brand)"></i>
-        <p style="margin:.4rem 0 0"><a href="tel:+919918640455">+91-9918640455</a></p>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:1rem">
-      <a href="#" style="color:var(--brand);margin:0 .4rem"><i class="fab fa-facebook fa-lg"></i></a>
-      <a href="#" style="color:var(--brand);margin:0 .4rem"><i class="fab fa-instagram fa-lg"></i></a>
-      <a href="#" style="color:var(--brand);margin:0 .4rem"><i class="fab fa-twitter fa-lg"></i></a>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div style="max-width:1100px;margin:0 auto;text-align:center">
-    <img src="Images/footerlogo.png" alt="Footer Logo" style="width:48px;border-radius:50%;border:3px solid rgba(255,255,255,0.14);margin-bottom:.6rem;">
-    <p style="margin:.3rem 0"><strong>Shri Krishna Udhav Memorial Trust</strong> — Registered under Section 8, DARPAN ID: UP/2024/0406617 | Reg No: IV14/2020</p>
-    <p style="font-size:.9rem;color:rgba(255,255,255,0.9)">© 2025 Shri Krishna Udhav Memorial Trust. All Rights Reserved.</p>
-  </div>
-</footer>
-
-<button id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
-
-<!-- Lightbox Modal for gallery -->
-<div class="modal fade" id="lightboxModal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content" style="background:transparent;border:none">
-      <div class="modal-body p-0">
-        <img id="lightboxImage" src="" alt="Gallery large" style="width:100%;border-radius:8px;">
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Scripts -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Razorpay -->
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
-<script>
-/* ===== Advanced JS Interactions (no backend) ===== */
-
-/* 1) Typing effect in hero */
-const phrases = ["Empowering Communities, Inspiring Change", "Education • Health • Skills • Dignity", "In memory of Udho Yadav — serving Deoria"];
-let ti = 0, char = 0, curPhrase = 0, deleting=false;
-const typedEl = document.getElementById('typed');
-function typeTick(){
-  const p = phrases[curPhrase];
-  if(!deleting){
-    typedEl.textContent = p.slice(0, ++char);
-    if(char === p.length){ deleting = true; setTimeout(typeTick, 1200); return; }
-  } else {
-    typedEl.textContent = p.slice(0, --char);
-    if(char === 0){ deleting=false; curPhrase = (curPhrase+1)%phrases.length; }
-  }
-  setTimeout(typeTick, deleting ? 40 : 60);
-}
-typeTick();
-
-/* 2) Smooth scroll for nav links (works for dynamically added anchors) */
-document.querySelectorAll('a.nav-link').forEach(a=>{
-  a.addEventListener('click', e=>{
-    e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if(target) window.scrollTo({top: target.offsetTop - 72, behavior:'smooth'});
-  });
-});
-
-/* 3) Counter animation when visible */
-const counters = document.querySelectorAll('.counter');
-let countersStarted = false;
-function runCounters(){
-  if(countersStarted) return;
-  const rect = document.getElementById('stats').getBoundingClientRect();
-  if(rect.top < window.innerHeight - 100){
-    counters.forEach(el=>{
-      const target = +el.getAttribute('data-target');
-      let cur=0;
-      const step = Math.max(1, Math.floor(target/180));
-      const timer = setInterval(()=>{
-        cur += step;
-        if(cur >= target){ el.textContent = target; clearInterval(timer); } else el.textContent = cur;
-      }, 12);
-    });
-    countersStarted = true;
-  }
-}
-window.addEventListener('scroll', runCounters);
-runCounters();
-
-/* 4) Back to top */
-const backBtn = document.getElementById('backToTop');
-window.addEventListener('scroll', ()=> {
-  if(window.scrollY > 300) backBtn.style.display = 'block'; else backBtn.style.display = 'none';
-});
-backBtn.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
-
-/* 5) Simple gallery lightbox */
-document.querySelectorAll('.gallery-img').forEach(img=>{
-  img.addEventListener('click', ()=>{
-    const large = img.getAttribute('data-large') || img.src;
-    document.getElementById('lightboxImage').src = large;
-    $('#lightboxModal').modal('show');
-  });
-});
-
-/* 6) Donation via Razorpay (client-side only) */
-document.getElementById('payBtn').addEventListener('click', async function(e){
-  e.preventDefault();
-  const name = document.getElementById('donor_name').value.trim();
-  const email = document.getElementById('donor_email').value.trim();
-  const amountVal = Number(document.getElementById('donor_amount').value);
-  if(!name || !email || !amountVal || amountVal <= 0){
-    alert('Please enter a valid name, email and amount.');
-    return;
-  }
-
-  const options = {
-    "key": "YOUR_RAZORPAY_KEY", // << REPLACE with your Razorpay Key ID
-    "amount": amountVal * 100, // paise
-    "currency": "INR",
-    "name": "Shri Krishna Udhav Memorial Trust",
-    "description": "Donation",
-    "handler": function (response){
-      // Client-side confirmation only — you may add server-side verification later
-      alert("Thank you! Payment success id: " + response.razorpay_payment_id);
-      // Reset form
-      document.getElementById('donationForm').reset();
-    },
-    "prefill": {
-      "name": name,
-      "email": email
-    },
-    "theme": { "color": getComputedStyle(document.documentElement).getPropertyValue('--brand').trim() || '#005baa' }
-  };
-  const rzp = new Razorpay(options);
-  rzp.open();
-});
-
-/* 7) Accessibility: enable keyboard close for lightbox */
-document.addEventListener('keydown', (e)=> {
-  if(e.key === 'Escape') $('#lightboxModal').modal('hide');
-});
-
-/* 8) Optimize images if desired (placeholder for progressive enhancements) */
-/* 9) Optional: add simple on-scroll reveal */
-const revealElems = document.querySelectorAll('.card-section, .team-card, .gallery-img');
-function revealOnScroll(){
-  revealElems.forEach(el=>{
-    const r = el.getBoundingClientRect();
-    if(r.top < window.innerHeight - 80) el.style.opacity = 1, el.style.transform = 'translateY(0)';
-    else el.style.opacity = 0.0, el.style.transform = 'translateY(8px)';
-  });
-}
-window.addEventListener('scroll', revealOnScroll);
-revealOnScroll(); // initial
-
-</script>
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
