@@ -21,7 +21,7 @@
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="index.html#">
     <img src="Images/logo.jpg" alt="Trust Logo" class="logo-img">
     Shri Krishna Udhav Memorial Trust
   </a>
@@ -57,6 +57,21 @@
     Shri Krishna Udhav Memorial Trust is a registered NGO dedicated to uplifting marginalized communities through education, healthcare, skill development, and legal awareness. Based in Deoria, Uttar Pradesh, we strive for a society where every individual lives with dignity and hope.
   </p>
 </section>
+
+<div class="modal fade" id="noticeModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Important Notice</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>We have organized a special health camp for senior citizens  at Khukhundoo.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- Mission & Vision -->
 <section id="mission" class="container card-section">
@@ -144,6 +159,31 @@
   </div>
 </section>
 
+<!-- impact -->
+<section id="impact" class="container card-section">
+  <h2 class="section-title">Our Impact</h2>
+  <div class="row text-center">
+    <div class="col-md-3 mb-3">
+      <h3 class="counter" data-target="5000">0</h3>
+      <p>People Helped</p>
+    </div>
+    <div class="col-md-3 mb-3">
+      <h3 class="counter" data-target="120">0</h3>
+      <p>Events Organized</p>
+    </div>
+    <div class="col-md-3 mb-3">
+      <h3 class="counter" data-target="350">0</h3>
+      <p>Volunteers Engaged</p>
+    </div>
+    <div class="col-md-3 mb-3">
+      <h3 class="counter" data-target="50">0</h3>
+      <p>Communities Served</p>
+    </div>
+  </div>
+</section>
+
+
+
 <!-- Team / Trustees -->
 <section id="team" class="container card-section">
   <h2 class="section-title">Our Team / Trustees</h2>
@@ -166,16 +206,70 @@
   </div>
 </section>
 
+<!-- testimonials -->
+<section id="testimonials" class="container card-section">
+  <h2 class="section-title">Testimonials</h2>
+  <div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <p>"Thanks to the trust, my children now have access to quality education."</p>
+        <strong>- Ramesh Kumar</strong>
+      </div>
+      <div class="carousel-item">
+        <p>"The health camp saved my father’s life. Truly grateful!"</p>
+        <strong>- Sita Devi</strong>
+      </div>
+      <div class="carousel-item">
+        <p>"Vocational training helped me start my own small business."</p>
+        <strong>- Ankit Singh</strong>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#testimonialCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
+  </div>
+</section>
+
+
 <!-- Gallery -->
 <section id="gallery" class="container card-section">
   <h2 class="section-title">Gallery Highlights</h2>
-  <div class="row">
-    <div class="col-md-3 mb-3"><img src="Images/GalleryImg1.jpg" class="gallery-img" alt="Gallery Image 1"></div>
-    <div class="col-md-3 mb-3"><img src="Images/GalleryImg2.jpg" class="gallery-img" alt="Gallery Image 2"></div>
-    <div class="col-md-3 mb-3"><img src="Images/GalleryImg3.jpg" class="gallery-img" alt="Gallery Image 3"></div>
-    <div class="col-md-3 mb-3"><img src="Images/GalleryImg1.jpg" class="gallery-img" alt="Gallery Image 4"></div>
+  <div class="gallery-container">
+    <div class="gallery-track row">
+      <!-- Slide 1 -->
+      <div class="col-md-3 mb-3 gallery-slide">
+        <img src="Images/GalleryImg1.jpg" class="gallery-img" alt="Community Health Camp" loading="lazy">
+      </div>
+      <div class="col-md-3 mb-3 gallery-slide">
+        <img src="Images/GalleryImg2.jpg" class="gallery-img" alt="Legal Awareness Drive" loading="lazy">
+      </div>
+      <div class="col-md-3 mb-3 gallery-slide">
+        <img src="Images/GalleryImg3.jpg" class="gallery-img" alt="Skill Development Workshop" loading="lazy">
+      </div>
+      <div class="col-md-3 mb-3 gallery-slide">
+        <img src="Images/GalleryImg1.jpg" class="gallery-img" alt="Tree Plantation Event" loading="lazy">
+      </div>
+      <!-- Slide 2 -->
+      <div class="col-md-3 mb-3 gallery-slide">
+        <img src="Images/GalleryImg2.jpg" class="gallery-img" alt="Mask Distribution" loading="lazy">
+      </div>
+      <div class="col-md-3 mb-3 gallery-slide">
+        <img src="Images/GalleryImg3.jpg" class="gallery-img" alt="Community Health Camp" loading="lazy">
+      </div>
+      <div class="col-md-3 mb-3 gallery-slide">
+        <img src="Images/GalleryImg1.jpg" class="gallery-img" alt="Tree Plantation Event" loading="lazy">
+      </div>
+      <div class="col-md-3 mb-3 gallery-slide">
+        <img src="Images/GalleryImg2.jpg" class="gallery-img" alt="Legal Awareness Drive" loading="lazy">
+      </div>
+    </div>
   </div>
 </section>
+
+
 
 <!-- Donate -->
 <section id="donate" class="container card-section donate-card">
@@ -199,6 +293,7 @@
       <li><strong>Paytm / Google Pay / PhonePe:</strong> +91-8948613945</li>
     </ul>
 
+
     <h5>Tax Benefits</h5>
     <p>
       All donations are eligible for tax benefits under Section 80G & 12A (Application in process).  
@@ -209,7 +304,17 @@
       After submitting the form, our team will contact you with the receipt and further instructions.
     </p>
   </div>
+  <button id="upiBtn" class="btn btn-cta mt-2">Show UPI QR Code</button>
+	<div id="upiModal" class="upi-modal">
+		<div class="upi-conten	t">
+			<span id="closeUpi" class="close">&times;</spa	n>
+			<h4>Scan to Pay via UPI</h	4>
+			<img src="Images/upi_qr.png" alt="UPI QR Code" style="max-width:200px;">
+			</div>
+	</div>
 </section>
+
+
 
 <!-- Contact -->
 <section id="contact" class="container card-section contact-card">
@@ -270,6 +375,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="main.js"></script>
+<script src="script.js"></script>
 
 <!-- Custom JS -->
 <script>
@@ -309,5 +415,8 @@
   script.text = JSON.stringify(ngoSchema, null, 2);
   document.head.appendChild(script);
 </script>
+
+<a href="#donate" id="donateFloat">Donate</a>
+
 </body>
 </html>

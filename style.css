@@ -243,6 +243,7 @@ section {
   border: none;
   padding: 10px 15px;
   border-radius: 50%;
+  border-radius: 50%;
   box-shadow: 0 2px 8px #ffd60055;
   cursor: pointer;
   z-index: 1000;
@@ -272,3 +273,102 @@ section {
   transform: translateY(0);
 }
 
+/* Counter */
+.counter { font-size: 2.5em; font-weight: 700; color: #005baa; text-shadow: 0 2px 12px #59aaf944; }
+
+/* Testimonials */
+#testimonials .card { border-radius: 1em; box-shadow: 0 4px 20px #28359333; transition: transform 0.3s ease; }
+#testimonials .card:hover { transform: translateY(-5px); }
+
+/* Gallery Lightbox */
+#lightbox img { border-radius: 1em; }
+
+/* Floating Donate Button */
+#donateFloat {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: linear-gradient(90deg,#ffeb3b 60%, #ffd600 100%);
+  color: #222;
+  padding: 15px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: 0 2px 10px #ffd60055;
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+#donateFloat:hover { transform: scale(1.1); }
+
+
+.upi-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+}
+.upi-content {
+  background: #fff;
+  padding: 2em;
+  border-radius: 1em;
+  text-align: center;
+  position: relative;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.navbar-nav .nav-link.active {
+  font-weight: 600;
+  color: #007bff !important;
+  border-bottom: 2px solid #007bff;
+}
+
+
+.gallery-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-track {
+  display: flex;
+  flex-wrap: nowrap;
+  transition: transform 0.5s ease;
+}
+
+.gallery-slide {
+  flex: 0 0 25%; /* 4 images per view */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* set fixed height for cropping */
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.gallery-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fill & crop */
+  display: block;
+}
+
+
+.card-img-top {
+  width: 100%;
+  height: 200px;       /* fixed height for cropping */
+  object-fit: cover;   /* fill & crop proportionally */
+  display: block;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
