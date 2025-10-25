@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Donate | Shri Krishna Udhav Memorial Trust</title>
+  <meta name="description" content="Donate to Shri Krishna Udhav Memorial Trust. Support social welfare, education, health, and community development in Deoria, Uttar Pradesh.">
+  <meta name="keywords" content="Donate, NGO, Trust, Deoria, Uttar Pradesh, Social Welfare, Education, Health">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Poppins', sans-serif; background: #f7fafe; scroll-behavior: smooth; }
+    .navbar { background: linear-gradient(90deg,#005baa 80%, #59aaf9 100%); border-bottom-left-radius: 1em; border-bottom-right-radius: 1em; box-shadow: 0 2px 8px #005baa22; position: sticky; top:0; z-index:999; }
+    .navbar-brand, .navbar-nav .nav-link { color: #fff !important; font-weight: 600; }
+    .navbar-nav .nav-link:hover { color: #ffd600 !important; }
+    .logo-img { width: 50px; height: 50px; border-radius:50%; margin-right:0.5em; box-shadow: 0 2px 8px #005baa22;}
+
+    .page-header { text-align:center; padding:3em 1em; background: linear-gradient(120deg,#005baa 60%, #59aaf9 100%); color:#fff; border-bottom-left-radius:2em; border-bottom-right-radius:2em; }
+    .page-header h1 { font-size:2.5em; font-weight:700; text-shadow:0 2px 12px #005baa88; }
+    .page-header p { font-size:1.2em; margin-top:0.5em; }
+
+    .donate-container { max-width:800px; margin:3em auto; background:#fff; border-radius:1.5em; padding:2em; box-shadow:0 4px 24px #28359333; }
+    .donate-container h2 { color:#005baa; font-weight:700; margin-bottom:1em; text-align:center; }
+    .donate-container p { margin-bottom:1.5em; font-size:1.1em; color:#333; }
+    .donate-container input, .donate-container textarea { margin-bottom:1em; border-radius:1em; border:1px solid #59aaf9; padding-left:1em; background:#f7fafe; }
+    .donate-container input:focus, .donate-container textarea:focus { border-color:#005baa; outline:none; }
+    .btn-cta { background: linear-gradient(90deg,#ffeb3b 60%, #ffd600 100%); color:#222; font-weight:600; border-radius:2em; padding:0.75em 2em; border:none; box-shadow:0 2px 8px #ffd60055; transition: all 0.3s ease; width:100%; }
+    .btn-cta:hover { transform: scale(1.05); box-shadow:0 6px 20px #ffd60088; }
+
+    .footer { background: linear-gradient(90deg,#005baa 80%, #222 100%); color:#fff; padding:2em 0; border-top-left-radius:1em; border-top-right-radius:1em; margin-top:3em; }
+    .footer a { color:#ffeb3b; text-decoration:underline; }
+
+    @media(max-width:768px){ .page-header h1{font-size:2em;} }
+  </style>
+
+  <!-- Razorpay Checkout -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="index.html">
+    <img src="Images/logo.jpg" alt="Trust Logo" class="logo-img">
+    Shri Krishna Udhav Memorial Trust
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="index.html#mission">Mission & Vision</a></li>
+      <li class="nav-item"><a class="nav-link" href="index.html#objectives">Objectives</a></li>
+      <li class="nav-item"><a class="nav-link" href="index.html#events">Events</a></li>
+      <li class="nav-item"><a class="nav-link" href="index.html#team">Team</a></li>
+      <li class="nav-item"><a class="nav-link" href="index.html#gallery">Gallery</a></li>
+      <li class="nav-item"><a class="nav-link active" href="donate.html">Donate</a></li>
+      <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header">
+  <h1>Support Our Cause</h1>
+  <p>Your contribution empowers communities in Deoria, Uttar Pradesh</p>
+</section>
+
+<!-- Donate Form -->
+<div class="container donate-container">
+  <h2>Donate via Razorpay</h2>
+  <p>Enter your details and click "Pay Now" to complete the donation instantly.</p>
+  <form id="donationForm">
+    <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+    <input type="email" id="email" class="form-control" placeholder="Your Email" required>
+    <input type="number" id="amount" class="form-control" placeholder="Donation Amount (INR)" required>
+    <textarea id="message" class="form-control" rows="2" placeholder="Message (Optional)"></textarea>
+    <button type="submit" class="btn-cta mt-2">Pay Now</button>
+  </form>
+  <p class="note mt-3">80G / 12A Application in Process. Receipt will be generated automatically by Razorpay.</p>
+</div>
+
+<!-- Razorpay Script -->
+<script>
+document.getElementById('donationForm').addEventListener('submit', function(e){
+  e.preventDefault();
+
+  var options = {
+    "key": "YOUR_RAZORPAY_KEY", // Replace with your Razorpay API Key
+    "amount": parseInt(document.getElementById('amount').value)*100, // Amount in paise
+    "currency": "INR",
+    "name": "Shri Krishna Udhav Memorial Trust",
+    "description": "Donation",
+    "image": "Images/logo.jpg",
+    "handler": function (response){
+        alert("Payment Successful! Razorpay Payment ID: " + response.razorpay_payment_id);
+        // You can show a thank you message or redirect to a thank you page here
+    },
+    "prefill": {
+        "name": document.getElementById('name').value,
+        "email": document.getElementById('email').value
+    },
+    "theme": { "color": "#005baa" }
+  };
+  var rzp1 = new Razorpay(options);
+  rzp1.open();
+});
+</script>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container text-center">
+    <img src="Images/footerlogo.png" alt="Footer Logo" style="width:40px;border-radius:50%; margin-bottom:0.5em;"><br>
+    <strong>Shri Krishna Udhav Memorial Trust</strong><br>
+    Registered under Section 8 of Companies Act, 2013<br>
+    DARPAN ID: UP/2024/0406617 | Reg No: IV14/2020<br>
+    <a href="index.html">Home</a> | <a href="privacy.html">Privacy Policy</a> | <a href="disclaimer.html">Disclaimer</a>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
