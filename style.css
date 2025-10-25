@@ -9,19 +9,15 @@ body {
     scroll-behavior: smooth;
 }
 
-a {
-    transition: 0.3s;
-}
-a:hover { text-decoration: none; }
-
+/* Navbar */
 .navbar {
     background: linear-gradient(90deg,#005baa 80%, #59aaf9 100%);
     box-shadow: 0 2px 8px #005baa22;
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;
     position: sticky;
-    top: 0;
-    z-index: 999;
+    top:0;
+    z-index:999;
 }
 .navbar-brand,
 .navbar-nav .nav-link {
@@ -45,6 +41,7 @@ a:hover { text-decoration: none; }
     color: #ffeb3b;
 }
 
+/* Hero Section */
 .hero-section {
     background: linear-gradient(120deg,#005baa 60%, #59aaf9 100%);
     color: #fff;
@@ -54,6 +51,8 @@ a:hover { text-decoration: none; }
     box-shadow: 0 8px 32px #005baa33;
     position: relative;
     overflow: hidden;
+    text-align: center;
+    animation: fadeInDown 1s ease-in-out;
 }
 .hero-section img {
     max-width: 180px;
@@ -69,7 +68,6 @@ a:hover { text-decoration: none; }
     border-radius: 2em;
     padding: 2em 1em;
     box-shadow: 0 4px 24px #005baa33;
-    text-align: center;
 }
 .hero-content h1 {
     font-size: 2.5em;
@@ -83,7 +81,7 @@ a:hover { text-decoration: none; }
     margin-top: 1em;
     margin-bottom: 2em;
 }
-.btn-warning {
+.btn-warning, .btn-cta {
     background: linear-gradient(90deg,#ffeb3b 60%, #ffd600 100%);
     border: none;
     color: #222 !important;
@@ -93,29 +91,30 @@ a:hover { text-decoration: none; }
     padding: 0.75em 2em;
     transition: background 0.3s, transform 0.2s;
 }
-.btn-warning:hover {
+.btn-warning:hover, .btn-cta:hover {
     background: linear-gradient(90deg,#ffd600 60%, #ffeb3b 100%);
     transform: scale(1.05);
     color: #005baa !important;
 }
 
+/* Section Titles */
 .section-title {
     font-weight: 700;
     font-size: 2em;
     color: #005baa;
     margin-bottom: 0.5em;
     text-shadow: 0 2px 12px #59aaf944;
-    text-align: center;
+    animation: fadeInUp 1s ease-in-out;
 }
 .section-subtitle {
     color: #333;
     font-size: 1.1em;
     font-weight: 500;
     margin-bottom: 2em;
-    text-align: center;
 }
 
-.about-card, .mission-card, .objectives-card, .team-card, .gallery-card, .donate-card, .contact-card, .events-card {
+/* Cards */
+.about-card, .mission-card, .objectives-card, .team-card, .gallery-card, .donate-card, .contact-card, .events-card, .card-section {
     background: rgba(255,255,255,0.98);
     border-radius: 1.5em;
     box-shadow: 0 4px 24px #28359333;
@@ -123,11 +122,12 @@ a:hover { text-decoration: none; }
     margin-bottom: 2em;
     transition: box-shadow 0.3s, transform 0.2s;
 }
-.about-card:hover, .mission-card:hover, .objectives-card:hover, .team-card:hover, .gallery-card:hover, .donate-card:hover, .contact-card:hover, .events-card:hover {
+.about-card:hover, .mission-card:hover, .objectives-card:hover, .team-card:hover, .gallery-card:hover, .donate-card:hover, .contact-card:hover, .events-card:hover, .card-section:hover {
     box-shadow: 0 8px 32px #005baa33;
     transform: translateY(-5px) scale(1.02);
 }
 
+/* Lists */
 ul {
     padding-left: 1.5em;
 }
@@ -135,20 +135,7 @@ li {
     margin-bottom: 0.5em;
 }
 
-.card {
-    border-radius: 1em;
-    box-shadow: 0 2px 12px #28359322;
-    transition: box-shadow 0.3s, transform 0.2s;
-}
-.card:hover {
-    box-shadow: 0 6px 24px #005baa22;
-    transform: scale(1.03);
-}
-.card .card-img-top {
-    border-top-left-radius: 1em;
-    border-top-right-radius: 1em;
-}
-
+/* Team Photos */
 .team-photo {
     width: 90px;
     height: 90px;
@@ -163,6 +150,7 @@ li {
     transform: scale(1.1);
 }
 
+/* Gallery */
 .gallery-img {
     width: 100%;
     height: 180px;
@@ -176,6 +164,7 @@ li {
     transform: scale(1.04);
 }
 
+/* Inputs & Donate Form */
 .donate-card input,
 .donate-card textarea {
     margin-bottom: 1em;
@@ -183,15 +172,15 @@ li {
     border: 1px solid #59aaf9;
     padding-left: 1em;
     background: #f7fafe;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition: border-color 0.3s;
 }
 .donate-card input:focus,
 .donate-card textarea:focus {
     border-color: #005baa;
     outline: none;
-    box-shadow: 0 0 8px rgba(0,91,170,0.2);
 }
 
+/* Contact links */
 .contact-card a {
     color: #005baa;
     text-decoration: underline;
@@ -202,10 +191,11 @@ li {
     text-decoration: none;
 }
 
+/* Footer */
 .footer {
     background: linear-gradient(90deg,#005baa 80%, #222 100%);
     color: #fff;
-    padding: 2em 2em;
+    padding: 2em 0;
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
     box-shadow: 0 -2px 16px #005baa22;
@@ -215,14 +205,32 @@ li {
     text-decoration: underline;
     transition: color 0.3s;
 }
-.footer a:hover { color: #ffd600; }
-.footer ul { padding-left: 0; list-style: none; }
-.footer img { border: 3px solid #fff; }
-.footer h5 { color: #ffeb3b; font-weight: 600; margin-bottom: 1em; }
-.footer .fab { margin-right: 1em; color: #ffeb3b; transition: color 0.3s; }
-.footer .fab:hover { color: #ffd600; }
+.footer a:hover {
+    color: #ffd600;
+    text-decoration: none;
+}
+.footer ul {
+    padding-left: 0;
+    list-style: none;
+}
+.footer img {
+    border: 3px solid #fff;
+}
+.footer h5 {
+    color: #ffeb3b;
+    font-weight: 600;
+    margin-bottom: 1em;
+}
+.footer .fab {
+    margin-right: 1em;
+    color: #ffeb3b;
+    transition: color 0.3s;
+}
+.footer .fab:hover {
+    color: #ffd600;
+}
 
-/* BACK TO TOP BUTTON */
+/* Back to top */
 #backToTop {
     position: fixed;
     bottom: 20px;
@@ -230,16 +238,35 @@ li {
     display: none;
     background: #ffeb3b;
     color: #222;
-    border: none;
-    padding: 12px 16px;
-    border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(255,235,59,0.4);
-    cursor: pointer;
-    z-index: 1000;
-    transition: transform 0.3s ease, background 0.3s ease;
+    border:none;
+    padding:10px 15px;
+    border-radius:50%;
+    box-shadow:0 2px 8px #ffd60055;
+    cursor:pointer;
+    z-index:1000;
+    transition: transform 0.3s ease;
 }
-#backToTop:hover { transform: scale(1.1); background: #ffd600; }
+#backToTop:hover {
+    transform: scale(1.1);
+}
 
-/* RESPONSIVE */
+/* Animations */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
 @media (max-width: 990px) {
-    .navbar, .footer { border-radius: 0; }
+    .navbar, .footer { border-radius:0; }
+    .hero-content h1 { font-size:2em; }
+}
+@media (max-width: 768px) {
+    .hero-content { padding:0 1em; }
+    .about-card, .mission-card, .objectives-card, .team-card, .gallery-card, .donate-card, .contact-card, .events-card { padding:1em; }
+    .section-title { font-size:1.3em; }
+    .gallery-img { height:120px; }
