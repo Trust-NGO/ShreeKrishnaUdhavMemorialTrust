@@ -1,7 +1,10 @@
-from fastapi import APIRouter, Request, Depends,Form
-from fastapi.responses import HTMLResponse,RedirectResponse
+from fastapi import APIRouter, Request, Depends, Form, HTTPException
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
+from pydantic import EmailStr
+from datetime import datetime, timedelta
+from sqlalchemy import and_
 
 from database import get_db
 from models import Event, News, TeamMember, Project, GalleryImage, Contact, Volunteer
@@ -96,27 +99,40 @@ def projects_page(request: Request, db: Session = Depends(get_db)):
 
 @router.post("/contact")
 def submit_contact(
-    name: str = Form(...),
-    email: str = Form(...),
-    subject: str = Form(...),
-    message: str = Form(...),
+    name: str = Form(..., min_length=2, max_length=255),
+    email: EmailStr = Form(...),
+    subject: str = Form(..., min_length=3, max_length=255),
+    message: str = Form(..., min_length=10, max_length=5000),
     db: Session = Depends(get_db)
 ):
     try:
+        # Check for spam/rate limiting (5 submissions per 5 minutes from same email)
+        recent_contacts = db.query(Contact).filter(
+            and_(
+                Contact.email == email,
+                Contact.submitted_at > datetime.utcnow() - timedelta(minutes=5)
+            )
+        ).count()
+        
+        if recent_contacts >= 3:
+            raise HTTPException(429, "Too many submissions. Please try again later.")
+        
         contact = Contact(
-            name=name,
+            name=name.strip(),
             email=email,
-            subject=subject,
-            message=message,
-            read=False   # ✅ matches your model
+            subject=subject.strip(),
+            message=message.strip(),
+            read=False
         )
 
         db.add(contact)
         db.commit()
+        return RedirectResponse("/contact?success=1", status_code=303)
 
     except Exception as e:
+        db.rollback()
         print("ERROR:", e)
-        return {"error": str(e)}
+        return RedirectResponse("/contact?error=1", status_code=303)
 
     return RedirectResponse("/contact?success=1", status_code=303)
 

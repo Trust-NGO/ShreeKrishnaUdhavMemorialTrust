@@ -1,11 +1,11 @@
-﻿from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean, Float
+from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean, Float
 from sqlalchemy.sql import func
 from database import Base
 from datetime import datetime
 
 class Event(Base):
     __tablename__ = "events"
-    
+
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(255), unique=True, index=True)
     description = Column(Text)
@@ -17,7 +17,7 @@ class Event(Base):
 
 class Project(Base):
     __tablename__ = "projects"
-    
+
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(255), unique=True, index=True)
     description = Column(Text)
@@ -28,7 +28,7 @@ class Project(Base):
 
 class GalleryImage(Base):
     __tablename__ = "gallery_images"
-    
+
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(255))
     description = Column(Text, nullable=True)
@@ -37,7 +37,7 @@ class GalleryImage(Base):
 
 class News(Base):
     __tablename__ = "news"
-    
+
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(255), unique=True, index=True)
     content = Column(Text)
@@ -49,7 +49,7 @@ class News(Base):
 
 class Contact(Base):
     __tablename__ = "contacts"
-    
+
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), index=True)
     email = Column(String(255), index=True)
@@ -75,7 +75,7 @@ class Donation(Base):
 
 class TeamMember(Base):
     __tablename__ = "team_members"
-    
+
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), unique=True, index=True)
     position = Column(String(255))

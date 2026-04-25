@@ -1,8 +1,7 @@
-from fileinput import filename
-
 from fastapi import APIRouter, Depends, Request, Form, File, UploadFile, HTTPException
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
+from sqlalchemy import func
 from database import get_db
 from models import *
 import shutil
@@ -217,6 +216,14 @@ def add_event(
     image: UploadFile = File(...),
     db: Session = Depends(get_db)  # db should come last
 ):
+    # Validate date
+    try:
+        event_date = datetime.fromisoformat(date)
+        if event_date < datetime.utcnow():
+            raise HTTPException(400, "Event date cannot be in the past")
+    except ValueError:
+        raise HTTPException(400, "Invalid date format. Use YYYY-MM-DDTHH:MM:SS")
+
     # Save image
     filename = f"{datetime.now().timestamp()}_{image.filename}"
     file_path = os.path.join(UPLOAD_DIR, filename)
@@ -229,7 +236,7 @@ def add_event(
         title=title,
         description=description,
         location=location,
-        date=datetime.fromisoformat(date),
+        date=event_date,
         image_url=f"/uploads/events/{filename}"
     )
 
@@ -389,6 +396,7 @@ async def add_team_member(
 # ================= EDIT TEAM MEMBER =================
 @router.post("/team/edit/{id}")
 async def edit_team_member(
+    request: Request,
     id: int,
     name: str = Form(...),
     position: str = Form(...),
@@ -398,6 +406,8 @@ async def edit_team_member(
     photo: UploadFile = File(None),  # ✅ optional
     db: Session = Depends(get_db)
 ):
+    admin_required(request)
+    
     member = db.query(TeamMember).filter(TeamMember.id == id).first()
 
     if not member:
@@ -430,6 +440,8 @@ async def delete_team_member(
     request: Request,
     db: Session = Depends(get_db)
 ):
+    admin_required(request)
+    
     member = db.query(TeamMember).filter(TeamMember.id == id).first()
 
     if not member:

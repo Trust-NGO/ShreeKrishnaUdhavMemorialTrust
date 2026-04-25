@@ -1,8 +1,11 @@
 import os
 try:
     import razorpay
+    from razorpay.exceptions import BadSignatureError
 except ImportError:
     razorpay = None
+    BadSignatureError = Exception
+from fastapi import HTTPException
 from models import Donation
 from services.receipt_service import generate_receipt
 
@@ -13,16 +16,21 @@ if razorpay:
 
 def verify_payment_and_save(data, db):
     if not razorpay:
-        raise ValueError("Razorpay is not installed")
+        raise HTTPException(500, "Payment service unavailable")
 
     if not razorpay_client:
-        raise ValueError("Razorpay client is not initialized")
+        raise HTTPException(500, "Payment configuration error")
 
-    razorpay_client.utility.verify_payment_signature({
-        'razorpay_order_id': data['razorpay_order_id'],
-        'razorpay_payment_id': data['razorpay_payment_id'],
-        'razorpay_signature': data['razorpay_signature']
-    })
+    try:
+        razorpay_client.utility.verify_payment_signature({
+            'razorpay_order_id': data['razorpay_order_id'],
+            'razorpay_payment_id': data['razorpay_payment_id'],
+            'razorpay_signature': data['razorpay_signature']
+        })
+    except BadSignatureError as e:
+        raise HTTPException(400, f"Payment signature verification failed: {str(e)}")
+    except Exception as e:
+        raise HTTPException(500, f"Payment verification error: {str(e)}")
 
     donation = Donation(
         donor_name=data['donor_name'],
@@ -35,7 +43,7 @@ def verify_payment_and_save(data, db):
     db.commit()
     db.refresh(donation)
 
-    receipt_id, receipt_url = generate_receipt(donation)
+    receipt_id, receipt_url = generate_receipt(donation, db)
 
     return {
         "status": "success",
