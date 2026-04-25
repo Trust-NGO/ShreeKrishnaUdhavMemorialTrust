@@ -1,3 +1,4 @@
+from utils.auth_guard import verify_password
 from fastapi import APIRouter, Request, Form, Depends
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
@@ -30,8 +31,8 @@ def login(
     user = db.query(AdminUser).filter(AdminUser.username == username).first()
 
     # ❌ INVALID LOGIN
-    if not user or not bcrypt.verify(password, user.password):
-        print("Invalid login:", username)
+    if not user or not verify_password(password, user.password):
+        return {"error": "Invalid credentials"}
 
         return templates.TemplateResponse("admin/login.html", {
             "request": request,

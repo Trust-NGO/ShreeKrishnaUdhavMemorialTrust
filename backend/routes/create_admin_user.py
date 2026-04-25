@@ -1,36 +1,45 @@
-from database import get_db, SessionLocal
+import os
+from database import SessionLocal
 from models import AdminUser
-from passlib.context import CryptContext
+from utils.auth_guard import hash_password
 
-#python -m routes.create_admin_user # run this from backend path to create admin user 
-# 🔐 Setup hashing (BEST PRACTICE)
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 def create_admin():
     db = SessionLocal()
 
-    username = "admin"
-    password = "admin123"   # 🔥 change this later
+    try:
+        # 🔐 Get from environment (safe for production)
+        username = os.getenv("ADMIN_USERNAME", "admin")
+        password = os.getenv("ADMIN_PASSWORD", "admin123")
 
-    # Check if already exists
-    existing = db.query(AdminUser).filter(AdminUser.username == username).first()
-    if existing:
-        print("⚠ Admin already exists")
-        return
+        # Check if admin already exists
+        existing = db.query(AdminUser).filter(
+            AdminUser.username == username
+        ).first()
 
-    hashed_password = pwd_context.hash(password)
+        if existing:
+            print("⚠ Admin already exists")
+            return
 
-    admin = AdminUser(
-        username=username,
-        password=hashed_password
-    )
+        # Hash password safely
+        hashed_password = hash_password(password)
 
-    db.add(admin)
-    db.commit()
+        # Create admin user
+        admin = AdminUser(
+            username=username,
+            password=hashed_password
+        )
 
-    print("✅ Admin created successfully")
-    print("Username:", username)
-    print("Password:", password)
+        db.add(admin)
+        db.commit()
 
+        print("✅ Admin created successfully")
+        print("Username:", username)
+
+    finally:
+        db.close()
+
+
+# Run manually (optional)
 if __name__ == "__main__":
     create_admin()
