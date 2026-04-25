@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Become a Volunteer | Shri Krishna Udhav Memorial Trust{% endblock %}
+
+{% block content %}
+<section class="container card-section py-5">
+    <h2 class="section-title text-center">Join Us as a Volunteer</h2>
+
+    <p class="section-subtitle text-center">
+        Thank you for considering to join our cause. Fill out the form below and make a difference today.
+    </p>
+{% if request.query_params.get('success') %}
+<div class="alert alert-success text-center">
+    Thank you for joining as a volunteer! We will contact you soon.
+</div>
+{% endif %}
+    <!-- Volunteer Registration Form -->
+    <form action="/submit-volunteer" method="POST" class="mt-5">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="text" id="phone" name="phone" class="form-control" required>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <label for="skills" class="form-label">Skills or Experience</label>
+                <textarea id="skills" name="skills" rows="4" class="form-control" required></textarea>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <label for="availability" class="form-label">Availability (Days/Hours per week)</label>
+                <input type="text" id="availability" name="availability" class="form-control" required>
+            </div>
+
+            <div class="col-md-12 mb-4">
+                <button type="submit" class="btn btn-primary btn-lg w-100">Submit Volunteer Application</button>
+            </div>
+        </div>
+    </form>
+</section>
+{% endblock %}

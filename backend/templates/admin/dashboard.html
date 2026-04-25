@@ -1,0 +1,73 @@
+﻿{% extends "admin/base_admin.html" %}
+{% block content %}
+
+<!-- KPI -->
+<div class="row g-4 mb-4">
+
+    <div class="col-md-4">
+        <div class="card kpi">
+            <div>
+                <p>Total Donations</p>
+                <h3>₹{{ total_amount }}</h3>
+            </div>
+            <i class="bi bi-cash"></i>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card kpi">
+            <div>
+                <p>Contacts</p>
+                <h3>{{ contacts }}</h3>
+            </div>
+            <i class="bi bi-envelope"></i>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card kpi">
+            <div>
+                <p>Volunteers</p>
+                <h3>{{ volunteers }}</h3>
+            </div>
+            <i class="bi bi-people"></i>
+        </div>
+    </div>
+
+</div>
+
+<!-- RECENT DONATIONS -->
+<div class="card table-card">
+    <div class="card-header d-flex justify-content-between">
+        <strong>Recent Donations</strong>
+        <a href="/admin/donations">View all</a>
+    </div>
+
+    <table class="table mb-0">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for d in recent_donations %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ d.name or "Guest" }}</td>
+                <td>₹{{ d.amount }}</td>
+                <td>{{ d.category }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4" class="text-center">No data</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

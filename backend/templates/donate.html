@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+
+{% block title %}Donate | Shri Krishna Udhav Memorial Trust{% endblock %}
+
+{% block content %}
+
+<section class="container card-section mt-4">
+
+<h1 class="section-title">Support Our Cause</h1>
+<p class="section-subtitle text-justify">
+    Your contribution empowers communities in Deoria, Uttar Pradesh. Every donation helps us bring positive change.
+</p>
+
+<div class="row mt-4">
+
+    <!-- LEFT SIDE -->
+    <div class="col-md-6">
+        <h4>Donation Details</h4>
+
+        <form id="donateForm">
+            <div class="form-group mb-3">
+                <input type="text" class="form-control" id="donorName" placeholder="Your Name" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <input type="email" class="form-control" id="donorEmail" placeholder="Your Email" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <input type="number" class="form-control" id="amount" placeholder="Amount (₹)" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <textarea class="form-control" id="message" rows="3" placeholder="Message (Optional)"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Donate Securely</button>
+        </form>
+
+        <!-- ✅ Receipt Section -->
+        <div id="receiptBox" style="display:none;" class="mt-4">
+            <div class="alert alert-success">
+                🎉 Donation Successful! Thank you for your support.
+                <br><br>
+                <a id="receiptLink" target="_blank" class="btn btn-success">
+                    Download Receipt
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="col-md-6">
+        <h4>Other Payment Options</h4>
+
+        <p>
+            <strong>Bank Transfer:</strong><br>
+            Account Name: SHRI KRISHNA UDHAV MEMORIAL TRUST<br>
+            Account No: 50200055174661<br>
+            IFSC: HDFC0000947
+        </p>
+
+        <p>
+            <strong>UPI:</strong> trust@upi<br>
+            <strong>PhonePe / Paytm:</strong> +91-9792992211
+        </p>
+
+        <button id="upiBtn" class="btn btn-cta mt-2">Show UPI QR Code</button>
+    </div>
+
+</div>
+</section>
+
+<button type="button" id="testBtn" class="btn btn-warning mt-2">
+    Test Payment (No Razorpay)
+</button>
+<!-- UPI MODAL -->
+
+<div id="upiModal" class="upi-modal">
+    <div class="upi-content">
+        <span id="closeUpi" class="close">&times;</span>
+        <h4>Scan to Pay via UPI</h4>
+        <img src="/static/Images/upi_qr.png" alt="UPI QR Code" style="max-width:200px;">
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+// ================= ELEMENTS =================
+const form = document.getElementById('donateForm');
+const receiptBox = document.getElementById("receiptBox");
+const receiptLink = document.getElementById("receiptLink");
+const submitBtn = form.querySelector("button");
+
+// ================= DONATION FLOW =================
+form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('donorName').value.trim();
+    const email = document.getElementById('donorEmail').value.trim();
+    const amount = document.getElementById('amount').value;
+    const message = document.getElementById('message').value;
+
+    if (!amount || amount < 1) {
+        alert('Enter valid amount');
+        return;
+    }
+
+    // 🔥 Prevent multiple clicks
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Processing...";
+
+    try {
+
+        // ================= STEP 1: CREATE ORDER =================
+        const res = await fetch('/api/create-order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ amount: parseInt(amount) })
+        });
+
+        if (!res.ok) throw new Error("Order creation failed");
+
+        const data = await res.json();
+
+        // ================= STEP 2: OPEN RAZORPAY =================
+        const options = {
+            key: "rzp_test_SgZo3ORMRojHmd",
+            amount: data.amount,
+            currency: "INR",
+            order_id: data.order_id,
+
+            name: "Shri Krishna Udhav Memorial Trust",
+            description: "Donation Contribution",
+
+            prefill: {
+                name: name,
+                email: email
+            },
+
+            handler: async function (response) {
+
+                try {
+                    // ================= STEP 3: VERIFY PAYMENT =================
+                    const verifyRes = await fetch('/api/donation/verify-payment', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            razorpay_order_id: response.razorpay_order_id,
+                            razorpay_payment_id: response.razorpay_payment_id,
+                            razorpay_signature: response.razorpay_signature,
+                            donor_name: name,
+                            donor_email: email,
+                            amount: data.amount,
+                            message: message
+                        })
+                    });
+
+                    const result = await verifyRes.json();
+
+                    if (result.status === "success") {
+
+                        // ✅ Show receipt
+                        receiptBox.style.display = "block";
+                        receiptLink.href = result.receipt_url;
+
+                        form.reset();
+
+                        // 🎉 UX feedback
+                        submitBtn.innerText = "Donation Successful ✅";
+
+                    } else {
+                        alert("Payment verification failed");
+                        resetButton();
+                    }
+
+                } catch (err) {
+                    alert("Verification error");
+                    resetButton();
+                }
+            },
+
+            modal: {
+                ondismiss: function () {
+                    resetButton();
+                }
+            },
+
+            theme: {
+                color: "#ff6a00"
+            }
+        };
+
+        new Razorpay(options).open();
+
+    } catch (error) {
+        alert("Something went wrong. Try again.");
+        resetButton();
+    }
+});
+
+
+// ================= RESET BUTTON =================
+function resetButton() {
+    submitBtn.disabled = false;
+    submitBtn.innerText = "Donate Securely";
+}
+
+
+// ================= TEST MODE =================
+document.getElementById("testBtn").addEventListener("click", async () => {
+
+    const res = await fetch('/api/donation/test-success', {
+        method: "POST"
+    });
+
+    const data = await res.json();
+
+    if (data.status === "success") {
+        receiptBox.style.display = "block";
+        receiptLink.href = data.receipt_url;
+    }
+});
+
+
+// ================= UPI MODAL =================
+const modal = document.getElementById("upiModal");
+
+document.getElementById("upiBtn").onclick = () => {
+    modal.classList.add("show");
+};
+
+document.getElementById("closeUpi").onclick = () => {
+    modal.classList.remove("show");
+};
+
+window.onclick = (e) => {
+    if (e.target === modal) modal.classList.remove("show");
+};
+</script>
+
+
+{% endblock %}

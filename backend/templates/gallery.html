@@ -1,0 +1,22 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Shri Krishna Udhav Memorial Trust | Gallery{% endblock %}
+
+{% block content %}
+<section class="container mt-4">
+    <h2 class="section-title text-center">Gallery Highlights</h2>
+    <p class="section-subtitle text-center">Snapshots from our recent events and activities organized by Shri Krishna Udhav Memorial Trust.</p>
+
+    <div class="row mt-4">
+        {% for image in images %}
+        <div class="col-md-3 col-sm-6 mb-3">
+            <img src="{{ image.image_url }}" class="gallery-img" alt="{{ image.title }}" title="{{ image.title }}">
+        </div>
+        {% else %}
+        <div class="col-12 text-center">
+            <p>Gallery will be updated soon with our events and activities!</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

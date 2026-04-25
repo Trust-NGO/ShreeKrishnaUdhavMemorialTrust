@@ -1,0 +1,27 @@
+{% extends "admin/base_admin.html" %}
+
+{% block content %}
+<div class="card p-3">
+    <h5>Audit Logs</h5>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>User</th>
+                <th>Timestamp</th>  <!-- Added a column for Timestamp -->
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for log in logs %}
+            <tr>
+                <td>{{ log.action }}</td>
+                <td>{{ log.user }}</td>
+                <td>{{ log.created_at.strftime("%Y-%m-%d %H:%M:%S") }}</td>  <!-- Format the timestamp -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

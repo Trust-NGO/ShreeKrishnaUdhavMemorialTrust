@@ -1,0 +1,37 @@
+{% extends "admin/base_admin.html" %}
+{% block content %}
+
+<div class="card p-3">
+    <h5 class="mb-3">Donations</h5>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Created At</th> <!-- Added this column to display created_at -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in donations %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ d.donor_name or "Guest" }}</td>
+                    <td>₹{{ d.amount }}</td>
+                    <td>{{ d.purpose }}</td>
+                    <td>{{ d.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td> <!-- Display formatted date -->
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">No donations</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

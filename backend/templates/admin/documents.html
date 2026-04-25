@@ -1,0 +1,49 @@
+{% extends "admin/base_admin.html" %}
+{% block content %}
+
+<div class="card p-3">
+    <h5 class="mb-3">Documents</h5>
+
+    <!-- Document Upload Form -->
+    <form action="/admin/documents/upload" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="title" class="form-label">Document Title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="mb-3">
+            <label for="file" class="form-label">Choose Document</label>
+            <input type="file" class="form-control" id="file" name="file" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload Document</button>
+    </form>
+
+    <!-- Table to Display Uploaded Documents -->
+    <div class="table-responsive mt-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>File URL</th>
+                    <th>Uploaded At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for doc in documents %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ doc.title }}</td>
+                    <td><a href="{{ doc.file_url }}" target="_blank">Download</a></td>
+                    <td>{{ doc.uploaded_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4" class="text-center">No documents</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

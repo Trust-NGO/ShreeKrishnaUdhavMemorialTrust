@@ -1,0 +1,220 @@
+{% extends "admin/base_admin.html" %}
+{% block content %}
+
+<div class="container-fluid py-4">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h4 class="fw-bold mb-1">Volunteer Management</h4>
+            <p class="text-muted mb-0">Manage and review volunteer applications</p>
+        </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="card shadow-sm p-3 mb-4">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search volunteers...">
+    </div>
+
+    <!-- TABLE -->
+    <div class="card shadow-sm">
+        <div class="table-responsive">
+
+            <table class="table align-middle mb-0" id="volunteerTable">
+
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Status</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for v in volunteers %}
+                    <tr>
+
+                        <td class="fw-semibold">{{ v.name }}</td>
+                        <td>{{ v.phone }}</td>
+
+                        <!-- STATUS -->
+                        <td>
+                            <span id="status-{{ v.id }}" class="badge 
+                                {% if v.status == 'approved' %}bg-success
+                                {% elif v.status == 'rejected' %}bg-danger
+                                {% else %}bg-warning text-dark{% endif %}">
+                                {{ v.status }}
+                            </span>
+                        </td>
+
+                        <!-- ACTIONS -->
+                        <td class="text-end">
+
+                            <div class="d-flex justify-content-end gap-2">
+
+                                <button 
+                                    class="btn btn-sm btn-success action-btn"
+                                    data-id="{{ v.id }}"
+                                    data-action="approve"
+                                    {% if v.status != 'pending' %}disabled{% endif %}>
+                                    Approve
+                                </button>
+
+                                <button 
+                                    class="btn btn-sm btn-outline-danger action-btn"
+                                    data-id="{{ v.id }}"
+                                    data-action="reject"
+                                    {% if v.status != 'pending' %}disabled{% endif %}>
+                                    Reject
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+
+                    {% if not volunteers %}
+                    <tr>
+                        <td colspan="4" class="text-center py-4 text-muted">
+                            No volunteers found
+                        </td>
+                    </tr>
+                    {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="custom-toast"></div>
+
+<!-- JS -->
+<script>
+
+// 🔍 LIVE SEARCH
+document.getElementById('searchInput').addEventListener('keyup', function () {
+    const value = this.value.toLowerCase();
+    document.querySelectorAll('#volunteerTable tbody tr').forEach(row => {
+        row.style.display = row.innerText.toLowerCase().includes(value) ? '' : 'none';
+    });
+});
+
+// ⚡ REAL-TIME ACTION
+document.querySelectorAll('.action-btn').forEach(btn => {
+
+    btn.addEventListener('click', function() {
+
+        const id = this.dataset.id;
+        const action = this.dataset.action;
+        const row = this.closest('tr');
+
+        fetch('/admin/volunteers/api/update-status', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `volunteer_id=${id}&action=${action}`
+        })
+        .then(res => res.json())
+        .then(data => {
+
+            if(data.success){
+
+                const badge = document.getElementById(`status-${id}`);
+                badge.innerText = data.status;
+
+                badge.className = 'badge ' + 
+                    (data.status === 'approved' ? 'bg-success' :
+                     data.status === 'rejected' ? 'bg-danger' :
+                     'bg-warning text-dark');
+
+                // 🔒 Disable both buttons after action
+                row.querySelectorAll('button').forEach(b => b.disabled = true);
+
+                showToast(`Volunteer ${data.status} successfully`);
+
+            } else {
+                showToast(data.message || "Action not allowed");
+            }
+
+        });
+
+    });
+
+});
+
+// 🍞 TOAST
+function showToast(message){
+
+    const toast = document.getElementById('toast');
+    toast.innerText = message;
+
+    toast.classList.add('show');
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2500);
+}
+
+</script>
+
+<!-- CSS -->
+<style>
+
+.card {
+    border: none;
+    border-radius: 12px;
+}
+
+.table th {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.btn-sm {
+    padding: 6px 14px;
+    border-radius: 20px;
+}
+
+.badge {
+    padding: 6px 10px;
+    font-size: 12px;
+    text-transform: capitalize;
+}
+
+/* Toast */
+.custom-toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #0d6efd;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+.custom-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+</style>
+
+{% endblock %}

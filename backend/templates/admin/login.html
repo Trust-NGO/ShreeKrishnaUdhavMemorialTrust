@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+    body{
+        margin:0;
+        font-family:'Inter',sans-serif;
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+
+        background: radial-gradient(circle at top,#e6f0ff,#f7f7fb);
+    }
+
+    /* BACKDROP GLASS */
+    .login-wrapper{
+        display:flex;
+        width:900px;
+        max-width:95%;
+        background:rgba(255,255,255,0.6);
+        backdrop-filter: blur(20px);
+        border-radius:20px;
+        box-shadow:0 20px 60px rgba(0,0,0,0.1);
+        overflow:hidden;
+    }
+
+    /* LEFT PANEL */
+    .left{
+        flex:1;
+        padding:50px;
+        background:linear-gradient(135deg,#005baa,#59aaf9);
+        color:white;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+    }
+
+    .left h2{
+        font-size:28px;
+        margin-bottom:10px;
+    }
+
+    .left ul{
+        margin-top:20px;
+        padding-left:18px;
+        line-height:2;
+        opacity:0.95;
+    }
+
+    /* RIGHT PANEL */
+    .right{
+        flex:1;
+        padding:50px;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+    }
+
+    .right h3{
+        margin-bottom:20px;
+        font-size:24px;
+    }
+
+    /* INPUT */
+    input{
+        width:100%;
+        padding:14px;
+        margin-bottom:15px;
+        border-radius:12px;
+        border:1px solid #ddd;
+        outline:none;
+        transition:0.3s;
+    }
+
+    input:focus{
+        border-color:#005baa;
+        box-shadow:0 0 10px rgba(0,91,170,0.2);
+    }
+
+    /* BUTTON */
+    button{
+        width:100%;
+        padding:14px;
+        border:none;
+        border-radius:12px;
+        background:linear-gradient(135deg,#005baa,#59aaf9);
+        color:white;
+        font-weight:600;
+        cursor:pointer;
+        transition:0.3s;
+    }
+
+    button:hover{
+        transform:translateY(-2px);
+    }
+
+    /* ERROR */
+    .error{
+        background:#ffebee;
+        color:#c62828;
+        padding:10px;
+        border-radius:10px;
+        margin-bottom:10px;
+        font-size:14px;
+    }
+
+    /* PASSWORD TOGGLE */
+    .pass-wrap{
+        position:relative;
+    }
+
+    .toggle{
+        position:absolute;
+        right:12px;
+        top:12px;
+        cursor:pointer;
+        opacity:0.6;
+    }
+
+    .toggle:hover{ opacity:1; }
+
+    </style>
+</head>
+
+<body>
+
+<div class="login-wrapper">
+
+    <!-- LEFT -->
+    <div class="left">
+        <h2>Shri Krishna Udhav Memorial Trust</h2>
+        <p>Secure NGO Admin Portal</p>
+
+        <ul>
+            <li>Donation Management</li>
+            <li>Volunteer Tracking</li>
+            <li>Event Control System</li>
+            <li>Contact & Audit Logs</li>
+        </ul>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+
+        <h3>Admin Login</h3>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form method="post" action="/admin/login">
+
+            <input type="text" name="username" placeholder="Username" required>
+
+            <div class="pass-wrap">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <span class="toggle" onclick="toggle()">👁</span>
+            </div>
+
+            <button type="submit">Login Securely</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+function toggle(){
+    const p = document.getElementById("password");
+    p.type = p.type === "password" ? "text" : "password";
+}
+</script>
+
+</body>
+</html>

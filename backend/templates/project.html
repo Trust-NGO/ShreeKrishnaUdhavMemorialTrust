@@ -1,0 +1,33 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Shri Krishna Udhav Memorial Trust | Projects{% endblock %}
+
+{% block content %}
+<section class="container mt-4">
+    <h2 class="section-title text-center">Our Projects & Activities</h2>
+    <p class="section-subtitle text-center">Empowering communities through education, health, skill-building, and welfare initiatives.</p>
+
+    <div class="row mt-4">
+        {% for project in projects %}
+        <div class="col-md-4 mb-3">
+            <div class="card card-section">
+                {% if project.image_url %}
+                <img src="{{ project.image_url }}" class="card-img-top" alt="{{ project.title }}">
+                {% else %}
+                <img src="https://via.placeholder.com/360x180?text={{ project.title }}" class="card-img-top" alt="{{ project.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="card-text">{{ project.description }}</p>
+                    <span class="badge badge-info">{{ project.category }}</span>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12 text-center">
+            <p>Projects will be added soon!</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

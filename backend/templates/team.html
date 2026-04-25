@@ -1,0 +1,30 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Shri Krishna Udhav Memorial Trust | Team{% endblock %}
+
+{% block content %}
+<section class="container mt-4">
+    <h2 class="section-title text-center">Our Team / Trustees</h2>
+    <p class="section-subtitle text-center">Meet the dedicated team behind Shri Krishna Udhav Memorial Trust, working tirelessly for social welfare and community development.</p>
+
+    <div class="row text-center mt-4">
+        {% for member in team %}
+        <div class="col-md-4 mb-4">
+            {% if member.photo_url %}
+            <img src="{{ member.photo_url }}" class="team-photo" alt="{{ member.name or 'Team Member' }}">
+            {% else %}
+            <img src="https://via.placeholder.com/90?text={{ (member.name or 'Unknown')[:10] }}" class="team-photo" alt="{{ member.name or 'Team Member' }}">
+            {% endif %}
+            <h5 class="mt-2">{{ member.name or 'Team Member' }}</h5>
+            <p><strong>{{ member.position or 'Position' }}</strong></p>
+            {% if member.bio %}<p>{{ member.bio }}</p>{% endif %}
+            {% if member.email %}<p><a href="mailto:{{ member.email }}">{{ member.email }}</a></p>{% endif %}
+        </div>
+        {% else %}
+        <div class="col-12 text-center">
+            <p>Team members will be added soon!</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "admin/base_admin.html" %}
+
+{% block content %}
+<div class="card p-3">
+    <h5>Contacts</h5>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Status</th>
+                <th>Read</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for c in contacts %}
+            <tr>
+                <td>{{ c.name }}</td>
+                <td>{{ c.email }}</td>
+                <td>{{ c.message }}</td>
+                <td>
+                    <span class="badge bg-{{ 'success' if c.status == 'resolved' else 'warning' }}">
+                        {{ c.status }}
+                    </span>
+                </td>
+                <td>
+                    <span class="badge bg-{{ 'info' if c.read else 'secondary' }}">
+                        {{ 'Read' if c.read else 'Unread' }}
+                    </span>
+                </td>
+                <td>
+                    {% if c.status != 'resolved' and not c.read %}
+                    <!-- Using form to send POST request to resolve contact -->
+                    <form action="/admin/contact/resolve/{{ c.id }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-sm btn-success">
+                            Resolve
+                        </button>
+                    </form>
+                    {% else %}
+                    <button class="btn btn-sm btn-success" disabled>
+                        Resolved
+                    </button>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

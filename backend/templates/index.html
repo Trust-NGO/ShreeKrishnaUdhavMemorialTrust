@@ -1,0 +1,319 @@
+{% extends "base.html" %}
+
+{% block title %}Shri Krishna Udhav Memorial Trust | Home{% endblock %}
+
+{% block content %}
+
+
+<section class="hero-center text-center d-flex align-items-center">
+
+    <div class="container">
+
+        <!-- Main Content -->
+        <div class="hero-content mx-auto">
+
+            <h1 class="hero-heading">
+                Every Contribution Creates
+                <span>Real Change</span>
+            </h1>
+
+            <p class="hero-subtext">
+                We support education, healthcare, and community development
+                for underserved families. Together, we can build a future
+                filled with dignity and opportunity.
+            </p>
+
+            <!-- CTA -->
+            <div class="mt-4">
+                <a href="/donate" class="btn btn-primary btn-lg px-4">
+                    Donate Now
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Stats -->
+        <div class="hero-stats mt-5">
+
+            <div class="row justify-content-center">
+
+                <div class="col-4 col-md-2">
+                    <h4>10K+</h4>
+                    <p>Lives</p>
+                </div>
+
+                <div class="col-4 col-md-2">
+                    <h4>500+</h4>
+                    <p>Volunteers</p>
+                </div>
+
+                <div class="col-4 col-md-2">
+                    <h4>50+</h4>
+                    <p>Projects</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+<!-- About Us -->
+<section id="about" class="container card-section">
+    <h2 class="section-title">About Us</h2>
+    <p class="section-subtitle">
+        Shri Krishna Udhav Memorial Trust is a registered NGO dedicated to uplifting marginalized communities through education, healthcare, skill development, and legal awareness. Based in Deoria, Uttar Pradesh, we strive for a society where every individual lives with dignity and hope.
+    </p>
+</section>
+
+<!-- Important Notice Modal -->
+<!-- <div class="modal fade" id="noticeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Important Notice</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>We have organized a special health camp for senior citizens at Khukhundoo.</p>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- Mission & Vision -->
+<section id="mission" class="container card-section">
+    <h2 class="section-title">Mission & Vision</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-section">
+                <h4>Our Mission</h4>
+                <p>
+                    To promote holistic development by providing education, healthcare, vocational training, and skill-building opportunities for marginalized communities. We aim to empower individuals to lead dignified, productive, and fulfilling lives.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card card-section">
+                <h4>Our Vision</h4>
+                <p>
+                    To create an inclusive society where every individual has access to basic rights, equal opportunities, and resources necessary to achieve their potential.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Objectives -->
+<section id="objectives" class="container card-section">
+    <h2 class="section-title">Key Objectives</h2>
+    <div class="row mt-4">
+        <div class="col-md-6 mb-3">
+            <div class="card card-section">
+                <h4>Education & Literacy</h4>
+                <p>Promote primary, secondary, and adult education, provide scholarships and conduct awareness programs.</p>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="card card-section">
+                <h4>Health & Family Welfare</h4>
+                <p>Organize health camps, provide medical aid, nutrition awareness, and maternal & child health services.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Events -->
+<section id="events" class="container card-section py-5">
+    <div class="text-center mb-5">
+        <h2 class="section-title">Recent Events & Activities</h2>
+        <p class="section-subtitle mx-auto" style="max-width: 760px;">
+            Shri Krishna Udhav Memorial Trust regularly organizes impactful initiatives in the areas of
+            healthcare, education, women empowerment, youth development, environmental awareness,
+            and social welfare. Our programs are designed to create sustainable change and bring hope
+            to underserved communities across Deoria and nearby rural regions.
+        </p>
+    </div>
+
+    <div class="row g-4 mt-2">
+        {% for event in events %}
+        <div class="col-lg-4 col-md-6">
+            <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden event-card">
+
+                {% if event.image_url %}
+                <img src="{{ event.image_url }}" class="card-img-top"
+                     alt="{{ event.title }}"
+                     style="height:220px; object-fit:cover;">
+                {% else %}
+                <img src="https://via.placeholder.com/600x400?text={{ event.title }}"
+                     class="card-img-top"
+                     alt="{{ event.title }}"
+                     style="height:220px; object-fit:cover;">
+                {% endif %}
+
+                <div class="card-body d-flex flex-column p-4">
+
+                    <div class="mb-2">
+                        <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill">
+                            Community Initiative
+                        </span>
+                    </div>
+
+                    <h5 class="card-title fw-bold mb-3">{{ event.title }}</h5>
+
+                    <p class="card-text text-muted flex-grow-1">
+                        {% if event.description %}
+                            {{ event.description[:180] }}{% if event.description|length > 180 %}...{% endif %}
+                        {% else %}
+                            This event was organized as part of our continued mission to support communities
+                            through meaningful action, awareness programs, and development initiatives.
+                        {% endif %}
+                    </p>
+
+                    <div class="mt-3 pt-3 border-top">
+
+                        {% if event.location %}
+                        <div class="mb-2 small text-muted">
+                            <span class="me-1">??</span> {{ event.location }}
+                        </div>
+                        {% endif %}
+
+                        {% if event.event_date %}
+                        <div class="mb-2 small text-muted">
+                            <span class="me-1">??</span> {{ event.event_date }}
+                        </div>
+                        {% endif %}
+
+                        {% if event.beneficiaries %}
+                        <div class="small text-muted">
+                            <span class="me-1">??</span> {{ event.beneficiaries }}+ Beneficiaries
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+                    <a href="/events/{{ event.id }}"
+                       class="btn btn-primary mt-4 rounded-pill px-4">
+                        View Details
+                    </a>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if not events %}
+    <div class="text-center py-5">
+        <div class="card border-0 shadow-sm rounded-4 p-5">
+            <h4 class="mb-3">More Impactful Activities Coming Soon</h4>
+            <p class="text-muted mb-0">
+                We are continuously planning new community programs, awareness drives,
+                health camps, and development projects. Please check back soon for updates.
+            </p>
+        </div>
+    </div>
+    {% endif %}
+</section>
+
+<!-- Team -->
+<section id="team" class="container card-section">
+    <h2 class="section-title text-center">Our Team</h2>
+    <div class="row text-center mt-4">
+        {% for member in team %}
+        <div class="col-md-4 mb-4">
+            {% if member.photo_url %}
+            <img src="{{ member.photo_url }}" class="team-photo" alt="{{ member.name or 'Team Member' }}">
+            {% else %}
+            <img src="https://via.placeholder.com/90?text={{ (member.name or 'Unknown')[:10] }}" class="team-photo" alt="{{ member.name or 'Team Member' }}">
+            {% endif %}
+            <h5 class="mt-2">{{ member.name or 'Team Member' }}</h5>
+            <p>{{ member.position or 'Position' }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery" class="container card-section">
+    <h2 class="section-title text-center">Gallery Highlights</h2>
+    <div class="row mt-4">
+        <div class="col-md-3 col-sm-6 mb-3">
+            <img src="{{ url_for('static', path='/Images/GalleryImg1.jpg') }}" class="gallery-img" alt="Gallery">
+        </div>
+        <div class="col-md-3 col-sm-6 mb-3">
+            <img src="{{ url_for('static', path='/Images/GalleryImg2.jpg') }}" class="gallery-img" alt="Gallery">
+        </div>
+        <div class="col-md-3 col-sm-6 mb-3">
+            <img src="{{ url_for('static', path='/Images/GalleryImg3.jpg') }}" class="gallery-img" alt="Gallery">
+        </div>
+        <div class="col-md-3 col-sm-6 mb-3">
+            <img src="{{ url_for('static', path='/Images/GalleryImg1.jpg') }}" class="gallery-img" alt="Gallery">
+        </div>
+    </div>
+</section>
+
+<!-- impact -->
+<section id="impact" class="container card-section">
+  <h2 class="section-title">Our Impact</h2>
+  <div class="row text-center">
+    <div class="col-md-3 mb-3">
+      <h3 class="counter" data-target="5000">0</h3>
+      <p>People Helped</p>
+    </div>
+    <div class="col-md-3 mb-3">
+      <h3 class="counter" data-target="120">0</h3>
+      <p>Events Organized</p>
+    </div>
+    <div class="col-md-3 mb-3">
+      <h3 class="counter" data-target="350">0</h3>
+      <p>Volunteers Engaged</p>
+    </div>
+    <div class="col-md-3 mb-3">
+      <h3 class="counter" data-target="50">0</h3>
+      <p>Communities Served</p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Join Us Section -->
+<section id="join-us" class="container card-section text-center py-5">
+    <h2 class="section-title">Join Our Team of Volunteers</h2>
+    <p class="section-subtitle">
+        Help us spread hope and create a positive change in the lives of underserved communities.
+        Become a volunteer today and make a difference.
+    </p>
+
+    <div class="text-center mt-4">
+        <a href="/volunteer" class="btn btn-primary btn-lg">Become a Volunteer</a>
+    </div>
+</section>
+
+<!-- Donate -->
+<section id="donate" class="container card-section">
+    <h2 class="section-title text-center">Support Our Cause</h2>
+    <p class="section-subtitle text-center">Your contribution empowers communities in Deoria, Uttar Pradesh</p>
+    <div class="text-center mt-4">
+        <a href="/donate" class="btn btn-cta">Donate Now</a>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="container card-section">
+    <h2 class="section-title text-center">Quick Contact</h2>
+    <p class="section-subtitle text-center">Reach us via phone, email, or visit our office</p>
+    <div class="text-center mt-4">
+        <p>
+            <strong>Email:</strong> <a href="mailto:krishnaudhavtrust@gmail.com">krishnaudhavtrust@gmail.com</a><br>
+            <strong>Phone:</strong> <a href="tel:+919918640455">+91-9918640455</a>
+        </p>
+    </div>
+</section>
+{% endblock %}
