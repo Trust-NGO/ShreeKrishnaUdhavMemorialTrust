@@ -12,3 +12,4 @@ reportlab==4.0.7
 itsdangerous==2.1.2
 passlib[bcrypt]==1.7.4
 setuptools>=68.0.0
+qrcode[pil]
