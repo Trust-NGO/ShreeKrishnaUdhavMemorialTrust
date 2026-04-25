@@ -2,7 +2,6 @@ from utils.auth_guard import verify_password
 from fastapi import APIRouter, Request, Form, Depends
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
-from passlib.hash import bcrypt
 
 from database import get_db
 from models import AdminUser
@@ -25,15 +24,12 @@ def login(
     password: str = Form(...),
     db: Session = Depends(get_db)
 ):
-
     print(f"Login attempt for user: {username}")
 
     user = db.query(AdminUser).filter(AdminUser.username == username).first()
 
     # ❌ INVALID LOGIN
     if not user or not verify_password(password, user.password):
-        return {"error": "Invalid credentials"}
-
         return templates.TemplateResponse("admin/login.html", {
             "request": request,
             "error": "Invalid credentials"
@@ -43,16 +39,10 @@ def login(
     request.session["admin"] = user.username
     print("Admin logged in:", user.username)
 
-    # 🔥 FIXED REDIRECT (IMPORTANT)
     return RedirectResponse(url="/admin/dashboard", status_code=302)
 
 
-
 @router.get("/logout")
-def logout():
-    response = RedirectResponse(url="/admin/login", status_code=302)
-
-    # clear session / cookie
-    response.delete_cookie("access_token")
-
-    return response
+def logout(request: Request):
+    request.session.clear()
+    return RedirectResponse(url="/admin/login", status_code=302)
