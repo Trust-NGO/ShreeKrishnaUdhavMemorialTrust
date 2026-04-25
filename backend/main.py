@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.sessions import SessionMiddleware
-
+from routes.create_admin_user import create_admin
 from routes import donation_routes, event_routes, page_routes, admin_routes, auth_routes
 from database import engine, Base
 
@@ -24,3 +24,7 @@ app.include_router(event_routes.router, prefix="/api/events")
 app.include_router(donation_routes.router, prefix="/api/donation")
 app.include_router(admin_routes.router, prefix="/admin")
 app.include_router(auth_routes.router, prefix="/admin")
+
+@app.on_event("startup")
+def startup_event():
+    create_admin()
