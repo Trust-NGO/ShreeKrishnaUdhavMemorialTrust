@@ -103,10 +103,9 @@
                     <h4><i class="fas fa-mobile-alt text-primary"></i> UPI / Mobile Wallets</h4>
                     <hr>
                     <p>
-                        <strong>UPI ID:</strong> trust@upi<br>
-                        <strong>PhonePe / Paytm / GPay:</strong> +91-9792992211
+                        <strong>UPI / PhonePe / Paytm / GPay:</strong> +91-9792992211<br>
+                        <small class="text-muted">You can send donations via any UPI app using the phone number above.</small>
                     </p>
-                    <button id="upiBtn" class="btn btn-cta mt-2"><i class="fas fa-qrcode"></i> Show UPI QR Code</button>
                 </div>
             </div>
 
@@ -121,7 +120,7 @@
                     </p>
                     <p class="mb-0">
                         <small class="text-muted">
-                            Registration No: IV14/2020 | DARPAN ID: UP/2024/0406617
+                            Registered Trust Deed (May 23, 2020) | Reg No: 14, Vol. 40, Book 4 | DARPAN ID: UP/2024/0406617
                         </small>
                     </p>
                 </div>
@@ -164,16 +163,6 @@
         </div>
     </div>
 </section>
-
-<!-- UPI MODAL -->
-<div id="upiModal" class="upi-modal">
-    <div class="upi-content">
-        <button id="closeUpi" class="upi-close">&times;</button>
-        <h4>Scan to Pay via UPI</h4>
-        <img src="/static/Images/upi_qr.png" alt="UPI QR Code" style="max-width:200px;">
-        <p class="mt-2"><small>Scan with any UPI app</small></p>
-    </div>
-</div>
 
 {% endblock %}
 
@@ -314,20 +303,6 @@ function resetButton() {
 }
 
 
-// ================= UPI MODAL =================
-const modal = document.getElementById("upiModal");
-
-document.getElementById("upiBtn").onclick = () => {
-    modal.classList.add("show");
-};
-
-document.getElementById("closeUpi").onclick = () => {
-    modal.classList.remove("show");
-};
-
-window.onclick = (e) => {
-    if (e.target === modal) modal.classList.remove("show");
-};
 </script>
 
 {% endblock %}
