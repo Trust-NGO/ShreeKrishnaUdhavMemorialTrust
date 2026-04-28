@@ -1,38 +1,179 @@
 ﻿{% extends "base.html" %}
 
-{% block title %}Shri Krishna Udhav Memorial Trust | About Us{% endblock %}
+{% block title %}About Us | Shri Krishna Udhav Memorial Trust{% endblock %}
 
 {% block content %}
-<section class="container card-section mt-4">
-    <h2 class="section-title">About Shri Krishna Udhav Memorial Trust</h2>
-    <p>
-        Shri Krishna Udhav Memorial Trust was founded in memory of Udho Yadav, with a vision to serve society and empower marginalized communities. Based in Deoria, Uttar Pradesh, the trust focuses on education, healthcare, skill development, legal awareness, and social welfare.  
-        Our aim is to create a society where every individual has access to opportunities, dignity, and a better quality of life.
-    </p>
 
-    <h3 class="mt-4">Trust Registration Details</h3>
-    <ul>
-        <li><strong>Registration Type:</strong> Section 8 Company / NGO</li>
-        <li><strong>DARPAN ID:</strong> UP/2024/0406617</li>
-        <li><strong>Registration Number:</strong> IV14/2020</li>
-        <li><strong>Location:</strong> VIL AND POST KHUKHUNDOO, DEORIA, UTTAR PRADESH 274501</li>
-        <li><strong>Email:</strong> <a href="mailto:krishnaudhavtrust@gmail.com">krishnaudhavtrust@gmail.com</a></li>
-        <li><strong>Phone:</strong> <a href="tel:+919918640455">+91-9918640455</a></li>
-    </ul>
-
-    <h3 class="mt-4">Founder & Dedication</h3>
-    <p>
-        The trust is dedicated in the name of <strong>Udho Yadav</strong>, whose vision and compassion for social welfare inspired the foundation of this organization. Every initiative undertaken by the trust reflects his values and commitment to community development.
-    </p>
-
-    <h3 class="mt-4">Our Approach</h3>
-    <ul>
-        <li>Community engagement through awareness programs and workshops.</li>
-        <li>Providing educational support and scholarships for underprivileged children.</li>
-        <li>Healthcare camps, vaccination drives, and preventive health measures.</li>
-        <li>Vocational and skill development programs for youth and women.</li>
-        <li>Legal aid and awareness for rural communities.</li>
-        <li>Special focus on differently-abled individuals and prisoners' welfare.</li>
-    </ul>
+<!-- Page Header Banner -->
+<section class="about-banner">
+    <div class="container text-center">
+        <h1>About Us</h1>
+        <p class="lead">Serving communities with compassion, dignity, and sustainable impact since 2020.</p>
+    </div>
 </section>
+
+<!-- About Intro -->
+<section class="container card-section mt-4">
+    <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <img src="{{ url_for('static', path='/Images/Founder.jpg') }}" alt="Our Founder Udho Yadav" class="img-fluid rounded-lg shadow-lg about-founder-img">
+        </div>
+        <div class="col-lg-6">
+            <h2 class="section-title text-left">Our Story</h2>
+            <p>
+                Shri Krishna Udhav Memorial Trust was founded in memory of <strong>Udho Yadav</strong>, whose vision and compassion for social welfare inspired the establishment of this organization in 2020. Based in Deoria, Uttar Pradesh, we are a registered Section 8 NGO dedicated to uplifting marginalized communities.
+            </p>
+            <p>
+                Our journey began with a simple belief — that every individual deserves access to education, healthcare, and opportunities for a dignified life. Today, we serve thousands of beneficiaries across Deoria district through comprehensive programs in education, health, skill development, and social welfare.
+            </p>
+            <a href="/mission" class="btn btn-outline-primary mt-2">Read Our Mission & Vision</a>
+        </div>
+    </div>
+</section>
+
+<!-- Core Values -->
+<section class="container card-section">
+    <h2 class="section-title text-center">Our Core Values</h2>
+    <p class="section-subtitle text-center">The principles that guide every initiative we undertake.</p>
+    <div class="row mt-4">
+        <div class="col-md-4 mb-4">
+            <div class="value-card text-center p-4">
+                <div class="value-icon"><i class="fas fa-hands-helping"></i></div>
+                <h5>Compassion</h5>
+                <p>We serve with empathy and understanding, putting the needs of communities first in everything we do.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="value-card text-center p-4">
+                <div class="value-icon"><i class="fas fa-balance-scale"></i></div>
+                <h5>Integrity</h5>
+                <p>Transparency and ethical conduct are the foundation of our operations, ensuring trust with donors and beneficiaries.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="value-card text-center p-4">
+                <div class="value-icon"><i class="fas fa-users"></i></div>
+                <h5>Inclusivity</h5>
+                <p>We believe in equal opportunity for all, regardless of gender, caste, religion, or socioeconomic background.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="value-card text-center p-4">
+                <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
+                <h5>Innovation</h5>
+                <p>We constantly seek creative solutions to social challenges, adapting our programs for maximum impact.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="value-card text-center p-4">
+                <div class="value-icon"><i class="fas fa-chart-line"></i></div>
+                <h5>Accountability</h5>
+                <p>We measure our impact rigorously and maintain complete financial transparency with all stakeholders.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="value-card text-center p-4">
+                <div class="value-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                <h5>Sustainability</h5>
+                <p>Our programs are designed to create lasting change, empowering communities to thrive independently.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Registration & Legal -->
+<section class="container card-section">
+    <h2 class="section-title text-center">Legal Information</h2>
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <p><i class="fas fa-certificate text-primary mr-2"></i><strong>Registration Type:</strong> Section 8 Company / NGO</p>
+                            <p><i class="fas fa-id-card text-primary mr-2"></i><strong>DARPAN ID:</strong> UP/2024/0406617</p>
+                            <p><i class="fas fa-file-alt text-primary mr-2"></i><strong>Registration Number:</strong> IV14/2020</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <p><i class="fas fa-map-marker-alt text-primary mr-2"></i><strong>Address:</strong> VIL AND POST KHUKHUNDOO, DEORIA, U.P. 274501</p>
+                            <p><i class="fas fa-envelope text-primary mr-2"></i><strong>Email:</strong> <a href="mailto:krishnaudhavtrust@gmail.com">krishnaudhavtrust@gmail.com</a></p>
+                            <p><i class="fas fa-phone text-primary mr-2"></i><strong>Phone:</strong> <a href="tel:+919918640455">+91-9918640455</a></p>
+                        </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <a href="/financial-transparency" class="btn btn-outline-primary btn-sm">View Financial Transparency</a>
+                        <a href="/child-protection" class="btn btn-outline-primary btn-sm ml-2">Child Protection Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Approach & Programs -->
+<section class="container card-section">
+    <h2 class="section-title text-center">Our Approach</h2>
+    <p class="section-subtitle text-center">How we create meaningful and sustainable change in communities.</p>
+    <div class="row mt-4">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <h5><i class="fas fa-bullhorn text-primary mr-2"></i> Community Engagement</h5>
+                    <p>We work directly with communities through awareness programs, participatory workshops, and need assessments to design relevant interventions.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <h5><i class="fas fa-book-open text-primary mr-2"></i> Education & Scholarships</h5>
+                    <p>Providing educational support, remedial classes, and scholarships to underprivileged children to improve literacy and reduce dropout rates.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <h5><i class="fas fa-heartbeat text-primary mr-2"></i> Healthcare & Wellness</h5>
+                    <p>Organizing free health camps, vaccination drives, maternal-child health programs, and preventive health awareness in underserved villages.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <h5><i class="fas fa-tools text-primary mr-2"></i> Skill Development</h5>
+                    <p>Vocational training in tailoring, computer literacy, and handicrafts to empower youth and women with employable skills for economic independence.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <h5><i class="fas fa-gavel text-primary mr-2"></i> Legal Awareness</h5>
+                    <p>Providing legal aid and awareness on constitutional rights, women's rights, and government welfare schemes for marginalized communities.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <h5><i class="fas fa-wheelchair text-primary mr-2"></i> Inclusive Welfare</h5>
+                    <p>Special focus on differently-abled individuals, prisoner welfare, and rehabilitation programs ensuring no one is left behind.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="container text-center py-5 mb-5">
+    <h3 class="section-title">Join Our Mission</h3>
+    <p class="section-subtitle">Be a part of the change. Your support can transform lives across Deoria.</p>
+    <div class="mt-4">
+        <a href="/donate" class="btn btn-primary btn-lg"><i class="fas fa-donate"></i> Donate Now</a>
+        <a href="/volunteer" class="btn btn-outline-primary btn-lg ml-2">Become a Volunteer</a>
+    </div>
+</section>
+
 {% endblock %}

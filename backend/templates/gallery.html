@@ -3,9 +3,21 @@
 {% block title %}Shri Krishna Udhav Memorial Trust | Gallery{% endblock %}
 
 {% block content %}
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="container mt-3">
+  <ol class="breadcrumb bg-white rounded shadow-sm p-3">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Gallery</li>
+  </ol>
+</nav>
+
 <section class="container mt-4">
     <h2 class="section-title text-center">Gallery Highlights</h2>
-    <p class="section-subtitle text-center">Snapshots from our recent events and activities organized by Shri Krishna Udhav Memorial Trust.</p>
+    <p class="section-subtitle text-center">
+        Snapshots from our recent events, health camps, educational activities, and community programs 
+        organized by Shri Krishna Udhav Memorial Trust across Deoria and surrounding regions.
+    </p>
 
     <div class="row mt-4">
         {% for image in images %}
@@ -13,10 +25,68 @@
             <img src="{{ image.image_url }}" class="gallery-img" alt="{{ image.title }}" title="{{ image.title }}">
         </div>
         {% else %}
-        <div class="col-12 text-center">
-            <p>Gallery will be updated soon with our events and activities!</p>
+        <!-- Static Gallery Images -->
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="gallery-item">
+                <img src="{{ url_for('static', path='/Images/GalleryImg1.jpg') }}" class="gallery-img" alt="Education Drive at Khukhundoo">
+                <div class="gallery-caption">Education Drive at Khukhundoo Village</div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="gallery-item">
+                <img src="{{ url_for('static', path='/Images/GalleryImg2.jpg') }}" class="gallery-img" alt="Community Health Camp">
+                <div class="gallery-caption">Free Health Camp - Medical Checkups</div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="gallery-item">
+                <img src="{{ url_for('static', path='/Images/GalleryImg3.jpg') }}" class="gallery-img" alt="Skill Development Workshop">
+                <div class="gallery-caption">Women's Skill Development Workshop</div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="gallery-item">
+                <img src="{{ url_for('static', path='/Images/Independence.jpg') }}" class="gallery-img" alt="Independence Day Celebration">
+                <div class="gallery-caption">Independence Day Celebration with Children</div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="gallery-item">
+                <img src="{{ url_for('static', path='/Images/Founder.jpg') }}" class="gallery-img" alt="Founder Udho Yadav">
+                <div class="gallery-caption">Remembering Our Founder - Udho Yadav</div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="gallery-item">
+                <img src="{{ url_for('static', path='/Images/image2.jpg') }}" class="gallery-img" alt="Community Gathering">
+                <div class="gallery-caption">Community Awareness Program</div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="gallery-item">
+                <img src="{{ url_for('static', path='/Images/IMG-20200724-WA0005(1).jpg') }}" class="gallery-img" alt="Field Activity">
+                <div class="gallery-caption">Field Work - Village Outreach Program</div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="gallery-item">
+                <img src="{{ url_for('static', path='/Images/DonorForm.jpg') }}" class="gallery-img" alt="Donor Recognition">
+                <div class="gallery-caption">Donor Appreciation Event</div>
+            </div>
         </div>
         {% endfor %}
     </div>
 </section>
+
+<!-- Call to Action -->
+<section class="container text-center py-5 mb-5">
+    <h3 class="section-title">Be Part of Our Story</h3>
+    <p class="section-subtitle">
+        Want to see your photos here? Join our events and volunteer programs. 
+        Together, we create moments that matter.
+    </p>
+    <a href="/events" class="btn btn-primary btn-lg mt-3">View Upcoming Events</a>
+    <a href="/volunteer" class="btn btn-outline-primary btn-lg mt-3 ml-2">Volunteer With Us</a>
+</section>
 {% endblock %}
+

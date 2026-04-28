@@ -3,32 +3,143 @@
 {% block title %}Shri Krishna Udhav Memorial Trust | Events{% endblock %}
 
 {% block content %}
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="container mt-3">
+  <ol class="breadcrumb bg-white rounded shadow-sm p-3">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Events & Activities</li>
+  </ol>
+</nav>
+
 <section class="container mt-4">
-    <h2 class="section-title">Recent Events & Activities</h2>
-    <p class="section-subtitle">Shri Krishna Udhav Memorial Trust actively organizes events and programs to empower the community and promote social welfare.</p>
+    <h2 class="section-title text-center">Events & Activities</h2>
+    <p class="section-subtitle text-center">
+        Shri Krishna Udhav Memorial Trust actively organizes events and programs to empower the community 
+        and promote social welfare across Deoria and nearby regions.
+    </p>
 
     <div class="row mt-4">
         {% for event in events %}
-        <div class="col-md-4 mb-3">
-            <div class="card card-section">
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100">
                 {% if event.image_url %}
                 <img src="{{ event.image_url }}" class="card-img-top" alt="{{ event.title }}">
                 {% else %}
                 <img src="https://via.placeholder.com/360x180?text={{ event.title }}" class="card-img-top" alt="{{ event.title }}">
                 {% endif %}
-                <div class="card-body">
+                <div class="card-body d-flex flex-column">
                     <h5 class="card-title">{{ event.title }}</h5>
-                    <p class="card-text">{{ event.description }}</p>
+                    <p class="card-text flex-grow-1">{{ event.description }}</p>
                     {% if event.location %}<p><strong>Location:</strong> {{ event.location }}</p>{% endif %}
                     {% if event.date %}<p><small class="text-muted">{{ event.date.strftime('%d-%m-%Y') }}</small></p>{% endif %}
                 </div>
             </div>
         </div>
         {% else %}
-        <div class="col-12 text-center">
-            <p>No events scheduled yet. Please check back soon!</p>
+        <!-- Static Past Events -->
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <img src="{{ url_for('static', path='/Images/GalleryImg2.jpg') }}" class="card-img-top" alt="Health Camp">
+                <div class="card-body d-flex flex-column">
+                    <span class="badge badge-success mb-2 align-self-start">Completed</span>
+                    <h5 class="card-title">Free Health Camp for Senior Citizens</h5>
+                    <p class="card-text flex-grow-1">
+                        A comprehensive health check-up camp organized for senior citizens at Khukhundoo village, 
+                        providing free consultations, medicines, and eye check-ups.
+                    </p>
+                    <p><strong>Location:</strong> Khukhundoo, Deoria</p>
+                    <p><small class="text-muted">15 January 2025</small></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <img src="{{ url_for('static', path='/Images/Independence.jpg') }}" class="card-img-top" alt="Independence Day">
+                <div class="card-body d-flex flex-column">
+                    <span class="badge badge-primary mb-2 align-self-start">Completed</span>
+                    <h5 class="card-title">Independence Day Celebration with Children</h5>
+                    <p class="card-text flex-grow-1">
+                        Flag hoisting ceremony and cultural programs with school children, distributing sweets, 
+                        stationery, and promoting patriotic values among youth.
+                    </p>
+                    <p><strong>Location:</strong> Deoria District School</p>
+                    <p><small class="text-muted">15 August 2024</small></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <img src="{{ url_for('static', path='/Images/GalleryImg1.jpg') }}" class="card-img-top" alt="Education Drive">
+                <div class="card-body d-flex flex-column">
+                    <span class="badge badge-success mb-2 align-self-start">Completed</span>
+                    <h5 class="card-title">Back-to-School Education Drive</h5>
+                    <p class="card-text flex-grow-1">
+                        Distribution of books, bags, and uniforms to 200+ underprivileged children. 
+                        Enrollment drive to bring dropout students back to school.
+                    </p>
+                    <p><strong>Location:</strong> Multiple Villages, Deoria</p>
+                    <p><small class="text-muted">10 July 2024</small></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <img src="{{ url_for('static', path='/Images/GalleryImg3.jpg') }}" class="card-img-top" alt="Women Workshop">
+                <div class="card-body d-flex flex-column">
+                    <span class="badge badge-warning mb-2 align-self-start">Completed</span>
+                    <h5 class="card-title">Women's Empowerment Workshop</h5>
+                    <p class="card-text flex-grow-1">
+                        Training session on tailoring, financial literacy, and self-help group formation 
+                        for rural women to promote economic independence.
+                    </p>
+                    <p><strong>Location:</strong> Community Center, Deoria</p>
+                    <p><small class="text-muted">20 March 2024</small></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <img src="{{ url_for('static', path='/Images/image2.jpg') }}" class="card-img-top" alt="Legal Awareness">
+                <div class="card-body d-flex flex-column">
+                    <span class="badge badge-info mb-2 align-self-start">Completed</span>
+                    <h5 class="card-title">Legal Awareness Camp</h5>
+                    <p class="card-text flex-grow-1">
+                        Free legal counseling and awareness on constitutional rights, women's rights, 
+                        and government welfare schemes for marginalized communities.
+                    </p>
+                    <p><strong>Location:</strong> Khukhundoo, Deoria</p>
+                    <p><small class="text-muted">26 January 2024</small></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <img src="{{ url_for('static', path='/Images/IMG-20200724-WA0005(1).jpg') }}" class="card-img-top" alt="Relief Distribution">
+                <div class="card-body d-flex flex-column">
+                    <span class="badge badge-danger mb-2 align-self-start">Completed</span>
+                    <h5 class="card-title">Flood Relief Distribution</h5>
+                    <p class="card-text flex-grow-1">
+                        Emergency relief distribution including food packets, clean water, and medical supplies 
+                        to families affected by seasonal flooding in the region.
+                    </p>
+                    <p><strong>Location:</strong> Flood-Affected Areas, Deoria</p>
+                    <p><small class="text-muted">15 October 2023</small></p>
+                </div>
+            </div>
         </div>
         {% endfor %}
     </div>
 </section>
+
+<!-- Upcoming Events Notice -->
+<section class="container text-center py-5 mb-5">
+    <h3 class="section-title">Stay Updated</h3>
+    <p class="section-subtitle">
+        We are planning more health camps, education drives, and community programs. 
+        Follow us on social media or subscribe to our newsletter for the latest updates.
+    </p>
+    <a href="/contact" class="btn btn-primary btn-lg mt-3">Contact Us for Updates</a>
+</section>
 {% endblock %}
+

@@ -3,31 +3,150 @@
 {% block title %}Shri Krishna Udhav Memorial Trust | Projects{% endblock %}
 
 {% block content %}
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="container mt-3">
+  <ol class="breadcrumb bg-white rounded shadow-sm p-3">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Projects & Activities</li>
+  </ol>
+</nav>
+
 <section class="container mt-4">
     <h2 class="section-title text-center">Our Projects & Activities</h2>
-    <p class="section-subtitle text-center">Empowering communities through education, health, skill-building, and welfare initiatives.</p>
+    <p class="section-subtitle text-center">
+        Empowering communities through education, health, skill-building, and welfare initiatives across Deoria and surrounding regions.
+    </p>
 
     <div class="row mt-4">
         {% for project in projects %}
-        <div class="col-md-4 mb-3">
-            <div class="card card-section">
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100">
                 {% if project.image_url %}
                 <img src="{{ project.image_url }}" class="card-img-top" alt="{{ project.title }}">
                 {% else %}
                 <img src="https://via.placeholder.com/360x180?text={{ project.title }}" class="card-img-top" alt="{{ project.title }}">
                 {% endif %}
-                <div class="card-body">
+                <div class="card-body d-flex flex-column">
                     <h5 class="card-title">{{ project.title }}</h5>
-                    <p class="card-text">{{ project.description }}</p>
+                    <p class="card-text flex-grow-1">{{ project.description }}</p>
                     <span class="badge badge-info">{{ project.category }}</span>
                 </div>
             </div>
         </div>
         {% else %}
-        <div class="col-12 text-center">
-            <p>Projects will be added soon!</p>
+        <!-- Static Featured Projects -->
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <img src="{{ url_for('static', path='/Images/GalleryImg1.jpg') }}" class="card-img-top" alt="Education Drive">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Education for All</h5>
+                    <p class="card-text flex-grow-1">
+                        Providing free primary and secondary education to underprivileged children in rural Deoria. 
+                        We distribute books, stationery, and uniforms while conducting remedial classes to improve literacy rates.
+                    </p>
+                    <span class="badge badge-primary">Education</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <img src="{{ url_for('static', path='/Images/GalleryImg2.jpg') }}" class="card-img-top" alt="Health Camp">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Community Health Camps</h5>
+                    <p class="card-text flex-grow-1">
+                        Organizing free health check-ups, vaccination drives, and maternal-child health programs. 
+                        We collaborate with local medical professionals to bring healthcare to underserved villages.
+                    </p>
+                    <span class="badge badge-success">Healthcare</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <img src="{{ url_for('static', path='/Images/GalleryImg3.jpg') }}" class="card-img-top" alt="Skill Training">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Skill Development & Vocational Training</h5>
+                    <p class="card-text flex-grow-1">
+                        Empowering youth and women with employable skills including tailoring, computer literacy, 
+                        and handicraft training. Our goal is economic self-sufficiency for marginalized communities.
+                    </p>
+                    <span class="badge badge-warning">Skill Development</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <img src="{{ url_for('static', path='/Images/Independence.jpg') }}" class="card-img-top" alt="Women Empowerment">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Women Empowerment Program</h5>
+                    <p class="card-text flex-grow-1">
+                        Promoting gender equality through awareness workshops, self-help groups, and financial literacy programs. 
+                        We support women entrepreneurs with micro-financing and mentorship.
+                    </p>
+                    <span class="badge badge-info">Women Empowerment</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <img src="{{ url_for('static', path='/Images/Founder.jpg') }}" class="card-img-top" alt="Prisoner Welfare">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Prisoner Welfare & Rehabilitation</h5>
+                    <p class="card-text flex-grow-1">
+                        Providing legal aid, vocational training, and psychological counseling to inmates and their families. 
+                        We work towards rehabilitation and reintegration into society with dignity.
+                    </p>
+                    <span class="badge badge-secondary">Social Welfare</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <img src="{{ url_for('static', path='/Images/image2.jpg') }}" class="card-img-top" alt="Disaster Relief">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Disaster Relief & Emergency Aid</h5>
+                    <p class="card-text flex-grow-1">
+                        Rapid response to natural disasters and emergencies, providing food, shelter, and medical aid 
+                        to affected communities. We coordinate with local authorities for effective relief distribution.
+                    </p>
+                    <span class="badge badge-danger">Disaster Relief</span>
+                </div>
+            </div>
         </div>
         {% endfor %}
     </div>
 </section>
+
+<!-- Impact Stats Section -->
+<section class="container mt-5 mb-5">
+    <h3 class="section-title text-center">Project Impact</h3>
+    <div class="row text-center mt-4">
+        <div class="col-md-3 mb-3">
+            <div class="stat-card">
+                <h4>2,500+</h4>
+                <p>Children Educated</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="stat-card">
+                <h4>50+</h4>
+                <p>Health Camps</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="stat-card">
+                <h4>800+</h4>
+                <p>Women Trained</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="stat-card">
+                <h4>15+</h4>
+                <p>Villages Covered</p>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
+

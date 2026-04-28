@@ -4,84 +4,174 @@
 
 {% block content %}
 
-<section class="container card-section mt-4">
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="container mt-3">
+  <ol class="breadcrumb bg-white rounded shadow-sm p-3">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Donate</li>
+  </ol>
+</nav>
 
-<h1 class="section-title">Support Our Cause</h1>
-<p class="section-subtitle text-justify">
-    Your contribution empowers communities in Deoria, Uttar Pradesh. Every donation helps us bring positive change.
-</p>
+<section class="container mt-4">
+    <h1 class="section-title">Support Our Cause</h1>
+    <p class="section-subtitle text-justify">
+        Your contribution empowers communities in Deoria, Uttar Pradesh. Every donation, big or small, 
+        helps us bring education, healthcare, and hope to underserved families. Together, we can build 
+        a future filled with dignity and opportunity.
+    </p>
 
-<div class="row mt-4">
+    <div class="row mt-4">
 
-    <!-- LEFT SIDE -->
-    <div class="col-md-6">
-        <h4>Donation Details</h4>
+        <!-- LEFT SIDE -->
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <h4><i class="fas fa-donate text-primary"></i> Online Donation</h4>
+                    <hr>
 
-        <form id="donateForm">
-            <div class="form-group mb-3">
-                <input type="text" class="form-control" id="donorName" placeholder="Your Name" required>
-            </div>
+                    <form id="donateForm">
+                        <div class="form-group mb-3">
+                            <label for="donorName" class="form-label">Full Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="donorName" placeholder="Your Full Name" required>
+                        </div>
 
-            <div class="form-group mb-3">
-                <input type="email" class="form-control" id="donorEmail" placeholder="Your Email" required>
-            </div>
+                        <div class="form-group mb-3">
+                            <label for="donorEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="donorEmail" placeholder="your@email.com" required>
+                        </div>
 
-            <div class="form-group mb-3">
-                <input type="number" class="form-control" id="amount" placeholder="Amount (₹)" required>
-            </div>
+                        <div class="form-group mb-3">
+                            <label for="amount" class="form-label">Donation Amount (₹) <span class="text-danger">*</span></label>
+                            <div class="donation-amounts mb-2">
+                                <button type="button" class="btn btn-outline-primary" onclick="setAmount(500)">₹500</button>
+                                <button type="button" class="btn btn-outline-primary" onclick="setAmount(1000)">₹1,000</button>
+                                <button type="button" class="btn btn-outline-primary" onclick="setAmount(2500)">₹2,500</button>
+                                <button type="button" class="btn btn-outline-primary" onclick="setAmount(5000)">₹5,000</button>
+                            </div>
+                            <input type="number" class="form-control" id="amount" placeholder="Enter Amount (₹)" required>
+                        </div>
 
-            <div class="form-group mb-3">
-                <textarea class="form-control" id="message" rows="3" placeholder="Message (Optional)"></textarea>
-            </div>
+                        <div class="form-group mb-3">
+                            <label for="message" class="form-label">Message (Optional)</label>
+                            <textarea class="form-control" id="message" rows="3" placeholder="Any specific cause or message..."></textarea>
+                        </div>
 
-            <button type="submit" class="btn btn-primary w-100">Donate Securely</button>
-        </form>
+                        <div class="form-group form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="taxExemption" checked>
+                            <label class="form-check-label" for="taxExemption">
+                                I want tax exemption certificate under Section 80G
+                            </label>
+                        </div>
 
-        <!-- ✅ Receipt Section -->
-        <div id="receiptBox" style="display:none;" class="mt-4">
-            <div class="alert alert-success">
-                🎉 Donation Successful! Thank you for your support.
-                <br><br>
-                <a id="receiptLink" target="_blank" class="btn btn-success">
-                    Download Receipt
-                </a>
+                        <button type="submit" class="btn btn-primary w-100 btn-lg">
+                            <i class="fas fa-lock"></i> Donate Securely via Razorpay
+                        </button>
+                    </form>
+
+                    <!-- Receipt Section -->
+                    <div id="receiptBox" style="display:none;" class="mt-4">
+                        <div class="alert alert-success">
+                            <i class="fas fa-check-circle"></i> <strong>Donation Successful!</strong> Thank you for your generous support.
+                            <br>
+                            <a id="receiptLink" target="_blank" class="btn btn-success">
+                                <i class="fas fa-download"></i> Download Receipt
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
+        <!-- RIGHT SIDE -->
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <h4><i class="fas fa-university text-primary"></i> Bank Transfer</h4>
+                    <hr>
+                    <p>
+                        <strong>Account Name:</strong> SHRI KRISHNA UDHAV MEMORIAL TRUST<br>
+                        <strong>Account Number:</strong> 50200055174661<br>
+                        <strong>IFSC Code:</strong> HDFC0000947<br>
+                        <strong>Bank:</strong> HDFC Bank<br>
+                        <strong>Branch:</strong> Deoria, Uttar Pradesh
+                    </p>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <h4><i class="fas fa-mobile-alt text-primary"></i> UPI / Mobile Wallets</h4>
+                    <hr>
+                    <p>
+                        <strong>UPI ID:</strong> trust@upi<br>
+                        <strong>PhonePe / Paytm / GPay:</strong> +91-9792992211
+                    </p>
+                    <button id="upiBtn" class="btn btn-cta mt-2"><i class="fas fa-qrcode"></i> Show UPI QR Code</button>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h4><i class="fas fa-info-circle text-primary"></i> Tax Benefits</h4>
+                    <hr>
+                    <p>
+                        All donations to Shri Krishna Udhav Memorial Trust are eligible for <strong>50% tax deduction</strong> 
+                        under <strong>Section 80G</strong> of the Income Tax Act, 1961. You will receive an 80G certificate 
+                        and donation receipt via email within 7 working days.
+                    </p>
+                    <p class="mb-0">
+                        <small class="text-muted">
+                            Registration No: IV14/2020 | DARPAN ID: UP/2024/0406617
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- RIGHT SIDE -->
-    <div class="col-md-6">
-        <h4>Other Payment Options</h4>
-
-        <p>
-            <strong>Bank Transfer:</strong><br>
-            Account Name: SHRI KRISHNA UDHAV MEMORIAL TRUST<br>
-            Account No: 50200055174661<br>
-            IFSC: HDFC0000947
-        </p>
-
-        <p>
-            <strong>UPI:</strong> trust@upi<br>
-            <strong>PhonePe / Paytm:</strong> +91-9792992211
-        </p>
-
-        <button id="upiBtn" class="btn btn-cta mt-2">Show UPI QR Code</button>
-    </div>
-
-</div>
 </section>
 
-<button type="button" id="testBtn" class="btn btn-warning mt-2">
-    Test Payment (No Razorpay)
-</button>
-<!-- UPI MODAL -->
+<!-- Impact Section -->
+<section class="container mt-5 mb-5">
+    <h3 class="section-title text-center">How Your Donation Helps</h3>
+    <div class="row text-center mt-4">
+        <div class="col-md-3 mb-3">
+            <div class="impact-card">
+                <i class="fas fa-book-reader fa-3x text-primary mb-3"></i>
+                <h5>₹500</h5>
+                <p>Books & stationery for 5 children for a month</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="impact-card">
+                <i class="fas fa-medkit fa-3x text-success mb-3"></i>
+                <h5>₹1,000</h5>
+                <p>Health check-up for 10 senior citizens</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="impact-card">
+                <i class="fas fa-female fa-3x text-warning mb-3"></i>
+                <h5>₹2,500</h5>
+                <p>Vocational training kit for 1 woman</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="impact-card">
+                <i class="fas fa-graduation-cap fa-3x text-info mb-3"></i>
+                <h5>₹5,000</h5>
+                <p>School fees & uniform for 1 child (1 year)</p>
+            </div>
+        </div>
+    </div>
+</section>
 
+<!-- UPI MODAL -->
 <div id="upiModal" class="upi-modal">
     <div class="upi-content">
-        <span id="closeUpi" class="close">&times;</span>
+        <button id="closeUpi" class="upi-close">&times;</button>
         <h4>Scan to Pay via UPI</h4>
         <img src="/static/Images/upi_qr.png" alt="UPI QR Code" style="max-width:200px;">
+        <p class="mt-2"><small>Scan with any UPI app</small></p>
     </div>
 </div>
 
@@ -96,7 +186,12 @@
 const form = document.getElementById('donateForm');
 const receiptBox = document.getElementById("receiptBox");
 const receiptLink = document.getElementById("receiptLink");
-const submitBtn = form.querySelector("button");
+const submitBtn = form.querySelector("button[type='submit']");
+
+// Set amount from preset buttons
+function setAmount(amt) {
+    document.getElementById('amount').value = amt;
+}
 
 // ================= DONATION FLOW =================
 form.addEventListener('submit', async function(e) {
@@ -108,17 +203,23 @@ form.addEventListener('submit', async function(e) {
     const message = document.getElementById('message').value;
 
     if (!amount || amount < 1) {
-        alert('Enter valid amount');
+        alert('Please enter a valid donation amount (minimum ₹1)');
         return;
     }
 
-    // 🔥 Prevent multiple clicks
+    // Prevent multiple clicks
     submitBtn.disabled = true;
-    submitBtn.innerText = "Processing...";
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
 
     try {
 
-        // ================= STEP 1: CREATE ORDER =================
+        // STEP 1: GET RAZORPAY KEY
+        const configRes = await fetch('/api/config/razorpay');
+        if (!configRes.ok) throw new Error("Failed to load payment configuration");
+        const config = await configRes.json();
+        const razorpayKey = config.key;
+
+        // STEP 2: CREATE ORDER
         const res = await fetch('/api/create-order', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -129,15 +230,15 @@ form.addEventListener('submit', async function(e) {
 
         const data = await res.json();
 
-        // ================= STEP 2: OPEN RAZORPAY =================
+        // STEP 3: OPEN RAZORPAY
         const options = {
-            key: "rzp_test_SgZo3ORMRojHmd",
+            key: razorpayKey,
             amount: data.amount,
             currency: "INR",
             order_id: data.order_id,
 
             name: "Shri Krishna Udhav Memorial Trust",
-            description: "Donation Contribution",
+            description: "Charitable Donation",
 
             prefill: {
                 name: name,
@@ -147,7 +248,7 @@ form.addEventListener('submit', async function(e) {
             handler: async function (response) {
 
                 try {
-                    // ================= STEP 3: VERIFY PAYMENT =================
+                    // STEP 4: VERIFY PAYMENT
                     const verifyRes = await fetch('/api/donation/verify-payment', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -166,22 +267,22 @@ form.addEventListener('submit', async function(e) {
 
                     if (result.status === "success") {
 
-                        // ✅ Show receipt
+                        // Show receipt
                         receiptBox.style.display = "block";
                         receiptLink.href = result.receipt_url;
 
                         form.reset();
 
-                        // 🎉 UX feedback
-                        submitBtn.innerText = "Donation Successful ✅";
+                        // UX feedback
+                        submitBtn.innerHTML = "<i class='fas fa-check'></i> Donation Successful";
 
                     } else {
-                        alert("Payment verification failed");
+                        alert("Payment verification failed. Please contact support.");
                         resetButton();
                     }
 
                 } catch (err) {
-                    alert("Verification error");
+                    alert("Verification error. Please contact support.");
                     resetButton();
                 }
             },
@@ -193,14 +294,14 @@ form.addEventListener('submit', async function(e) {
             },
 
             theme: {
-                color: "#ff6a00"
+                color: "#005baa"
             }
         };
 
         new Razorpay(options).open();
 
     } catch (error) {
-        alert("Something went wrong. Try again.");
+        alert("Something went wrong. Please try again or use bank transfer.");
         resetButton();
     }
 });
@@ -209,24 +310,8 @@ form.addEventListener('submit', async function(e) {
 // ================= RESET BUTTON =================
 function resetButton() {
     submitBtn.disabled = false;
-    submitBtn.innerText = "Donate Securely";
+    submitBtn.innerHTML = '<i class="fas fa-lock"></i> Donate Securely via Razorpay';
 }
-
-
-// ================= TEST MODE =================
-document.getElementById("testBtn").addEventListener("click", async () => {
-
-    const res = await fetch('/api/donation/test-success', {
-        method: "POST"
-    });
-
-    const data = await res.json();
-
-    if (data.status === "success") {
-        receiptBox.style.display = "block";
-        receiptLink.href = data.receipt_url;
-    }
-});
 
 
 // ================= UPI MODAL =================
@@ -245,5 +330,5 @@ window.onclick = (e) => {
 };
 </script>
 
-
 {% endblock %}
+

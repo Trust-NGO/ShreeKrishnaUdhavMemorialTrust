@@ -2,224 +2,381 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* -------------------------------
-     Smooth Scroll for Navigation
-  --------------------------------*/
-  const hashLinks = document.querySelectorAll('a[href^="#"]');
-  hashLinks.forEach(link => {
-    link.addEventListener("click", e => {
-      const target = document.querySelector(link.getAttribute("href"));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth" });
-      }
-    });
-  });
+  /* ============================================================
+     NAVBAR SCROLL EFFECTS
+     ============================================================ */
+  const siteHeader = document.getElementById("siteHeader");
+  const SCROLL_THRESHOLD = 60;
 
-  /* -------------------------------
-     Sticky Navbar on Scroll
-  --------------------------------*/
-  const navbar = document.querySelector(".navbar");
-  if (navbar) {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 80) {
-        navbar.classList.add("scrolled");
+  function updateNavbarOnScroll() {
+    if (!siteHeader) return;
+    if (window.scrollY > SCROLL_THRESHOLD) {
+      siteHeader.classList.add("site-header--scrolled");
+    } else {
+      siteHeader.classList.remove("site-header--scrolled");
+    }
+  }
+
+  window.addEventListener("scroll", updateNavbarOnScroll, { passive: true });
+  updateNavbarOnScroll(); // Initial check on load
+
+  /* ============================================================
+     MOBILE MENU
+     ============================================================ */
+  const mobileToggle = document.getElementById("mobileToggle");
+  const mobileClose = document.getElementById("mobileClose");
+  const mobileNav = document.getElementById("mobileNav");
+  const mobileBackdrops = document.querySelectorAll(".mobile-nav-backdrop");
+
+  function openMobileMenu() {
+    if (!mobileNav || !mobileToggle) return;
+    mobileNav.classList.add("is-open");
+    mobileNav.setAttribute("aria-hidden", "false");
+    mobileToggle.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden"; // Prevent background scroll
+    // Focus first link for accessibility
+    const firstLink = mobileNav.querySelector(".mobile-link");
+    if (firstLink) firstLink.focus();
+  }
+
+  function closeMobileMenu() {
+    if (!mobileNav || !mobileToggle) return;
+    mobileNav.classList.remove("is-open");
+    mobileNav.setAttribute("aria-hidden", "true");
+    mobileToggle.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+    mobileToggle.focus(); // Return focus to toggle button
+  }
+
+  if (mobileToggle) {
+    mobileToggle.addEventListener("click", () => {
+      if (mobileNav.classList.contains("is-open")) {
+        closeMobileMenu();
       } else {
-        navbar.classList.remove("scrolled");
+        openMobileMenu();
       }
     });
   }
 
-  /* -------------------------------
-     Animate on Scroll (Simple Fade-in)
-  --------------------------------*/
-  const fadeEls = document.querySelectorAll(".fade-in");
-  const observerFade = new IntersectionObserver(entries => {
+  if (mobileClose) {
+    mobileClose.addEventListener("click", closeMobileMenu);
+  }
+
+  // Close on backdrop click
+  mobileBackdrops.forEach(backdrop => {
+    backdrop.addEventListener("click", closeMobileMenu);
+  });
+
+  // Close on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && mobileNav && mobileNav.classList.contains("is-open")) {
+      closeMobileMenu();
+    }
+  });
+
+  /* ============================================================
+     MOBILE ACCORDION SUBMENUS
+     ============================================================ */
+  const accordionToggles = document.querySelectorAll(".mobile-link--accordion");
+
+  accordionToggles.forEach(toggle => {
+    toggle.addEventListener("click", () => {
+      const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!isExpanded));
+    });
+  });
+
+  /* ============================================================
+     DESKTOP DROPDOWN KEYBOARD ACCESSIBILITY
+     ============================================================ */
+  const dropdownParents = document.querySelectorAll(".nav-item--has-dropdown");
+
+  dropdownParents.forEach(parent => {
+    const toggle = parent.querySelector(".nav-link--toggle");
+    const dropdown = parent.querySelector(".nav-dropdown");
+
+    if (toggle && dropdown) {
+      // Open dropdown on Enter, Space, or ArrowDown
+      toggle.addEventListener("keydown", (e) => {
+        const isOpen = toggle.getAttribute("aria-expanded") === "true";
+        const links = Array.from(dropdown.querySelectorAll(".dropdown-link"));
+
+        if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+          e.preventDefault();
+          if (!isOpen) {
+            toggle.setAttribute("aria-expanded", "true");
+          }
+          // Move focus to first link if ArrowDown
+          if (e.key === "ArrowDown" && links.length > 0) {
+            links[0].focus();
+          }
+        } else if (e.key === "Escape" && isOpen) {
+          toggle.setAttribute("aria-expanded", "false");
+          toggle.focus();
+        }
+      });
+
+      // Handle keyboard navigation within dropdown
+      dropdown.addEventListener("keydown", (e) => {
+        const links = Array.from(dropdown.querySelectorAll(".dropdown-link"));
+        const currentIndex = links.indexOf(document.activeElement);
+
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          const nextIndex = (currentIndex + 1) % links.length;
+          links[nextIndex].focus();
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          if (currentIndex === 0) {
+            // Move focus back to toggle
+            toggle.setAttribute("aria-expanded", "false");
+            toggle.focus();
+          } else {
+            const prevIndex = (currentIndex - 1 + links.length) % links.length;
+            links[prevIndex].focus();
+          }
+        } else if (e.key === "Escape") {
+          toggle.setAttribute("aria-expanded", "false");
+          toggle.focus();
+        }
+      });
+
+      // Collapse when focus leaves the dropdown area
+      parent.addEventListener("focusout", (e) => {
+        if (!parent.contains(e.relatedTarget)) {
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
+  });
+
+  /* ============================================================
+     ACTIVE SECTION HIGHLIGHT ON SCROLL (for anchor links)
+     ============================================================ */
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".nav-link[href^='#'], .nav-link[href='/']");
+
+  function highlightActiveSection() {
+    let current = "";
+    const scrollPos = window.scrollY + 120;
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove("nav-link--active");
+      const href = link.getAttribute("href");
+      if (href === `/#${current}` || href === `/#` && current === "") {
+        link.classList.add("nav-link--active");
+      }
+    });
+  }
+
+  if (sections.length > 0) {
+    window.addEventListener("scroll", highlightActiveSection, { passive: true });
+  }
+
+  /* ============================================================
+     SMOOTH SCROLL FOR NAVIGATION LINKS
+     ============================================================ */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      const targetId = this.getAttribute("href");
+      if (targetId === "#") return;
+      const target = document.querySelector(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        // Close mobile menu if open
+        if (mobileNav && mobileNav.classList.contains("is-open")) {
+          closeMobileMenu();
+        }
+      }
+    });
+  });
+
+  /* ============================================================
+     ANIMATE ON SCROLL (Fade-in)
+     ============================================================ */
+  const fadeElements = document.querySelectorAll(".fade-in");
+  const fadeObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
       }
     });
-  }, { threshold: 0.2 });
-  fadeEls.forEach(el => observerFade.observe(el));
+  }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
 
-  /* -------------------------------
-     Mobile Menu Toggle
-  --------------------------------*/
-  const menuBtn = document.querySelector(".menu-toggle");
-  const navMenu = document.querySelector(".nav-menu");
-  if (menuBtn && navMenu) {
-    menuBtn.addEventListener("click", () => {
-      navMenu.classList.toggle("active");
-      menuBtn.classList.toggle("open");
-    });
-  }
+  fadeElements.forEach(el => fadeObserver.observe(el));
 
-  /* -------------------------------
-     Contact / Donation Form Validation
-  --------------------------------*/
-  const form = document.querySelector("form.needs-validation");
-  if (form) {
-    form.addEventListener("submit", e => {
+  /* ============================================================
+     FORM VALIDATION
+     ============================================================ */
+  const forms = document.querySelectorAll("form.needs-validation");
+  forms.forEach(form => {
+    form.addEventListener("submit", (e) => {
       let valid = true;
-
       form.querySelectorAll("input, textarea, select").forEach(input => {
-        if (input.hasAttribute("required") && !input.value.trim()) {
-          input.classList.add("is-invalid");
-          valid = false;
-        } else {
-          input.classList.remove("is-invalid");
+        if (input.hasAttribute("required")) {
+          if (input.type === "checkbox") {
+            if (!input.checked) {
+              input.classList.add("is-invalid");
+              valid = false;
+            } else {
+              input.classList.remove("is-invalid");
+            }
+          } else if (!input.value.trim()) {
+            input.classList.add("is-invalid");
+            valid = false;
+          } else {
+            input.classList.remove("is-invalid");
+          }
         }
       });
-
       if (!valid) {
         e.preventDefault();
-        alert("⚠️ Please fill all required fields before submitting.");
+        alert("Please fill all required fields and agree to the terms before submitting.");
       }
     });
-  }
-
-  /* -------------------------------
-     Back to Top Button
-  --------------------------------*/
-  const backToTop = document.getElementById('backToTop');
-  window.addEventListener("scroll", () => {
-    if (backToTop) {
-      backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
-    }
   });
-  if(backToTop){
+
+  /* ============================================================
+     BACK TO TOP BUTTON
+     ============================================================ */
+  const backToTop = document.getElementById("backToTop");
+  if (backToTop) {
+    window.addEventListener("scroll", () => {
+      backToTop.style.display = window.scrollY > 400 ? "block" : "none";
+      backToTop.classList.toggle("show", window.scrollY > 400);
+    }, { passive: true });
+
     backToTop.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 
-  /* -------------------------------
-     Dynamic Year in Footer
-  --------------------------------*/
-  const yearSpan = document.querySelector(".current-year");
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
-  }
+  /* ============================================================
+     DYNAMIC YEAR IN FOOTER
+     ============================================================ */
+  const yearSpans = document.querySelectorAll(".current-year, #footerYear");
+  yearSpans.forEach(span => {
+    span.textContent = new Date().getFullYear();
+  });
 
-  /* -------------------------------
-     Gallery Lightbox
-  --------------------------------*/
-  const galleryImages = document.querySelectorAll('.gallery-img');
-  galleryImages.forEach(img => {
-    img.addEventListener('click', () => {
-      const lightbox = document.createElement('div');
-      lightbox.id = 'lightbox';
-      lightbox.style.position = 'fixed';
-      lightbox.style.top = 0;
-      lightbox.style.left = 0;
-      lightbox.style.width = '100vw';
-      lightbox.style.height = '100vh';
-      lightbox.style.background = 'rgba(0,0,0,0.8)';
-      lightbox.style.display = 'flex';
-      lightbox.style.justifyContent = 'center';
-      lightbox.style.alignItems = 'center';
-      lightbox.style.zIndex = 9999;
-
-      const imgClone = img.cloneNode();
-      imgClone.style.maxWidth = '90%';
-      imgClone.style.maxHeight = '90%';
+  /* ============================================================
+     GALLERY LIGHTBOX
+     ============================================================ */
+  document.querySelectorAll(".gallery-img").forEach(img => {
+    img.style.cursor = "pointer";
+    img.addEventListener("click", () => {
+      const lightbox = document.createElement("div");
+      lightbox.id = "lightbox";
+      Object.assign(lightbox.style, {
+        position: "fixed",
+        top: "0",
+        left: "0",
+        width: "100vw",
+        height: "100vh",
+        background: "rgba(0,0,0,0.85)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: "9999",
+        cursor: "zoom-out"
+      });
+      const imgClone = document.createElement("img");
+      imgClone.src = img.src;
+      Object.assign(imgClone.style, {
+        maxWidth: "90%",
+        maxHeight: "90%",
+        borderRadius: "12px",
+        boxShadow: "0 20px 60px rgba(0,0,0,0.5)"
+      });
       lightbox.appendChild(imgClone);
       document.body.appendChild(lightbox);
 
-      lightbox.addEventListener('click', () => document.body.removeChild(lightbox));
+      const closeLightbox = () => {
+        if (lightbox.parentNode) lightbox.parentNode.removeChild(lightbox);
+      };
+      lightbox.addEventListener("click", closeLightbox);
+      document.addEventListener("keydown", function escHandler(e) {
+        if (e.key === "Escape") {
+          closeLightbox();
+          document.removeEventListener("keydown", escHandler);
+        }
+      });
     });
   });
 
-  /* -------------------------------
-     Counters Animation (IntersectionObserver)
-  --------------------------------*/
+  /* ============================================================
+     COUNTER ANIMATION
+     ============================================================ */
   const counters = document.querySelectorAll(".counter");
-  const speed = 200;
-
-  const counterObserver = new IntersectionObserver(entries => {
+  const counterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if(entry.isIntersecting){
+      if (entry.isIntersecting) {
         const counter = entry.target;
-        const updateCount = () => {
-          const target = +counter.getAttribute("data-target");
-          const count = +counter.innerText;
-          const increment = Math.ceil(target / speed);
+        const target = parseInt(counter.getAttribute("data-target"), 10);
+        const duration = 2000;
+        const startTime = performance.now();
 
-          if(count < target){
-            counter.innerText = count + increment;
-            setTimeout(updateCount, 20);
-          } else {
-            counter.innerText = target;
+        function updateCounter(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease out cubic
+          const ease = 1 - Math.pow(1 - progress, 3);
+          counter.textContent = Math.floor(ease * target);
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCounter);
           }
-        };
-        updateCount();
+        }
+
+        requestAnimationFrame(updateCounter);
         counterObserver.unobserve(counter);
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.4 });
 
   counters.forEach(counter => counterObserver.observe(counter));
-});
 
-// UPI QR Code Modal
-const upiBtn = document.getElementById('upiBtn');
-const upiModal = document.getElementById('upiModal');
-const closeUpi = document.getElementById('closeUpi');
+  /* ============================================================
+     GALLERY CAROUSEL AUTO-SCROLL
+     ============================================================ */
+  const galleryTrack = document.querySelector(".gallery-track");
+  const gallerySlides = document.querySelectorAll(".gallery-slide");
 
-if(upiBtn && upiModal && closeUpi){
-  upiBtn.addEventListener('click', () => upiModal.style.display = 'flex');
-  closeUpi.addEventListener('click', () => upiModal.style.display = 'none');
-  window.addEventListener('click', e => { if(e.target === upiModal) upiModal.style.display = 'none'; });
-}
+  if (galleryTrack && gallerySlides.length > 0) {
+    let slideWidth = gallerySlides[0].offsetWidth;
+    let currentIndex = 0;
 
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
-
-window.addEventListener("scroll", () => {
-  let current = "";
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 80;
-    const sectionHeight = section.clientHeight;
-    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-      current = section.getAttribute("id");
+    function moveSlide() {
+      currentIndex++;
+      if (currentIndex > gallerySlides.length - 4) {
+        currentIndex = 0;
+      }
+      galleryTrack.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
     }
-  });
 
-  navLinks.forEach(link => {
-    link.classList.remove("active");
-    if (link.getAttribute("href").includes(current)) {
-      link.classList.add("active");
+    let autoSlide = setInterval(moveSlide, 3000);
+
+    window.addEventListener("resize", () => {
+      slideWidth = gallerySlides[0].offsetWidth;
+      galleryTrack.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+    });
+
+    // Pause on hover
+    const galleryContainer = document.querySelector(".gallery-container");
+    if (galleryContainer) {
+      galleryContainer.addEventListener("mouseenter", () => clearInterval(autoSlide));
+      galleryContainer.addEventListener("mouseleave", () => {
+        autoSlide = setInterval(moveSlide, 3000);
+      });
     }
-  });
+  }
 });
-
-
-$(document).ready(function() {
-  $('#noticeModal').modal('show');
-});
-
-
-
-
-const track = document.querySelector(".gallery-track");
-const slides = document.querySelectorAll(".gallery-slide");
-if (track && slides.length > 0) {
-  let slideWidth = slides[0].offsetWidth;
-  let index = 0;
-
-  const moveSlide = () => {
-    index++;
-    if (index > slides.length - 4) {
-      index = 0;
-    }
-    track.style.transform = `translateX(-${slideWidth * index}px)`;
-  };
-
-  setInterval(moveSlide, 3000);
-
-  window.addEventListener("resize", () => {
-    slideWidth = slides[0].offsetWidth;
-    track.style.transform = `translateX(-${slideWidth * index}px)`;
-  });
-}

@@ -53,6 +53,7 @@ class Contact(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), index=True)
     email = Column(String(255), index=True)
+    phone = Column(String(20), nullable=True)
     subject = Column(String(255))
     message = Column(Text)
     read = Column(Boolean, default=False)
@@ -71,7 +72,8 @@ class Donation(Base):
     payment_status = Column(String, default="pending")
     purpose = Column(String, default="General Donation")
     receipt_no = Column(String, unique=True, index=True)
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=func.now())
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
 
 class TeamMember(Base):
     __tablename__ = "team_members"
@@ -93,10 +95,16 @@ class Volunteer(Base):
     name = Column(String)
     email = Column(String)
     phone = Column(String)
-    skills = Column(String)
-    availability = Column(String)
+    date_of_birth = Column(String, nullable=True)
+    address = Column(Text, nullable=True)
+    education = Column(String, nullable=True)
+    skills = Column(String, nullable=True)
+    preferred_area = Column(String, nullable=True)
+    availability = Column(String, nullable=True)
+    motivation = Column(Text, nullable=True)
     status = Column(String, default="pending")  # pending/approved/rejected
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=func.now())
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
 
 # ================= DOCUMENT =================
 class Document(Base):
@@ -105,7 +113,8 @@ class Document(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String)
     file_url = Column(String)
-    uploaded_at = Column(DateTime, default=datetime.utcnow)
+    uploaded_at = Column(DateTime, default=func.now())
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
 
 
 # ================= AUDIT =================
@@ -130,3 +139,5 @@ class AdminUser(Base):
     username = Column(String, unique=True)
     password = Column(String)
     role = Column(String, default="admin")
+    created_at = Column(DateTime, default=func.now())
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now())

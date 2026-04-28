@@ -3,53 +3,145 @@
 {% block title %}Contact | Shri Krishna Udhav Memorial Trust{% endblock %}
 
 {% block content %}
-<section class="container card-section mt-4">
-    <h1 class="section-title">Quick Contact</h1>
-    <p class="section-subtitle text-justify">
-        Reach us via phone, email, or visit our office. We are happy to answer your queries and guide you for support or donations.
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="container mt-3">
+  <ol class="breadcrumb bg-white rounded shadow-sm p-3">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+  </ol>
+</nav>
+
+<section class="container mt-4">
+    <h1 class="section-title">Contact Us</h1>
+    <p class="section-subtitle">
+        We would love to hear from you. Reach us via phone, email, or visit our office. 
+        We are happy to answer your queries and guide you for support or donations.
     </p>
 
     <div class="row mt-4">
-        <div class="col-md-6">
-            <h4>Contact Information</h4>
-            <p>
-                <strong>Address:</strong> VIL AND POST KHUKHUNDOO, DEORIA, UTTAR PRADESH 274501<br>
-                <strong>Email:</strong> <a href="mailto:krishnaudhavtrust@gmail.com">krishnaudhavtrust@gmail.com</a><br>
-                <strong>Phone:</strong> <a href="tel:+919918640455">+91-9918640455</a>
-            </p>
+        <div class="col-md-5">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <h4><i class="fas fa-map-marker-alt text-primary"></i> Contact Information</h4>
+                    <hr>
+                    <p>
+                        <strong>Registered Address:</strong><br>
+                        VIL AND POST KHUKHUNDOO, DEORIA,<br>
+                        UTTAR PRADESH 274501, INDIA
+                    </p>
+                    <p>
+                        <strong>Email:</strong><br>
+                        <a href="mailto:krishnaudhavtrust@gmail.com">krishnaudhavtrust@gmail.com</a>
+                    </p>
+                    <p>
+                        <strong>Phone:</strong><br>
+                        <a href="tel:+919918640455">+91-9918640455</a><br>
+                        <a href="tel:+919792992211">+91-9792992211</a>
+                    </p>
+                    <p>
+                        <strong>Office Hours:</strong><br>
+                        Monday to Saturday: 10:00 AM - 6:00 PM IST<br>
+                        Sunday: Closed
+                    </p>
+                    
+                    <h5 class="mt-4">Connect With Us</h5>
+                    <div class="mt-2">
+                        <a href="https://facebook.com/krishnaudhavtrust" target="_blank" class="btn btn-outline-primary btn-sm mr-2" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/krishnaudhavtrust" target="_blank" class="btn btn-outline-info btn-sm mr-2" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com/krishnaudhavtrust" target="_blank" class="btn btn-outline-danger btn-sm mr-2" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/919918640455" target="_blank" class="btn btn-outline-success btn-sm" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
         
-        <div class="col-md-6">
-            {% if request.query_params.get('success') == '1' %}
-<div class="alert alert-success">
-    Message sent successfully!
-</div>
-{% endif %}
-            <h4>Contact Form</h4>
-            
-            <form method="POST" action="/contact" class="needs-validation" novalidate>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+        <div class="col-md-7">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    {% if request.query_params.get('success') == '1' %}
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <i class="fas fa-check-circle"></i> Thank you! Your message has been sent successfully. We will get back to you soon.
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    </div>
+                    {% endif %}
+                    <h4><i class="fas fa-envelope text-primary"></i> Send Us a Message</h4>
+                    <hr>
+                    
+                    <form method="POST" action="/contact" class="needs-validation" novalidate>
+                        <div class="form-group">
+                            <label for="name" class="form-label">Full Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Full Name" required>
+                            <div class="invalid-feedback">Please enter your name.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="your@email.com" required>
+                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="+91-XXXXXXXXXX">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="subject" name="subject" placeholder="How can we help you?" required>
+                            <div class="invalid-feedback">Please enter a subject.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Please describe your query or message in detail..." required></textarea>
+                            <div class="invalid-feedback">Please enter your message.</div>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="privacyCheck" required>
+                            <label class="form-check-label" for="privacyCheck">
+                                I agree to the <a href="/privacy">Privacy Policy</a> and consent to being contacted regarding my inquiry.
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <input type="email" class="form-control" name="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="subject" placeholder="Subject" required>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" name="message" rows="4" placeholder="Your Message" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
+            </div>
         </div>
     </div>
+</section>
 
-    <div class="mt-5 text-center">
-        <h4>Follow Us</h4>
-        <a href="#" class="btn btn-link"><i class="fab fa-facebook fa-2x"></i></a>
-        <a href="#" class="btn btn-link"><i class="fab fa-twitter fa-2x"></i></a>
-        <a href="#" class="btn btn-link"><i class="fab fa-instagram fa-2x"></i></a>
+<!-- FAQ Section -->
+<section class="container mt-5 mb-5">
+    <h3 class="section-title">Frequently Asked Questions</h3>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm mb-3">
+                <div class="card-body">
+                    <h5><i class="fas fa-question-circle text-primary"></i> How can I donate?</h5>
+                    <p>You can donate online via UPI, bank transfer, or Razorpay on our <a href="/donate">Donate page</a>. All donations are eligible for tax exemption under Section 80G.</p>
+                </div>
+            </div>
+            <div class="card border-0 shadow-sm mb-3">
+                <div class="card-body">
+                    <h5><i class="fas fa-question-circle text-primary"></i> Can I volunteer?</h5>
+                    <p>Yes! We welcome volunteers. Please fill out the <a href="/volunteer">volunteer registration form</a> and our team will contact you.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm mb-3">
+                <div class="card-body">
+                    <h5><i class="fas fa-question-circle text-primary"></i> How are donations used?</h5>
+                    <p>Donations fund education, healthcare, skill development, and disaster relief programs. Read our <a href="/financial-transparency">Financial Transparency</a> page for details.</p>
+                </div>
+            </div>
+            <div class="card border-0 shadow-sm mb-3">
+                <div class="card-body">
+                    <h5><i class="fas fa-question-circle text-primary"></i> Is my donation tax-deductible?</h5>
+                    <p>Yes, all donations are eligible for tax exemptions under Section 80G/12A of the Income Tax Act, 1961.</p>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock %}
+

@@ -3,9 +3,21 @@
 {% block title %}Shri Krishna Udhav Memorial Trust | Team{% endblock %}
 
 {% block content %}
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="container mt-3">
+  <ol class="breadcrumb bg-white rounded shadow-sm p-3">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Our Team</li>
+  </ol>
+</nav>
+
 <section class="container mt-4">
-    <h2 class="section-title text-center">Our Team / Trustees</h2>
-    <p class="section-subtitle text-center">Meet the dedicated team behind Shri Krishna Udhav Memorial Trust, working tirelessly for social welfare and community development.</p>
+    <h2 class="section-title text-center">Our Team & Trustees</h2>
+    <p class="section-subtitle text-center">
+        Meet the dedicated team behind Shri Krishna Udhav Memorial Trust, working tirelessly for social welfare, 
+        community development, and the legacy of our founder Udho Yadav.
+    </p>
 
     <div class="row text-center mt-4">
         {% for member in team %}
@@ -21,10 +33,86 @@
             {% if member.email %}<p><a href="mailto:{{ member.email }}">{{ member.email }}</a></p>{% endif %}
         </div>
         {% else %}
-        <div class="col-12 text-center">
-            <p>Team members will be added soon!</p>
+        <!-- Static Team Members -->
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100 p-4">
+                <img src="{{ url_for('static', path='/Images/Founder.jpg') }}" class="team-photo mx-auto" alt="Udho Yadav - Founder">
+                <h5 class="mt-3">Udho Yadav</h5>
+                <p><strong>Founder & Visionary</strong></p>
+                <p>
+                    The trust is dedicated to the memory of Udho Yadav, whose compassion and vision for social welfare 
+                    inspired the foundation of this organization. His legacy continues to guide our mission of serving 
+                    the underserved with dignity and hope.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100 p-4">
+                <img src="https://via.placeholder.com/90?text=Chairman" class="team-photo mx-auto" alt="Trust Chairman">
+                <h5 class="mt-3">Shri Ram Prasad Yadav</h5>
+                <p><strong>Chairman</strong></p>
+                <p>
+                    Leading the trust with over 20 years of experience in social service. Oversees strategic planning, 
+                    community outreach, and ensures alignment with the founder's vision of inclusive development.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100 p-4">
+                <img src="https://via.placeholder.com/90?text=Secretary" class="team-photo mx-auto" alt="Trust Secretary">
+                <h5 class="mt-3">Smt. Geeta Devi</h5>
+                <p><strong>Secretary</strong></p>
+                <p>
+                    Coordinates day-to-day operations, program implementation, and volunteer management. 
+                    Passionate about women's empowerment and education for girl children.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100 p-4">
+                <img src="https://via.placeholder.com/90?text=Treasurer" class="team-photo mx-auto" alt="Trust Treasurer">
+                <h5 class="mt-3">Shri Mohan Yadav</h5>
+                <p><strong>Treasurer</strong></p>
+                <p>
+                    Manages financial operations, donor relations, and compliance. Ensures transparent utilization 
+                    of funds and maintains all statutory records for the trust.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100 p-4">
+                <img src="https://via.placeholder.com/90?text=Director" class="team-photo mx-auto" alt="Program Director">
+                <h5 class="mt-3">Shri Anil Kumar</h5>
+                <p><strong>Program Director</strong></p>
+                <p>
+                    Designs and implements education, health, and skill development programs. 
+                    Works directly with communities to identify needs and measure program impact.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100 p-4">
+                <img src="https://via.placeholder.com/90?text=Advisor" class="team-photo mx-auto" alt="Legal Advisor">
+                <h5 class="mt-3">Adv. Priya Sharma</h5>
+                <p><strong>Legal Advisor</strong></p>
+                <p>
+                    Provides legal guidance, ensures regulatory compliance, and oversees legal aid programs 
+                    for marginalized communities. Expert in NGO law and human rights.
+                </p>
+            </div>
         </div>
         {% endfor %}
     </div>
 </section>
+
+<!-- Join the Team CTA -->
+<section class="container text-center py-5 mb-5">
+    <h3 class="section-title">Join Our Mission</h3>
+    <p class="section-subtitle">
+        We are always looking for passionate individuals who want to make a difference. 
+        Join our team of volunteers and help us create lasting change in communities.
+    </p>
+    <a href="/volunteer" class="btn btn-primary btn-lg mt-3">Become a Volunteer</a>
+</section>
 {% endblock %}
+

@@ -90,22 +90,78 @@ class Contact(ContactBase):
 class DonationBase(BaseModel):
     donor_name: str
     donor_email: str
+    donor_pan: Optional[str] = None
     amount: float
-    transaction_id: str
+    purpose: Optional[str] = "General Donation"
     message: Optional[str] = None
 
 class DonationCreate(DonationBase):
-    pass
+    transaction_id: str
+    payment_status: Optional[str] = "pending"
 
 class Donation(DonationBase):
     id: int
-    status: str
-    donation_date: datetime
+    transaction_id: str
+    payment_status: str
+    receipt_no: Optional[str] = None
+    created_at: datetime
+    updated_at: datetime
     
     class Config:
         from_attributes = True
 
-class TeamMemberBase(BaseModel):
+
+class VolunteerBase(BaseModel):
+    name: str
+    email: str
+    phone: str
+    skills: Optional[str] = None
+    availability: Optional[str] = None
+
+class VolunteerCreate(VolunteerBase):
+    pass
+
+class Volunteer(VolunteerBase):
+    id: int
+    status: str
+    created_at: datetime
+    updated_at: datetime
+    
+    class Config:
+        from_attributes = True
+
+
+class DocumentBase(BaseModel):
+    title: str
+    file_url: str
+
+class DocumentCreate(DocumentBase):
+    pass
+
+class Document(DocumentBase):
+    id: int
+    uploaded_at: datetime
+    updated_at: datetime
+    
+    class Config:
+        from_attributes = True
+
+
+class AuditLogBase(BaseModel):
+    action: str
+    action_details: Optional[str] = None
+    user_id: int
+    user: str
+    ip_address: Optional[str] = None
+    user_agent: Optional[str] = None
+    session_id: Optional[str] = None
+
+class AuditLog(AuditLogBase):
+    id: int
+    created_at: datetime
+    
+    class Config:
+        from_attributes = True
     name: str
     position: str
     bio: Optional[str] = None

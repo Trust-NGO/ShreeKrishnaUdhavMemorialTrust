@@ -5,6 +5,9 @@ from datetime import datetime
 import os
 import qrcode
 
+# Get the backend directory
+BACKEND_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 def generate_receipt_number(donation):
 
@@ -24,7 +27,9 @@ def generate_receipt(donation, db):
     db.commit()
 
     file_name = f"receipt_{donation.id}.pdf"
-    file_path = os.path.join("receipts", file_name)
+    receipts_dir = os.path.join(BACKEND_DIR, "receipts")
+    os.makedirs(receipts_dir, exist_ok=True)
+    file_path = os.path.join(receipts_dir, file_name)
 
     doc = SimpleDocTemplate(file_path)
     styles = getSampleStyleSheet()
@@ -95,7 +100,7 @@ def generate_receipt(donation, db):
     """
 
     qr = qrcode.make(qr_data)
-    qr_path = f"receipts/qr_{donation.id}.png"
+    qr_path = os.path.join(receipts_dir, f"qr_{donation.id}.png")
     qr.save(qr_path)
 
     elements.append(Image(qr_path, width=100, height=100))

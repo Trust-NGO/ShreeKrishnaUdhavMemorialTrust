@@ -12,7 +12,7 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
     {% block extra_css %}{% endblock %}
@@ -20,29 +20,168 @@
 
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="/">
-        <img src="{{ url_for('static', path='/Images/logo.jpg') }}" alt="Trust Logo" class="logo-img">
-        Shri Krishna Udhav Memorial Trust
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="/mission">Mission & Vision</a></li>
-            <li class="nav-item"><a class="nav-link" href="/objectives">Objectives</a></li>
-            <li class="nav-item"><a class="nav-link" href="/events">Events</a></li>
-            <li class="nav-item"><a class="nav-link" href="/team">Team</a></li>
-            <li class="nav-item"><a class="nav-link" href="/gallery">Gallery</a></li>
-            <li class="nav-item"><a class="nav-link" href="/donate">Donate</a></li>
-            <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-        </ul>
+<!-- ========== NAVIGATION ========== -->
+<header class="site-header" id="siteHeader" role="banner">
+    <nav class="main-nav" id="mainNav" role="navigation" aria-label="Main Navigation">
+        
+        <!-- Logo -->
+        <a class="nav-logo" href="/" aria-label="Shri Krishna Udhav Memorial Trust Home">
+            <img src="{{ url_for('static', path='/Images/logo.jpg') }}" alt="Shri Krishna Udhav Memorial Trust Logo" class="logo-img" loading="eager">
+            <span class="logo-text">Shri Krishna <span class="logo-text--sub">Udhav Memorial Trust</span></span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="nav-desktop" id="navDesktop">
+            <ul class="nav-menu" role="menubar">
+                
+                <!-- Home -->
+                <li class="nav-item" role="none">
+                    <a href="/" class="nav-link" role="menuitem" {% if request.url.path == '/' %}aria-current="page"{% endif %}>
+                        <span class="nav-link-text">Home</span>
+                    </a>
+                </li>
+
+                <!-- About Us Dropdown -->
+                <li class="nav-item nav-item--has-dropdown" role="none">
+                    <button class="nav-link nav-link--toggle" 
+                            aria-expanded="false" 
+                            aria-haspopup="true"
+                            aria-controls="dropdown-about"
+                            role="menuitem">
+                        <span class="nav-link-text">About Us</span>
+                        <i class="fas fa-chevron-down nav-chevron" aria-hidden="true"></i>
+                    </button>
+                    <ul class="nav-dropdown" id="dropdown-about" role="menu" aria-label="About Us submenu">
+                        <li role="none"><a href="/about" class="dropdown-link" role="menuitem" {% if request.url.path == '/about' %}aria-current="page"{% endif %}>About Us</a></li>
+                        <li role="none"><a href="/mission" class="dropdown-link" role="menuitem" {% if request.url.path == '/mission' %}aria-current="page"{% endif %}>Mission & Vision</a></li>
+                        <li role="none"><a href="/objectives" class="dropdown-link" role="menuitem" {% if request.url.path == '/objectives' %}aria-current="page"{% endif %}>Objectives</a></li>
+                        <li role="none"><a href="/team" class="dropdown-link" role="menuitem" {% if request.url.path == '/team' %}aria-current="page"{% endif %}>Our Team</a></li>
+                    </ul>
+                </li>
+
+                <!-- Programs Dropdown -->
+                <li class="nav-item nav-item--has-dropdown" role="none">
+                    <button class="nav-link nav-link--toggle" 
+                            aria-expanded="false" 
+                            aria-haspopup="true"
+                            aria-controls="dropdown-programs"
+                            role="menuitem">
+                        <span class="nav-link-text">Programs</span>
+                        <i class="fas fa-chevron-down nav-chevron" aria-hidden="true"></i>
+                    </button>
+                    <ul class="nav-dropdown" id="dropdown-programs" role="menu" aria-label="Programs submenu">
+                        <li role="none"><a href="/projects" class="dropdown-link" role="menuitem" {% if request.url.path == '/projects' %}aria-current="page"{% endif %}>Projects</a></li>
+                        <li role="none"><a href="/gallery" class="dropdown-link" role="menuitem" {% if request.url.path == '/gallery' %}aria-current="page"{% endif %}>Gallery</a></li>
+                    </ul>
+                </li>
+
+                <!-- Get Involved Dropdown -->
+                <li class="nav-item nav-item--has-dropdown" role="none">
+                    <button class="nav-link nav-link--toggle" 
+                            aria-expanded="false" 
+                            aria-haspopup="true"
+                            aria-controls="dropdown-involved"
+                            role="menuitem">
+                        <span class="nav-link-text">Get Involved</span>
+                        <i class="fas fa-chevron-down nav-chevron" aria-hidden="true"></i>
+                    </button>
+                    <ul class="nav-dropdown" id="dropdown-involved" role="menu" aria-label="Get Involved submenu">
+                        <li role="none"><a href="/events" class="dropdown-link" role="menuitem" {% if request.url.path == '/events' %}aria-current="page"{% endif %}>Events & News</a></li>
+                        <li role="none"><a href="/volunteer" class="dropdown-link" role="menuitem" {% if request.url.path == '/volunteer' %}aria-current="page"{% endif %}>Become a Volunteer</a></li>
+                    </ul>
+                </li>
+
+                <!-- Contact -->
+                <li class="nav-item" role="none">
+                    <a href="/contact" class="nav-link" role="menuitem" {% if request.url.path == '/contact' %}aria-current="page"{% endif %}>
+                        <span class="nav-link-text">Contact</span>
+                    </a>
+                </li>
+
+                <!-- Donate CTA -->
+                <li class="nav-item nav-item--cta" role="none">
+                    <a href="/donate" class="btn-donate-nav" role="menuitem" {% if request.url.path == '/donate' %}aria-current="page"{% endif %}>
+                        <i class="fas fa-heart" aria-hidden="true"></i>
+                        <span>Donate Now</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" 
+                id="mobileToggle" 
+                aria-label="Toggle mobile menu" 
+                aria-expanded="false"
+                aria-controls="mobileNav"
+                type="button">
+            <span class="toggle-bar" aria-hidden="true"></span>
+            <span class="toggle-bar" aria-hidden="true"></span>
+            <span class="toggle-bar" aria-hidden="true"></span>
+        </button>
+
+    </nav>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav" id="mobileNav" aria-hidden="true" role="dialog" aria-label="Mobile menu" aria-modal="true">
+        <div class="mobile-nav-backdrop"></div>
+        <div class="mobile-nav-panel">
+            <div class="mobile-nav-header">
+                <a class="nav-logo nav-logo--mobile" href="/">
+                    <img src="{{ url_for('static', path='/Images/logo.jpg') }}" alt="" class="logo-img" loading="lazy">
+                    <span class="logo-text">Shri Krishna <span class="logo-text--sub">Udhav Memorial Trust</span></span>
+                </a>
+                <button class="mobile-close" id="mobileClose" aria-label="Close mobile menu" type="button">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <ul class="mobile-menu" role="menubar">
+                <li role="none"><a href="/" class="mobile-link" role="menuitem" {% if request.url.path == '/' %}aria-current="page"{% endif %}>Home</a></li>
+                <li class="mobile-item--has-children" role="none">
+                    <button class="mobile-link mobile-link--accordion" aria-expanded="false" aria-controls="mobile-about">
+                        <span>About Us</span>
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <ul class="mobile-submenu" id="mobile-about" role="menu">
+                        <li role="none"><a href="/about" class="mobile-sublink" role="menuitem" {% if request.url.path == '/about' %}aria-current="page"{% endif %}>About Us</a></li>
+                        <li role="none"><a href="/mission" class="mobile-sublink" role="menuitem" {% if request.url.path == '/mission' %}aria-current="page"{% endif %}>Mission & Vision</a></li>
+                        <li role="none"><a href="/objectives" class="mobile-sublink" role="menuitem" {% if request.url.path == '/objectives' %}aria-current="page"{% endif %}>Objectives</a></li>
+                        <li role="none"><a href="/team" class="mobile-sublink" role="menuitem" {% if request.url.path == '/team' %}aria-current="page"{% endif %}>Our Team</a></li>
+                    </ul>
+                </li>
+                <li class="mobile-item--has-children" role="none">
+                    <button class="mobile-link mobile-link--accordion" aria-expanded="false" aria-controls="mobile-programs">
+                        <span>Programs</span>
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <ul class="mobile-submenu" id="mobile-programs" role="menu">
+                        <li role="none"><a href="/projects" class="mobile-sublink" role="menuitem" {% if request.url.path == '/projects' %}aria-current="page"{% endif %}>Projects</a></li>
+                        <li role="none"><a href="/gallery" class="mobile-sublink" role="menuitem" {% if request.url.path == '/gallery' %}aria-current="page"{% endif %}>Gallery</a></li>
+                    </ul>
+                </li>
+                <li class="mobile-item--has-children" role="none">
+                    <button class="mobile-link mobile-link--accordion" aria-expanded="false" aria-controls="mobile-involved">
+                        <span>Get Involved</span>
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <ul class="mobile-submenu" id="mobile-involved" role="menu">
+                        <li role="none"><a href="/events" class="mobile-sublink" role="menuitem" {% if request.url.path == '/events' %}aria-current="page"{% endif %}>Events & News</a></li>
+                        <li role="none"><a href="/volunteer" class="mobile-sublink" role="menuitem" {% if request.url.path == '/volunteer' %}aria-current="page"{% endif %}>Become a Volunteer</a></li>
+                    </ul>
+                </li>
+                <li role="none"><a href="/contact" class="mobile-link" role="menuitem" {% if request.url.path == '/contact' %}aria-current="page"{% endif %}>Contact</a></li>
+                <li role="none" class="mobile-cta">
+                    <a href="/donate" class="btn-donate-nav btn-donate-nav--mobile" role="menuitem" {% if request.url.path == '/donate' %}aria-current="page"{% endif %}>
+                        <i class="fas fa-heart" aria-hidden="true"></i>
+                        <span>Donate Now</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-</nav>
+
+</header>
+<!-- ========== END NAVIGATION ========== -->
 
 <!-- Main Content -->
 {% block content %}{% endblock %}
@@ -51,27 +190,90 @@
 <footer class="footer mt-5">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 mb-3">
-                <img src="{{ url_for('static', path='/Images/footerlogo.png') }}" alt="Footer Logo" style="width:40px;border-radius:50%; margin-bottom:0.5em;"><br>
-                <strong>Shri Krishna Udhav Memorial Trust</strong><br>
-                Registered under Section 8 of Companies Act, 2013<br>
-                DARPAN ID: UP/2024/0406617 | Reg No: IV14/2020
+            <!-- About Column -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="footer-brand">
+                    <img src="{{ url_for('static', path='/Images/footerlogo.png') }}" alt="Footer Logo" class="footer-logo">
+                    <h5>Shri Krishna Udhav Memorial Trust</h5>
+                </div>
+                <p class="footer-about">
+                    A registered Section 8 NGO dedicated to uplifting marginalized communities through education, healthcare, 
+                    skill development, and social welfare across Deoria, Uttar Pradesh.
+                </p>
+                <div class="footer-social">
+                    <a href="https://facebook.com/krishnaudhavtrust" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/krishnaudhavtrust" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com/krishnaudhavtrust" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/919918640455" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:krishnaudhavtrust@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
             </div>
-            <div class="col-md-6 mb-3">
-                <h5>Important Links</h5>
-                <ul class="list-unstyled">
+
+            <!-- Quick Links Column -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="footer-heading">Quick Links</h6>
+                <ul class="footer-links list-unstyled">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/donate">Donate</a></li>
-                    <li><a href="/privacy">Privacy Policy</a></li>
-                    <li><a href="/refund">Refund & Donation Policy</a></li>
-                    <li><a href="/disclaimer">Disclaimer</a></li>
-                    <li><a href="/terms">Terms & Conditions</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/mission">Mission & Vision</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/events">Events & News</a></li>
+                    <li><a href="/gallery">Gallery</a></li>
+                    <li><a href="/team">Our Team</a></li>
                 </ul>
             </div>
+
+            <!-- Support & Policy Column -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h6 class="footer-heading">Support & Policies</h6>
+                <ul class="footer-links list-unstyled">
+                    <li><a href="/donate"><i class="fas fa-heart mr-1"></i> Donate</a></li>
+                    <li><a href="/volunteer">Become a Volunteer</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms & Conditions</a></li>
+                    <li><a href="/refund">Refund & Donation Policy</a></li>
+                    <li><a href="/disclaimer">Disclaimer</a></li>
+                    <li><a href="/child-protection">Child Protection Policy</a></li>
+                    <li><a href="/financial-transparency">Financial Transparency</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact & Newsletter Column -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h6 class="footer-heading">Contact Us</h6>
+                <ul class="footer-contact list-unstyled">
+                    <li><i class="fas fa-map-marker-alt"></i> VIL AND POST KHUKHUNDOO,<br>DEORIA, UTTAR PRADESH 274501</li>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:krishnaudhavtrust@gmail.com">krishnaudhavtrust@gmail.com</a></li>
+                    <li><i class="fas fa-phone"></i> <a href="tel:+919918640455">+91-9918640455</a></li>
+                </ul>
+
+                <h6 class="footer-heading mt-4">Newsletter</h6>
+                <p class="small">Subscribe for updates on our programs and impact stories.</p>
+                <form class="footer-newsletter" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Your email" aria-label="Email for newsletter" required>
+                        <div class="input-group-append">
+                            <button class="btn" type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="text-center mt-3">
-            <small>&copy; 2025 Shri Krishna Udhav Memorial Trust. All Rights Reserved.</small>
+
+        <hr class="footer-divider">
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom row align-items-center">
+            <div class="col-md-6 text-center text-md-left mb-2 mb-md-0">
+                <small>&copy; <span id="footerYear"></span> Shri Krishna Udhav Memorial Trust. All Rights Reserved.</small>
+            </div>
+            <div class="col-md-6 text-center text-md-right">
+                <small>
+                    Registered under Section 8 of Companies Act, 2013 | 
+                    DARPAN ID: UP/2024/0406617 | Reg No: IV14/2020
+                </small>
+            </div>
         </div>
     </div>
 </footer>
@@ -85,3 +287,4 @@
 
 </body>
 </html>
+

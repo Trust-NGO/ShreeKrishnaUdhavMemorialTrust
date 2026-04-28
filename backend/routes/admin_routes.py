@@ -11,9 +11,36 @@ from fastapi import Query
 from math import ceil
 from fastapi.responses import RedirectResponse
 from utils.auth_guard import admin_required
+from uuid import uuid4
 
 templates = Jinja2Templates(directory="templates")
 router = APIRouter()
+
+
+# ================= Session Helper =================
+def get_admin_from_session(request: Request):
+    """Extract admin username and ID from session"""
+    admin_username = request.session.get("admin", "unknown")
+    admin_id = request.session.get("admin_id", 1)  # Default to 1 if not found
+    return admin_username, admin_id
+
+
+# ================= File Validation Helper =================
+ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png', 'gif', 'pdf', 'doc', 'docx', 'txt'}
+MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
+
+def validate_file_upload(file: UploadFile) -> tuple:
+    """Validate file upload - returns (is_valid, error_message)"""
+    if not file:
+        return True, None
+    
+    # Check file extension
+    if file.filename:
+        ext = file.filename.split('.')[-1].lower()
+        if ext not in ALLOWED_EXTENSIONS:
+            return False, f"File type .{ext} not allowed. Allowed: {', '.join(ALLOWED_EXTENSIONS)}"
+    
+    return True, None
 
 
 # ================= Audit Log Helper =================
@@ -93,13 +120,22 @@ def donations(request: Request, db: Session = Depends(get_db), page: int = Query
 
 # ================= CONTACTS =================
 @router.get("/contacts")
-def contacts(request: Request, db: Session = Depends(get_db)):
+def contacts(request: Request, db: Session = Depends(get_db), page: int = Query(1, ge=1), page_size: int = 10):
     admin_required(request)
-    data = db.query(Contact).order_by(Contact.id.desc()).all()
+    
+    # Pagination logic
+    offset = (page - 1) * page_size
+    total_contacts = db.query(Contact).count()
+    data = db.query(Contact).order_by(Contact.id.desc()).offset(offset).limit(page_size).all()
+    
+    total_pages = (total_contacts + page_size - 1) // page_size
 
     return templates.TemplateResponse("admin/contacts.html", {
         "request": request,
-        "contacts": data
+        "contacts": data,
+        "page": page,
+        "total_pages": total_pages,
+        "page_size": page_size
     })
 
 @router.post("/contact/resolve/{id}")
@@ -115,12 +151,13 @@ def resolve_contact(id: int, request: Request, db: Session = Depends(get_db)):
         db.commit()
 
         # Log the action in the audit log
+        admin_username, admin_id = get_admin_from_session(request)
         log_audit_action(
             db, 
             action=f"Contact {id} resolved", 
             action_details=f"Contact with ID {id} marked as resolved.",
-            user="admin", 
-            user_id=1,  # Change this to the actual logged-in user's ID
+            user=admin_username,
+            user_id=admin_id,
             request=request
         )
 
@@ -146,9 +183,25 @@ def approve_volunteer(id: int, request: Request, db: Session = Depends(get_db)):
         db.commit()
 
         # Log the action in the audit log
-        log_audit_action(db, action=f"Volunteer {id} approved", action_details=f"Volunteer with ID {id} has been approved.", user="admin", user_id=1, request=request)
+        admin_username, admin_id = get_admin_from_session(request)
+        log_audit_action(db, action=f"Volunteer {id} approved", action_details=f"Volunteer with ID {id} has been approved.", user=admin_username, user_id=admin_id, request=request)
 
     return {"status": "approved"}
+
+
+@router.get("/volunteer/reject/{id}")
+def reject_volunteer(id: int, request: Request, db: Session = Depends(get_db)):
+    admin_required(request)
+    v = db.query(Volunteer).get(id)
+    if v:
+        v.status = "rejected"
+        db.commit()
+
+        # Log the action in the audit log
+        admin_username, admin_id = get_admin_from_session(request)
+        log_audit_action(db, action=f"Volunteer {id} rejected", action_details=f"Volunteer with ID {id} has been rejected.", user=admin_username, user_id=admin_id, request=request)
+
+    return {"status": "rejected"}
 
 # ================= DOCUMENTS =================
 @router.get("/documents")
@@ -175,12 +228,23 @@ def upload_document(
     file: UploadFile = File(...),
     db: Session = Depends(get_db)  # db is injected with Depends
 ):
-    # Save the uploaded file
-    filename = f"{datetime.now().timestamp()}_{file.filename}"
+    admin_required(request)
+    
+    # Validate file
+    is_valid, error_msg = validate_file_upload(file)
+    if not is_valid:
+        return {"error": error_msg}
+    
+    # Save the uploaded file with UUID to prevent collisions
+    ext = file.filename.split('.')[-1] if '.' in file.filename else ''
+    filename = f"{uuid4()}_{file.filename}"
     file_path = os.path.join(UPLOAD_DIR, filename)
 
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
+    try:
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+    except Exception as e:
+        return {"error": f"Failed to save file: {str(e)}"}
 
     # Save the document details in the database
     document = Document(
@@ -192,9 +256,9 @@ def upload_document(
     db.add(document)
     db.commit()
 
-     # Log the action in the audit log
-    log_audit_action(db, action="Uploaded new document", action_details=f"Document '{title}' uploaded.", user="admin", user_id=1, request=request)
-
+    # Log the action in the audit log
+    admin_username, admin_id = get_admin_from_session(request)
+    log_audit_action(db, action="Uploaded new document", action_details=f"Document '{title}' uploaded.", user=admin_username, user_id=admin_id, request=request)
 
     # Redirect back to the documents page after uploading
     return RedirectResponse("/admin/documents", status_code=302)
@@ -216,6 +280,13 @@ def add_event(
     image: UploadFile = File(...),
     db: Session = Depends(get_db)  # db should come last
 ):
+    admin_required(request)
+    
+    # Validate file
+    is_valid, error_msg = validate_file_upload(image)
+    if not is_valid:
+        return {"error": error_msg}
+    
     # Validate date
     try:
         event_date = datetime.fromisoformat(date)
@@ -224,12 +295,15 @@ def add_event(
     except ValueError:
         raise HTTPException(400, "Invalid date format. Use YYYY-MM-DDTHH:MM:SS")
 
-    # Save image
-    filename = f"{datetime.now().timestamp()}_{image.filename}"
+    # Save image with UUID to prevent collisions
+    filename = f"{uuid4()}_{image.filename}"
     file_path = os.path.join(UPLOAD_DIR, filename)
 
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(image.file, buffer)
+    try:
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(image.file, buffer)
+    except Exception as e:
+        return {"error": f"Failed to save image: {str(e)}"}
 
     # Save DB
     event = Event(
@@ -245,7 +319,8 @@ def add_event(
         db.commit()
 
         # Log the action in the audit log
-        log_audit_action(db, action="Created new event", action_details=f"Event '{title}' added to the system.", user="admin", user_id=1, request=request)
+        admin_username, admin_id = get_admin_from_session(request)
+        log_audit_action(db, action="Created new event", action_details=f"Event '{title}' added to the system.", user=admin_username, user_id=admin_id, request=request)
     except Exception as exc:
         db.rollback()
         return {"error": "Event could not be saved. Please check the data."}
@@ -254,6 +329,8 @@ def add_event(
 # ================= DELETE EVENT =================
 @router.get("/events/delete/{id}")
 def delete_event(id: int, request: Request, db: Session = Depends(get_db)):
+    admin_required(request)
+    
     event = db.query(Event).get(id)
 
     if event:
@@ -261,8 +338,8 @@ def delete_event(id: int, request: Request, db: Session = Depends(get_db)):
         db.commit()
 
         # Log deletion action in audit log
-        log_audit_action(db, action="Deleted event", action_details=f"Event with ID {id} deleted from the system.", user="admin", user_id=1, request=request)
-        db.commit()
+        admin_username, admin_id = get_admin_from_session(request)
+        log_audit_action(db, action="Deleted event", action_details=f"Event with ID {id} deleted from the system.", user=admin_username, user_id=admin_id, request=request)
 
     return RedirectResponse("/admin/events", status_code=302)
 
@@ -373,19 +450,30 @@ async def add_team_member(
     photo: UploadFile = File(...),
     db: Session = Depends(get_db)
 ):
-    filename = f"{int(datetime.now().timestamp())}_{photo.filename}"
+    admin_required(request)
+    
+    # Validate file
+    is_valid, error_msg = validate_file_upload(photo)
+    if not is_valid:
+        return {"error": error_msg}
+    
+    # Use UUID to prevent collisions
+    filename = f"{uuid4()}_{photo.filename}"
     file_path = os.path.join(TEAM_UPLOAD_DIR, filename)
 
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(photo.file, buffer)
-    print(filename)
+    try:
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(photo.file, buffer)
+    except Exception as e:
+        return {"error": f"Failed to save image: {str(e)}"}
+    
     new_member = TeamMember(
         name=name,
         position=position,
         bio=bio,
         email=email,
         phone=phone,
-        photo_url=f"/uploads/team_members/{filename}"  # ✅ FIXED
+        photo_url=f"/uploads/team_members/{filename}"
     )
 
     db.add(new_member)
@@ -403,7 +491,7 @@ async def edit_team_member(
     bio: str = Form(None),
     email: str = Form(None),
     phone: str = Form(None),
-    photo: UploadFile = File(None),  # ✅ optional
+    photo: UploadFile = File(None),  # optional
     db: Session = Depends(get_db)
 ):
     admin_required(request)
@@ -419,13 +507,22 @@ async def edit_team_member(
     member.email = email
     member.phone = phone
 
-    # ✅ update image only if new one uploaded
+    # Update image only if new one uploaded
     if photo and photo.filename:
-        filename = f"{int(datetime.now().timestamp())}_{photo.filename}"
+        # Validate file
+        is_valid, error_msg = validate_file_upload(photo)
+        if not is_valid:
+            return {"error": error_msg}
+        
+        # Use UUID to prevent collisions
+        filename = f"{uuid4()}_{photo.filename}"
         file_path = os.path.join(TEAM_UPLOAD_DIR, filename)
 
-        with open(file_path, "wb") as buffer:
-            shutil.copyfileobj(photo.file, buffer)
+        try:
+            with open(file_path, "wb") as buffer:
+                shutil.copyfileobj(photo.file, buffer)
+        except Exception as e:
+            return {"error": f"Failed to save image: {str(e)}"}
 
         member.photo_url = f"/uploads/team_members/{filename}"
 
