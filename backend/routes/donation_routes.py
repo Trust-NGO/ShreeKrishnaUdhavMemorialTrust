@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
+from typing import Optional
 import logging
 
 from database import get_db
@@ -14,9 +15,9 @@ class PaymentVerificationData(BaseModel):
     razorpay_order_id: str
     razorpay_payment_id: str
     razorpay_signature: str
-    donor_name: str = None
-    donor_email: str = None
-    amount: float = None
+    donor_name: Optional[str] = None
+    donor_email: Optional[str] = None
+    amount: Optional[float] = None
 
 @router.post("/verify-payment")
 def verify_payment(payment_data: PaymentVerificationData, db: Session = Depends(get_db)):
@@ -25,6 +26,10 @@ def verify_payment(payment_data: PaymentVerificationData, db: Session = Depends(
         if not payment_data.razorpay_order_id or not payment_data.razorpay_payment_id:
             logger.warning("Missing payment information in verification request")
             raise HTTPException(status_code=400, detail="Missing payment information")
+        
+        if payment_data.amount is None or payment_data.amount <= 0:
+            logger.warning("Invalid donation amount in verification request")
+            raise HTTPException(status_code=400, detail="Invalid donation amount")
         
         result = verify_payment_and_save(payment_data.dict(), db)
         
@@ -51,9 +56,9 @@ def verify_payment(payment_data: PaymentVerificationData, db: Session = Depends(
                 </body>
                 </html>
                 """
-                success, msg = email_service.send_email(payment_data.donor_email, subject, html_content)
+                success = email_service.send_email(payment_data.donor_email, subject, html_content)
                 if not success:
-                    logger.error(f"Failed to send donation receipt email: {msg}")
+                    logger.error("Failed to send donation receipt email")
             except Exception as e:
                 logger.error(f"Email sending error: {str(e)}", exc_info=True)
         

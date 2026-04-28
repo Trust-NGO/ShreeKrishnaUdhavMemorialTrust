@@ -129,10 +129,10 @@ def forgot_password(
     </html>
     """
     
-    success, msg = email_service.send_email(user.username, subject, html)
+    success = email_service.send_email(user.username, subject, html)
     
     if not success:
-        logger.error(f"Failed to send reset email: {msg}")
+        logger.error("Failed to send reset email")
         return templates.TemplateResponse("admin/forgot_password.html", {
             "request": request,
             "error": "Failed to send reset email. Please try again."

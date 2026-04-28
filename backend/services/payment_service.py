@@ -1,18 +1,46 @@
+"""Payment service for Razorpay integration."""
+
 import os
+from datetime import datetime
+
 try:
     import razorpay
     from razorpay.exceptions import BadSignatureError
 except ImportError:
     razorpay = None
     BadSignatureError = Exception
+
 from fastapi import HTTPException
 from models import Donation
 from services.receipt_service import generate_receipt
+from core.config import RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET
 
-if razorpay:
-    razorpay_client = razorpay.Client(
-        auth=(os.getenv("RAZORPAY_KEY_ID"), os.getenv("RAZORPAY_KEY_SECRET"))
-)
+if razorpay and RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET:
+    razorpay_client = razorpay.Client(auth=(RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET))
+else:
+    razorpay_client = None
+
+
+def create_razorpay_order(amount: int):
+    """Create a Razorpay order for the given amount (in INR)."""
+    if not razorpay:
+        raise HTTPException(500, "Payment service unavailable")
+    if not razorpay_client:
+        raise HTTPException(500, "Payment configuration error")
+
+    order_data = {
+        "amount": amount * 100,  # Convert to paise
+        "currency": "INR",
+        "receipt": f"order_{datetime.now().timestamp()}",
+        "payment_capture": 1
+    }
+    order = razorpay_client.order.create(data=order_data)
+    return {
+        "order_id": order["id"],
+        "amount": order["amount"],
+        "currency": order["currency"]
+    }
+
 
 def verify_payment_and_save(data, db):
     if not razorpay:

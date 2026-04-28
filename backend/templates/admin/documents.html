@@ -4,6 +4,14 @@
 <div class="card p-3">
     <h5 class="mb-3">Documents</h5>
 
+    <!-- ERROR MESSAGE -->
+    {% if request.query_params.get('error') %}
+    <div class="alert alert-danger alert-dismissible fade show">
+        ❌ {{ request.query_params.get('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endif %}
+
     <!-- Document Upload Form -->
     <form action="/admin/documents/upload" method="POST" enctype="multipart/form-data">
         <div class="mb-3">

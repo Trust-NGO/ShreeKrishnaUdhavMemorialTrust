@@ -7,9 +7,20 @@
 
 <div class="container-fluid">
 
+    <!-- ERROR MESSAGE -->
+    {% if request.query_params.get('error') %}
+    <div class="alert alert-danger alert-dismissible fade show">
+        ❌ {{ request.query_params.get('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endif %}
+
     <!-- SUCCESS MESSAGE -->
     {% if request.query_params.get('success') %}
-    <div class="alert alert-success">Event updated successfully</div>
+    <div class="alert alert-success alert-dismissible fade show">
+        ✅ Event updated successfully
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
     {% endif %}
 
     <!-- HEADER -->

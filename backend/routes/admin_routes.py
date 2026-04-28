@@ -40,6 +40,14 @@ def validate_file_upload(file: UploadFile) -> tuple:
         if ext not in ALLOWED_EXTENSIONS:
             return False, f"File type .{ext} not allowed. Allowed: {', '.join(ALLOWED_EXTENSIONS)}"
     
+    # Check file size
+    if file.file:
+        file.file.seek(0, os.SEEK_END)
+        size = file.file.tell()
+        file.file.seek(0)
+        if size > MAX_FILE_SIZE:
+            return False, f"File size exceeds {MAX_FILE_SIZE / (1024 * 1024):.1f}MB limit"
+    
     return True, None
 
 
@@ -233,7 +241,7 @@ def upload_document(
     # Validate file
     is_valid, error_msg = validate_file_upload(file)
     if not is_valid:
-        return {"error": error_msg}
+        return RedirectResponse(f"/admin/documents?error={error_msg}", status_code=302)
     
     # Save the uploaded file with UUID to prevent collisions
     ext = file.filename.split('.')[-1] if '.' in file.filename else ''
@@ -244,7 +252,7 @@ def upload_document(
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
     except Exception as e:
-        return {"error": f"Failed to save file: {str(e)}"}
+        return RedirectResponse(f"/admin/documents?error=Failed+to+save+file", status_code=302)
 
     # Save the document details in the database
     document = Document(
@@ -285,15 +293,16 @@ def add_event(
     # Validate file
     is_valid, error_msg = validate_file_upload(image)
     if not is_valid:
-        return {"error": error_msg}
+        return RedirectResponse(f"/admin/events?error={error_msg}", status_code=302)
     
     # Validate date
     try:
         event_date = datetime.fromisoformat(date)
-        if event_date < datetime.utcnow():
-            raise HTTPException(400, "Event date cannot be in the past")
+        # Compare dates only (not times) so same-day events are allowed
+        if event_date.date() < datetime.utcnow().date():
+            return RedirectResponse("/admin/events?error=Event+date+cannot+be+in+the+past", status_code=302)
     except ValueError:
-        raise HTTPException(400, "Invalid date format. Use YYYY-MM-DDTHH:MM:SS")
+        return RedirectResponse("/admin/events?error=Invalid+date+format", status_code=302)
 
     # Save image with UUID to prevent collisions
     filename = f"{uuid4()}_{image.filename}"
@@ -303,7 +312,7 @@ def add_event(
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(image.file, buffer)
     except Exception as e:
-        return {"error": f"Failed to save image: {str(e)}"}
+        return RedirectResponse("/admin/events?error=Failed+to+save+image", status_code=302)
 
     # Save DB
     event = Event(
@@ -323,7 +332,7 @@ def add_event(
         log_audit_action(db, action="Created new event", action_details=f"Event '{title}' added to the system.", user=admin_username, user_id=admin_id, request=request)
     except Exception as exc:
         db.rollback()
-        return {"error": "Event could not be saved. Please check the data."}
+        return RedirectResponse("/admin/events?error=Event+could+not+be+saved", status_code=302)
 
     return RedirectResponse("/admin/events", status_code=302)
 # ================= DELETE EVENT =================
@@ -455,7 +464,7 @@ async def add_team_member(
     # Validate file
     is_valid, error_msg = validate_file_upload(photo)
     if not is_valid:
-        return {"error": error_msg}
+        return RedirectResponse(f"/admin/team_members?error={error_msg}", status_code=302)
     
     # Use UUID to prevent collisions
     filename = f"{uuid4()}_{photo.filename}"
@@ -465,7 +474,7 @@ async def add_team_member(
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(photo.file, buffer)
     except Exception as e:
-        return {"error": f"Failed to save image: {str(e)}"}
+        return RedirectResponse("/admin/team_members?error=Failed+to+save+image", status_code=302)
     
     new_member = TeamMember(
         name=name,
@@ -512,7 +521,7 @@ async def edit_team_member(
         # Validate file
         is_valid, error_msg = validate_file_upload(photo)
         if not is_valid:
-            return {"error": error_msg}
+            return RedirectResponse(f"/admin/team_members?error={error_msg}", status_code=302)
         
         # Use UUID to prevent collisions
         filename = f"{uuid4()}_{photo.filename}"
@@ -522,7 +531,7 @@ async def edit_team_member(
             with open(file_path, "wb") as buffer:
                 shutil.copyfileobj(photo.file, buffer)
         except Exception as e:
-            return {"error": f"Failed to save image: {str(e)}"}
+            return RedirectResponse("/admin/team_members?error=Failed+to+save+image", status_code=302)
 
         member.photo_url = f"/uploads/team_members/{filename}"
 

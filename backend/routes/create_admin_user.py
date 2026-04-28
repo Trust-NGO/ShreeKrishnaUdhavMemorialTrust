@@ -43,7 +43,7 @@ def create_admin():
         db.commit()
 
         print("✅ Admin created successfully")
-        print("Username:", username)
+        print("Username:", username, "Password:", password)
 
     finally:
         db.close()

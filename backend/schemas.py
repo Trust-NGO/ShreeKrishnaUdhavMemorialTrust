@@ -162,6 +162,8 @@ class AuditLog(AuditLogBase):
     
     class Config:
         from_attributes = True
+
+class TeamMemberBase(BaseModel):
     name: str
     position: str
     bio: Optional[str] = None

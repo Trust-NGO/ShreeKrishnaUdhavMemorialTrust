@@ -119,7 +119,7 @@ def submit_contact(
     email: EmailStr = Form(...),
     phone: str = Form(""),
     subject: str = Form(..., min_length=3, max_length=255),
-    message: str = Form(..., min_length=10, max_length=5000),
+    message: str = Form(..., min_length=2, max_length=5000),
     db: Session = Depends(get_db)
 ):
     """Handle contact form submission with email notification"""
@@ -171,10 +171,10 @@ def submit_contact(
         </html>
         """
         
-        success, msg = email_service.send_email(email, subject_text, html_content)
+        success = email_service.send_email(email, subject_text, html_content)
         
         if not success:
-            logger.error(f"Failed to send acknowledgment email: {msg}")
+            logger.error("Failed to send acknowledgment email")
         
         logger.info(f"Contact form submitted by {name} ({email})")
         return RedirectResponse("/contact?success=1", status_code=303)
@@ -195,7 +195,7 @@ def submit_volunteer(
     request: Request,
     first_name: str = Form(..., min_length=1, max_length=255),
     last_name: str = Form(..., min_length=1, max_length=255),
-    email: str = Form(...),
+    email: EmailStr = Form(...),
     phone: str = Form(...),
     date_of_birth: str = Form(""),
     address: str = Form(""),
@@ -208,9 +208,6 @@ def submit_volunteer(
 ):
     """Submit volunteer application"""
     try:
-        # Validate email format
-        if "@" not in email or "." not in email:
-            raise HTTPException(status_code=400, detail="Invalid email format")
         
         name = f"{first_name.strip()} {last_name.strip()}"
         
@@ -255,9 +252,9 @@ def submit_volunteer(
         </html>
         """
         
-        success, msg = email_service.send_email(email, subject_text, html_content)
+        success = email_service.send_email(email, subject_text, html_content)
         if not success:
-            logger.error(f"Failed to send volunteer acknowledgment email: {msg}")
+            logger.error("Failed to send volunteer acknowledgment email")
         
         logger.info(f"Volunteer application submitted: {name} ({email})")
         return RedirectResponse(url="/volunteer?success=1", status_code=303)
@@ -323,9 +320,9 @@ def update_status_api(
         </html>
         """
         
-        success, msg = email_service.send_email(vol.email, subject_text, html_content)
+        success = email_service.send_email(vol.email, subject_text, html_content)
         if not success:
-            logger.error(f"Failed to send volunteer status email: {msg}")
+            logger.error("Failed to send volunteer status email")
         
         logger.info(f"Volunteer {volunteer_id} status updated to {vol.status}")
 
