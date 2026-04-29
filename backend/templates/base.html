@@ -18,7 +18,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='announcement.css') }}">
     {% block extra_css %}{% endblock %}
+
 </head>
 
 <body>
@@ -183,11 +185,44 @@
         </div>
     </div>
 
+
 </header>
-<!-- ========== END NAVIGATION ========== -->
+
+<!-- ========== ANNOUNCEMENT BAR ========== -->
+<section class="announcement-bar" role="region" aria-label="Latest updates" aria-live="polite">
+    <div class="announcement-container">
+        <!-- Left to Right Marquee -->
+        <div class="marquee marquee-left">
+            <div class="marquee-content">
+                <span>🌟 Shri Krishna Udhav Memorial Trust - Empowering communities since 2020</span>
+                <span>•</span>
+                <span>📚 500+ children receiving free education support</span>
+                <span>•</span>
+                <span>🏥 Free health camps serving 2000+ families annually</span>
+                <span>•</span>
+                <span>💼 Skill training for 300+ youth & women</span>
+                <span>•</span>
+                <span>🎉 Independence Day celebrations - Aug 15th | All welcome</span>
+            </div>
+        </div>
+        <!-- Right to Left Marquee -->
+        <div class="marquee marquee-right">
+            <div class="marquee-content">
+                <span>❤️ Your donations make a difference | 80G tax exemption available</span>
+                <span>•</span>
+                <span>📞 Contact: +91-9918640455 | krishnaudhavtrust@gmail.com</span>
+                <span>•</span>
+                <span>📍 Khukhundu, Deoria, UP | Serving entire India</span>
+                <span>•</span>
+                <span>🙏 Become a volunteer today | Join our mission</span>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Main Content -->
 {% block content %}{% endblock %}
+
 
 <!-- Footer -->
 <footer class="footer mt-5">
